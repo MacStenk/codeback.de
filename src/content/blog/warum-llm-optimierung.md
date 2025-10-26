@@ -2,7 +2,6 @@
 title: "Warum deine Website ChatGPT nicht findet"
 description: "Die Ära von Google SEO ist vorbei. LLMs sind die neuen Gatekeeper. Ist deine Website bereit?"
 pubDate: "Oct 26 2024"
-heroImage: "/blog-placeholder-3.jpg"
 ---
 
 ## Das Problem mit klassischem SEO
