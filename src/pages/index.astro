@@ -44,26 +44,28 @@ const pageDescription =
     <main class="max-w-4xl mx-auto px-6 py-20">
       <!-- Hero -->
       <article>
-        <header class="mb-20">
+        <!-- Hero -->
+        <header class="mb-24">
           <div class="inline-block mb-6">
             <span
               class="text-sm font-medium text-green-600 bg-green-50 px-3 py-1 rounded-full"
             >
-              LLM-Native Website
+              LLM-Native Webentwicklung
             </span>
           </div>
 
           <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-            Websites für die<br />
-            <span class="text-green-600">LLM-Ära</span>
+            Deine Kunden fragen<br />
+            <span class="text-green-600">ChatGPT</span>, nicht Google
           </h1>
 
-          <p class="text-xl text-zinc-600 mb-8 leading-relaxed">
-            Während andere für Google optimieren, baust du für ChatGPT. Diese
-            Website beweist das Konzept.
+          <p class="text-xl text-zinc-600 mb-8 leading-relaxed max-w-2xl">
+            Coaches & Consultants verlieren täglich Anfragen, weil ihre Website
+            für LLMs unsichtbar ist. Wir bauen Websites, die ChatGPT, Claude und
+            Gemini verstehen und empfehlen.
           </p>
 
-          <div class="flex gap-4 items-center">
+          <div class="flex gap-4 items-center flex-wrap">
             <a
               href="#konzept"
               class="inline-block px-6 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700"
@@ -79,30 +81,149 @@ const pageDescription =
           </div>
         </header>
 
+        <!-- Wer braucht das? -->
+        <section class="mb-24 bg-zinc-50 -mx-6 px-6 py-12 rounded-lg">
+          <h2 class="text-3xl font-bold mb-8">
+            Wer braucht LLM-native Websites?
+          </h2>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <!-- Business Coach -->
+            <div class="bg-white border border-zinc-200 rounded-lg p-6">
+              <div class="text-3xl mb-3">💼</div>
+              <h3 class="text-xl font-semibold mb-3">Business Coaches</h3>
+              <p class="text-zinc-600 mb-4">
+                Deine Expertise ist wertvoll. Aber wenn jemand ChatGPT fragt
+                "Wer kann mir bei Teamführung helfen?", wird deine
+                WordPress-Seite ignoriert.
+              </p>
+              <p class="text-sm text-green-600 font-medium">
+                → LLM-native = Du wirst empfohlen
+              </p>
+            </div>
+
+            <!-- Berater -->
+            <div class="bg-white border border-zinc-200 rounded-lg p-6">
+              <div class="text-3xl mb-3">📊</div>
+              <h3 class="text-xl font-semibold mb-3">Consultants & Berater</h3>
+              <p class="text-zinc-600 mb-4">
+                Deine Methoden sind einzigartig. Aber LLMs können sie nicht
+                finden, weil deine Website in Shortcodes und Pagebuildern
+                versteckt ist.
+              </p>
+              <p class="text-sm text-green-600 font-medium">
+                → Strukturierte Daten = Sichtbarkeit
+              </p>
+            </div>
+
+            <!-- Therapeuten -->
+            <div class="bg-white border border-zinc-200 rounded-lg p-6">
+              <div class="text-3xl mb-3">🧠</div>
+              <h3 class="text-xl font-semibold mb-3">Therapeuten & Trainer</h3>
+              <p class="text-zinc-600 mb-4">
+                Menschen suchen nicht mehr bei Google. Sie fragen ihre AI: "Wer
+                kann mir bei [Problem] helfen?" – Ist deine Website die Antwort?
+              </p>
+              <p class="text-sm text-green-600 font-medium">
+                → Answer Engine Optimization
+              </p>
+            </div>
+
+            <!-- Experten -->
+            <div class="bg-white border border-zinc-200 rounded-lg p-6">
+              <div class="text-3xl mb-3">🎯</div>
+              <h3 class="text-xl font-semibold mb-3">Experten & Speaker</h3>
+              <p class="text-zinc-600 mb-4">
+                Du bist Thought Leader. Aber wenn LLMs deine Inhalte nicht
+                verstehen, zitieren sie deine Konkurrenz. Nicht dich.
+              </p>
+              <p class="text-sm text-green-600 font-medium">
+                → Semantische Autorität aufbauen
+              </p>
+            </div>
+          </div>
+
+          <!-- Stats -->
+          <div class="mt-12 grid md:grid-cols-3 gap-6">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-green-600 mb-2">73%</div>
+              <p class="text-sm text-zinc-600">
+                der Nutzer vertrauen AI-Empfehlungen
+              </p>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-green-600 mb-2">2025</div>
+              <p class="text-sm text-zinc-600">
+                wird das Jahr der Answer Engines
+              </p>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-green-600 mb-2">0%</div>
+              <p class="text-sm text-zinc-600">
+                der Coaches sind heute LLM-ready
+              </p>
+            </div>
+          </div>
+        </section>
+
         <!-- Das Problem -->
         <section id="problem" class="mb-24">
-          <h2 class="text-3xl font-bold mb-8">Das Problem</h2>
+          <h2 class="text-3xl font-bold mb-8">Das Problem mit WordPress</h2>
 
-          <div class="space-y-8">
-            <div class="border-l-4 border-red-500 pl-6">
-              <h3 class="text-xl font-semibold mb-3">WordPress (2003-2024)</h3>
-              <ul class="space-y-2 text-zinc-600">
-                <li>• Für Google-Crawler optimiert, nicht für LLMs</li>
-                <li>• Verschachtelte DOM-Strukturen die LLMs verwirren</li>
-                <li>• Semantik wird ignoriert</li>
-                <li>• Content ist in Shortcodes versteckt</li>
+          <div class="space-y-6">
+            <div class="border-l-4 border-red-500 pl-6 py-4">
+              <h3 class="text-xl font-semibold mb-3">
+                ❌ Unsichtbar für ChatGPT & Co.
+              </h3>
+              <p class="text-zinc-600 mb-3">
+                WordPress-Websites sind für Google-Crawler optimiert. Aber LLMs
+                brauchen semantische Struktur, klare Hierarchien und
+                maschinenlesbare Metadaten.
+              </p>
+              <ul class="space-y-2 text-sm text-zinc-600">
+                <li>• Verschachtelte DIV-Strukturen verwirren LLMs</li>
+                <li>• Content in Shortcodes versteckt</li>
+                <li>• Keine Schema.org Integration</li>
+                <li>• PageBuilder-Chaos statt klarer HTML-Semantik</li>
               </ul>
             </div>
 
-            <div class="border-l-4 border-green-600 pl-6">
-              <h3 class="text-xl font-semibold mb-3">CodeBack (2024+)</h3>
-              <ul class="space-y-2 text-zinc-600">
-                <li>• Semantic HTML5 - LLMs verstehen die Struktur</li>
-                <li>• Schema.org Markup - Maschinenlesbare Metadaten</li>
-                <li>• Klare Content-Hierarchie</li>
-                <li>• Optimiert für Embedding-Modelle</li>
+            <div class="border-l-4 border-green-600 pl-6 py-4 bg-green-50">
+              <h3 class="text-xl font-semibold mb-3">
+                ✓ LLM-native mit CodeBack
+              </h3>
+              <p class="text-zinc-600 mb-3">
+                Wir bauen Websites die LLMs verstehen, kontextualisieren und
+                empfehlen.
+              </p>
+              <ul class="space-y-2 text-sm text-zinc-600">
+                <li>• Semantic HTML5 – jedes Element hat Bedeutung</li>
+                <li>• Schema.org Markup – maschinenlesbare Metadaten</li>
+                <li>• Answer Engine Optimization – präzise Antworten</li>
+                <li>
+                  • Klare Content-Hierarchie – LLMs finden was wichtig ist
+                </li>
               </ul>
             </div>
+          </div>
+
+          <!-- Beispiel -->
+          <div class="mt-8 bg-zinc-50 border border-zinc-200 rounded-lg p-6">
+            <h4 class="font-semibold mb-4">Beispiel: ChatGPT-Anfrage</h4>
+            <div class="bg-white border border-zinc-300 rounded p-4 mb-4">
+              <p class="text-zinc-700 italic">
+                "Finde mir einen Business Coach in Berlin der auf Teamführung
+                spezialisiert ist und mit agilen Methoden arbeitet"
+              </p>
+            </div>
+            <p class="text-sm text-zinc-600">
+              <span class="font-semibold">WordPress-Site:</span> Wird nicht gefunden
+              – Spezialisierung ist in Bildern und PageBuilder versteckt.
+            </p>
+            <p class="text-sm text-green-600 font-semibold mt-2">
+              <span class="font-semibold">CodeBack-Site:</span> Wird empfohlen –
+              Spezialisierung ist in strukturierten Daten hinterlegt.
+            </p>
           </div>
         </section>
 
@@ -113,37 +234,37 @@ const pageDescription =
           <div class="prose prose-zinc max-w-none">
             <p class="text-lg text-zinc-600 mb-6">
               Eine LLM-native Website ist so strukturiert, dass Large Language
-              Models (wie ChatGPT, Claude, Gemini) den Content optimal verstehen
-              und verarbeiten können.
+              Models (wie ChatGPT, Claude, Gemini) den Content optimal
+              verstehen, kontextualisieren und in Antworten integrieren können.
             </p>
 
             <h3 class="text-xl font-semibold mb-4 mt-8">1. Semantic HTML</h3>
             <p class="text-zinc-600 mb-4">
               Statt generischen <code>&lt;div&gt;</code> Tags nutzen wir semantische
-              Elemente:
+              Elemente die Bedeutung transportieren:
             </p>
 
             <div class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 mb-6">
               <div class="grid md:grid-cols-2 gap-6">
                 <div>
                   <p class="text-sm font-medium text-red-600 mb-2">
-                    ❌ Falsch (WordPress-Stil)
+                    ❌ WordPress-Chaos
                   </p>
                   <pre
-                    class="!bg-zinc-900 !text-zinc-100 !p-4 !my-0"><code>&lt;div class="post"&gt;
-  &lt;div class="title"&gt;...&lt;/div&gt;
-  &lt;div class="content"&gt;...&lt;/div&gt;
+                    class="!bg-zinc-900 !text-zinc-100 !p-4 !my-0 !text-xs"><code>&lt;div class="elementor-widget"&gt;
+  &lt;div class="heading"&gt;Coach&lt;/div&gt;
+  &lt;div class="text"&gt;...&lt;/div&gt;
 &lt;/div&gt;</code></pre>
                 </div>
 
                 <div>
                   <p class="text-sm font-medium text-green-600 mb-2">
-                    ✓ Richtig (LLM-native)
+                    ✓ LLM-native
                   </p>
                   <pre
-                    class="!bg-zinc-900 !text-zinc-100 !p-4 !my-0"><code>&lt;article&gt;
-  &lt;h1&gt;...&lt;/h1&gt;
-  &lt;p&gt;...&lt;/p&gt;
+                    class="!bg-zinc-900 !text-zinc-100 !p-4 !my-0 !text-xs"><code>&lt;article itemscope itemtype="Person"&gt;
+  &lt;h1 itemprop="name"&gt;Coach&lt;/h1&gt;
+  &lt;p itemprop="description"&gt;...&lt;/p&gt;
 &lt;/article&gt;</code></pre>
                 </div>
               </div>
@@ -153,88 +274,103 @@ const pageDescription =
               2. Schema.org Markup
             </h3>
             <p class="text-zinc-600 mb-4">
-              LLMs nutzen strukturierte Daten um Kontext zu verstehen:
+              LLMs nutzen strukturierte Daten um Expertise, Spezialisierung und
+              Autorität zu verstehen:
             </p>
 
-            <pre><code>{`{
+            <pre
+              class="!text-xs"><code>{`{
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "CodeBack",
-  "description": "Websites für die LLM-Ära",
-  "about": {
-    "@type": "Service",
-    "name": "LLM-native Development"
+  "@type": "ProfessionalService",
+  "name": "Business Coaching Berlin",
+  "areaServed": "Berlin",
+  "serviceType": "Teamführung & Agile Methoden",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Coaching Services"
   }
 }`}</code></pre>
 
             <h3 class="text-xl font-semibold mb-4 mt-8">
-              3. Content-Hierarchie
+              3. Answer Engine Optimization (AEO)
             </h3>
             <p class="text-zinc-600 mb-4">
-              Klare Struktur hilft LLMs die wichtigsten Informationen zu finden:
+              Statt Keywords optimieren wir für Antworten:
             </p>
 
             <ul class="space-y-2 text-zinc-600 list-disc pl-6">
-              <li>Eine <code>&lt;h1&gt;</code> pro Seite (Hauptthema)</li>
-              <li><code>&lt;h2&gt;</code> für Hauptsektionen</li>
-              <li><code>&lt;h3&gt;</code> für Untersektionen</li>
-              <li>Kurze, prägnante Absätze</li>
+              <li>Klare, vollständige Antworten auf häufige Fragen</li>
+              <li>Strukturierte FAQ-Bereiche mit Schema.org</li>
+              <li>Kontextuelle Tiefe statt Keyword-Dichte</li>
+              <li>Autorität durch Expertise-Signale</li>
             </ul>
           </div>
         </section>
 
         <!-- Die Zukunft -->
         <section class="mb-24">
-          <div class="bg-zinc-50 border border-zinc-200 rounded-lg p-8">
-            <h2 class="text-2xl font-bold mb-4">
-              Die Zukunft ist nicht Google Search
-            </h2>
-            <p class="text-lg text-zinc-600 mb-4">
-              2024: <span class="font-semibold"
-                >"Hey ChatGPT, finde mir einen Coach für X"</span
-              >
+          <div class="bg-zinc-900 text-white rounded-lg p-8">
+            <h2 class="text-2xl font-bold mb-4">Die Zukunft heißt "Ask AI"</h2>
+            <p class="text-lg text-zinc-300 mb-4">
+              <span class="text-green-400 font-semibold">2024:</span> "Hey ChatGPT,
+              finde mir einen Coach für Teamführung in Berlin"
             </p>
-            <p class="text-zinc-600">
-              Die KI durchsucht das Web, versteht Kontext und Qualität – und
-              empfiehlt die Website die am besten strukturiert ist.
+            <p class="text-zinc-400 mb-4">
+              Die KI durchsucht das Web, versteht Kontext, Expertise und
+              Spezialisierung – und empfiehlt die Website die am besten
+              strukturiert ist.
+            </p>
+            <p class="text-green-400 font-semibold">
+              Ist das deine Website? Oder die deiner Konkurrenz?
             </p>
           </div>
         </section>
 
         <!-- Tech Stack -->
         <section class="mb-24">
-          <h2 class="text-3xl font-bold mb-8">Unser Stack</h2>
+          <h2 class="text-3xl font-bold mb-6">Unser Stack</h2>
           <p class="text-zinc-600 mb-8">
-            Diese Website ist selbst ein Proof of Concept. Gebaut mit:
+            Diese Website ist selbst LLM-native. Gebaut mit:
           </p>
 
           <div class="grid md:grid-cols-3 gap-6">
-            <div class="border border-zinc-200 rounded-lg p-6">
+            <div
+              class="border border-zinc-200 rounded-lg p-6 hover:border-green-600 transition"
+            >
               <div class="text-3xl mb-3">⚡</div>
               <h3 class="font-semibold mb-2">Astro</h3>
-              <p class="text-sm text-zinc-600">Zero-JS, sauberes HTML</p>
+              <p class="text-sm text-zinc-600">
+                Zero-JS Framework. Sauberes, semantisches HTML.
+              </p>
             </div>
 
-            <div class="border border-zinc-200 rounded-lg p-6">
+            <div
+              class="border border-zinc-200 rounded-lg p-6 hover:border-green-600 transition"
+            >
               <div class="text-3xl mb-3">🛡️</div>
               <h3 class="font-semibold mb-2">Cloudflare</h3>
-              <p class="text-sm text-zinc-600">Edge-Deployment, blitzschnell</p>
+              <p class="text-sm text-zinc-600">
+                Edge-Deployment. Blitzschnell weltweit.
+              </p>
             </div>
 
             <div class="border border-green-600 rounded-lg p-6 bg-green-50">
               <div class="text-3xl mb-3">🔐</div>
               <h3 class="font-semibold mb-2 text-green-900">ProtonMail</h3>
-              <p class="text-sm text-green-800">Privacy-First E-Mail</p>
+              <p class="text-sm text-green-800">
+                End-to-End verschlüsselt. Zero-Knowledge.
+              </p>
             </div>
           </div>
         </section>
 
         <!-- CTA -->
         <section class="border-t border-zinc-200 pt-12">
-          <h2 class="text-3xl font-bold mb-4">Bald verfügbar</h2>
+          <h2 class="text-3xl font-bold mb-4">Launch: Januar 2026</h2>
           <p class="text-lg text-zinc-600 mb-8">
-            CodeBack befindet sich in Entwicklung. Folge dem Blog für Updates zu
-            LLM-SEO, JAMstack und der Zukunft des Web.
+            CodeBack befindet sich in aktiver Entwicklung. Folge dem Blog für
+            Updates zu LLM-SEO, Answer Engine Optimization und der Zukunft der
+            digitalen Sichtbarkeit.
           </p>
           <a
             href="/blog"
