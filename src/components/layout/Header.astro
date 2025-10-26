@@ -1,108 +1,113 @@
 ---
-// Header.astro - Main Navigation Component
+// Header.astro - Main Navigation Component with A11y improvements
 const currentPath = Astro.url.pathname;
 
 const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/#problem", label: "Das Problem" },
-  { href: "/#konzept", label: "Das Konzept" },
-  { href: "/#loesung", label: "Die Lösung" },
-  { href: "/blog", label: "Blog" },
+  { href: '/', label: 'Home' },
+  { href: '/#problem', label: 'Das Problem' },
+  { href: '/#konzept', label: 'Das Konzept' },
+  { href: '/#loesung', label: 'Die Lösung' },
+  { href: '/blog', label: 'Blog' },
 ];
 ---
 
-<header
-  class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-zinc-200"
->
+<!-- Skip to Content Link -->
+<a href="#main-content" class="skip-to-content">
+  Zum Hauptinhalt springen
+</a>
+
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-zinc-200">
   <div class="max-w-7xl mx-auto px-6">
     <div class="flex justify-between items-center py-4">
+      
       <!-- Logo -->
       <a href="/" class="flex items-center gap-2 group">
         <div class="text-2xl font-bold">
-          <span class="text-zinc-900 group-hover:text-green-600 transition"
-            >Code</span
-          ><span class="text-green-600">Back</span>
+          <span class="text-zinc-900 group-hover:text-green-600 transition">Code</span><span class="text-green-600">Back</span>
         </div>
         <span class="text-xs text-zinc-500 hidden sm:inline">LLM-native</span>
       </a>
 
       <!-- Desktop Navigation -->
-      <nav class="hidden md:flex items-center gap-8">
-        {
-          navItems.map((item) => (
-            <a
-              href={item.href}
-              class={`text-sm font-medium transition ${
-                currentPath === item.href
-                  ? "text-green-600"
-                  : "text-zinc-600 hover:text-zinc-900"
-              }`}
-            >
-              {item.label}
-            </a>
-          ))
-        }
+      <nav class="hidden md:flex items-center gap-8" aria-label="Hauptnavigation">
+        {navItems.map(item => (
+          <a 
+            href={item.href}
+            class={`text-sm font-medium transition ${
+              currentPath === item.href 
+                ? 'text-green-600' 
+                : 'text-zinc-600 hover:text-zinc-900'
+            }`}
+          >
+            {item.label}
+          </a>
+        ))}
       </nav>
 
       <!-- Mobile Menu Button -->
-      <button
+      <button 
         id="mobile-menu-button"
         class="md:hidden p-2 text-zinc-600 hover:text-zinc-900"
-        aria-label="Menu öffnen"
+        aria-label="Menü öffnen"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
       >
-        <svg
-          class="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"></path>
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
     </div>
 
     <!-- Mobile Navigation -->
-    <nav id="mobile-menu" class="hidden md:hidden pb-4">
+    <nav 
+      id="mobile-menu" 
+      class="hidden md:hidden pb-4"
+      aria-label="Mobile Navigation"
+    >
       <div class="flex flex-col gap-3">
-        {
-          navItems.map((item) => (
-            <a
-              href={item.href}
-              class={`px-4 py-2 rounded-lg text-sm font-medium transition ${
-                currentPath === item.href
-                  ? "bg-green-50 text-green-600"
-                  : "text-zinc-600 hover:bg-zinc-50"
-              }`}
-            >
-              {item.label}
-            </a>
-          ))
-        }
+        {navItems.map(item => (
+          <a 
+            href={item.href}
+            class={`px-4 py-2 rounded-lg text-sm font-medium transition ${
+              currentPath === item.href 
+                ? 'bg-green-50 text-green-600' 
+                : 'text-zinc-600 hover:bg-zinc-50'
+            }`}
+          >
+            {item.label}
+          </a>
+        ))}
       </div>
     </nav>
   </div>
 </header>
 
 <script>
-  // Mobile Menu Toggle
-  const button = document.getElementById("mobile-menu-button");
-  const menu = document.getElementById("mobile-menu");
-
-  button?.addEventListener("click", () => {
-    menu?.classList.toggle("hidden");
-  });
+  // Mobile Menu Toggle with A11y
+  const button = document.getElementById('mobile-menu-button');
+  const menu = document.getElementById('mobile-menu');
+  
+  function toggleMenu() {
+    const isExpanded = button?.getAttribute('aria-expanded') === 'true';
+    button?.setAttribute('aria-expanded', String(!isExpanded));
+    menu?.classList.toggle('hidden');
+  }
+  
+  button?.addEventListener('click', toggleMenu);
 
   // Close menu when clicking outside
-  document.addEventListener("click", (e) => {
-    if (
-      !button?.contains(e.target as Node) &&
-      !menu?.contains(e.target as Node)
-    ) {
-      menu?.classList.add("hidden");
+  document.addEventListener('click', (e) => {
+    if (!button?.contains(e.target as Node) && !menu?.contains(e.target as Node)) {
+      button?.setAttribute('aria-expanded', 'false');
+      menu?.classList.add('hidden');
+    }
+  });
+
+  // Close menu on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && button?.getAttribute('aria-expanded') === 'true') {
+      toggleMenu();
+      button?.focus();
     }
   });
 </script>

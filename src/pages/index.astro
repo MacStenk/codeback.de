@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import SEO from '../components/SEO.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/sections/Hero.astro';
@@ -19,11 +20,12 @@ const pageDescription = "Websites für die LLM-Ära. Während andere für Google
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <title>{pageTitle}</title>
-  <meta name="description" content={pageDescription} />
+  <SEO 
+    title={pageTitle}
+    description={pageDescription}
+    canonical="https://codeback.de"
+    type="website"
+  />
   
   <!-- Schema.org für LLMs -->
   <script type="application/ld+json" set:html={JSON.stringify({
@@ -49,7 +51,7 @@ const pageDescription = "Websites für die LLM-Ära. Während andere für Google
   
   <Header />
   
-  <main class="max-w-4xl mx-auto px-6 py-20">
+  <main id="main-content" class="max-w-4xl mx-auto px-6 py-20">
     
     <article>
       <!-- Hero -->
