@@ -2,12 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom Properties */
-:root {
-  --font-main: system-ui, -apple-system, sans-serif;
+/* Typography */
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply bg-white text-zinc-900 antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  }
+  
+  h1, h2, h3, h4 {
+    @apply font-bold tracking-tight;
+  }
+  
+  code {
+    @apply font-mono text-sm bg-zinc-100 px-2 py-1 rounded;
+  }
 }
 
-/* Smooth Scrolling */
-html {
-  scroll-behavior: smooth;
+/* Code Block Styling */
+pre {
+  @apply bg-zinc-900 text-zinc-100 p-6 rounded-lg overflow-x-auto my-6;
+}
+
+pre code {
+  @apply bg-transparent p-0 text-sm;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+}
+
+/* Smooth transitions */
+* {
+  @apply transition-colors duration-200;
 }

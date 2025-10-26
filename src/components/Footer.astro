@@ -1,68 +1,110 @@
 ---
-// Footer - Full Tailwind
+// Footer.astro - Modern & Deutsch
 ---
 
-<footer class="bg-black border-t border-zinc-800 mt-24">
-  <!-- Stack Showcase -->
-  <div class="max-w-6xl mx-auto px-4 py-16">
-    <div class="text-center mb-12">
-      <h3 class="text-3xl font-bold text-white mb-2">
-        We Practice What We Preach
+<footer class="relative border-t border-zinc-800/50 mt-32 overflow-hidden">
+  <!-- Background Effect -->
+  <div
+    class="absolute inset-0 bg-gradient-to-t from-black via-zinc-950 to-transparent"
+  >
+  </div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-4 py-20">
+    <!-- Main Content -->
+    <div class="text-center mb-16">
+      <h3 class="text-4xl font-bold text-white mb-3">
+        Wir leben was wir lehren
       </h3>
-      <p class="text-xl text-green-500 font-semibold">Privacy-First. Always.</p>
+      <p class="text-xl text-green-400 font-semibold">Privacy-First. Immer.</p>
     </div>
 
-    <!-- Stack Grid -->
-    <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
-      <!-- Astro Card -->
+    <!-- Tech Stack Grid -->
+    <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
+      <!-- Astro -->
       <div
-        class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex items-center gap-4 hover:border-zinc-700 transition-all hover:-translate-y-1"
+        class="group relative p-6 rounded-xl glass border border-zinc-800 hover:border-zinc-700 transition-all duration-300 hover:scale-105"
       >
-        <div class="text-4xl">⚡</div>
-        <div class="text-left">
-          <div class="text-white font-semibold text-lg">Astro</div>
-          <div class="text-zinc-400 text-sm">Blazing Fast</div>
+        <div class="flex items-center gap-4">
+          <div class="text-5xl">⚡</div>
+          <div class="text-left">
+            <div class="text-white font-semibold text-lg mb-1">Astro</div>
+            <div class="text-zinc-400 text-sm">Blitzschnell</div>
+          </div>
+        </div>
+        <div
+          class="absolute inset-0 rounded-xl bg-zinc-700/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity"
+        >
         </div>
       </div>
 
-      <!-- Cloudflare Card -->
+      <!-- Cloudflare -->
       <div
-        class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex items-center gap-4 hover:border-zinc-700 transition-all hover:-translate-y-1"
+        class="group relative p-6 rounded-xl glass border border-zinc-800 hover:border-zinc-700 transition-all duration-300 hover:scale-105"
       >
-        <div class="text-4xl">🛡️</div>
-        <div class="text-left">
-          <div class="text-white font-semibold text-lg">Cloudflare</div>
-          <div class="text-zinc-400 text-sm">DDoS Protected</div>
+        <div class="flex items-center gap-4">
+          <div class="text-5xl">🛡️</div>
+          <div class="text-left">
+            <div class="text-white font-semibold text-lg mb-1">Cloudflare</div>
+            <div class="text-zinc-400 text-sm">DDoS-Geschützt</div>
+          </div>
+        </div>
+        <div
+          class="absolute inset-0 rounded-xl bg-zinc-700/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity"
+        >
         </div>
       </div>
 
-      <!-- ProtonMail Card (HIGHLIGHTED) -->
+      <!-- ProtonMail (Highlighted) -->
       <div
-        class="bg-gradient-to-br from-green-950 to-zinc-900 border border-green-500 rounded-xl p-6 flex items-center gap-4 hover:border-green-400 hover:shadow-lg hover:shadow-green-500/20 transition-all hover:-translate-y-1"
+        class="group relative p-6 rounded-xl bg-gradient-to-br from-green-950/50 to-zinc-900/50 border border-green-500/50 hover:border-green-400 transition-all duration-300 hover:scale-105"
       >
-        <div class="text-4xl">🔐</div>
-        <div class="text-left">
-          <div class="text-green-500 font-semibold text-lg">ProtonMail</div>
-          <div class="text-zinc-400 text-sm">Zero-Knowledge</div>
+        <div class="flex items-center gap-4">
+          <div class="text-5xl">🔐</div>
+          <div class="text-left">
+            <div class="text-green-400 font-semibold text-lg mb-1">
+              ProtonMail
+            </div>
+            <div class="text-zinc-400 text-sm">Zero-Knowledge</div>
+          </div>
+        </div>
+        <div
+          class="absolute inset-0 rounded-xl bg-green-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity glow-effect"
+        >
         </div>
       </div>
     </div>
 
     <!-- Promise Text -->
-    <p class="text-center text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-      Built with the same infrastructure we recommend to our clients.
-      <span class="text-green-500 font-semibold"
-        >No compromises on privacy.</span
+    <p
+      class="text-center text-zinc-400 max-w-2xl mx-auto leading-relaxed mb-12"
+    >
+      Gebaut mit der gleichen Infrastruktur die wir unseren Kunden empfehlen.
+      <span class="text-green-400 font-semibold"
+        >Keine Kompromisse bei Privacy.</span
       >
     </p>
+
+    <!-- Legal Links -->
+    <div class="flex justify-center gap-6 text-sm mb-8">
+      <a href="/impressum" class="text-zinc-500 hover:text-green-400 transition"
+        >Impressum</a
+      >
+      <span class="text-zinc-700">•</span>
+      <a
+        href="/datenschutz"
+        class="text-zinc-500 hover:text-green-400 transition">Datenschutz</a
+      >
+    </div>
   </div>
 
   <!-- Bottom Bar -->
-  <div class="border-t border-zinc-800 py-6">
+  <div class="relative z-10 border-t border-zinc-800/50 py-8">
     <div class="max-w-6xl mx-auto px-4 text-center">
-      <p class="text-zinc-600 text-sm mb-1">© 2024 CodeBack.de</p>
+      <p class="text-zinc-600 text-sm mb-2">© 2024 CodeBack.de</p>
       <p class="text-zinc-700 text-xs">
-        The LLM Era demands better. We deliver it.
+        Die LLM-Ära verlangt Besseres. <span class="text-green-500"
+          >Wir liefern es.</span
+        >
       </p>
     </div>
   </div>
