@@ -1,6 +1,37 @@
-# CodeBack Robots.txt
-# https://codeback.de/robots.txt
+# robots.txt for codeback.de
+# Block LLM crawlers from legal pages
 
+# OpenAI GPT Bot
+User-agent: GPTBot
+Disallow: /impressum
+Disallow: /datenschutz
+
+# Anthropic Claude
+User-agent: Claude-Web
+Disallow: /impressum
+Disallow: /datenschutz
+
+# ChatGPT User Agent
+User-agent: ChatGPT-User
+Disallow: /impressum
+Disallow: /datenschutz
+
+# Google Bard / Gemini
+User-agent: Google-Extended
+Disallow: /impressum
+Disallow: /datenschutz
+
+# Common Crawl (used by many AI trainers)
+User-agent: CCBot
+Disallow: /impressum
+Disallow: /datenschutz
+
+# Perplexity
+User-agent: PerplexityBot
+Disallow: /impressum
+Disallow: /datenschutz
+
+# Allow all other bots (Google, Bing, etc.)
 User-agent: *
 Allow: /
 

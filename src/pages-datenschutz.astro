@@ -1,0 +1,12 @@
+---
+import { getEntry } from 'astro:content';
+import LegalLayout from '../layouts/LegalLayout.astro';
+
+// Load datenschutz content from content collection
+const datenschutz = await getEntry('legal', 'datenschutz');
+const { Content } = await datenschutz.render();
+---
+
+<LegalLayout frontmatter={datenschutz.data}>
+  <Content />
+</LegalLayout>

@@ -1,0 +1,204 @@
+---
+import "../styles/global.css";
+import SEO from "../components/SEO.astro";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  frontmatter: {
+    title: string;
+    description: string;
+    lastUpdated: Date;
+    noindex?: boolean;
+  };
+}
+
+const { frontmatter } = Astro.props;
+const { title, description, lastUpdated, noindex = true } = frontmatter;
+
+// Format date for display
+const formattedDate = lastUpdated.toLocaleDateString("de-DE", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <SEO
+      title={title}
+      description={description}
+      canonical={`https://codeback.de/${Astro.url.pathname}`}
+      type="website"
+      noindex={noindex}
+    />
+  </head>
+
+  <body class="bg-white text-zinc-900">
+    <Header />
+
+    <main id="main-content" class="max-w-4xl mx-auto px-6 py-20">
+      <!-- Prose Container für Markdown Content -->
+      <article class="prose mx-auto">
+        <!-- Slot für Markdown Content -->
+        <slot />
+
+        <!-- Last Updated Info -->
+        <div class="mt-16 pt-8 border-t border-zinc-200">
+          <p class="text-sm text-zinc-500">
+            <strong>Letzte Aktualisierung:</strong>
+            {formattedDate}
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <Footer />
+
+    <!-- Email & Phone Protection Script -->
+    <script>
+      // Automatic Email and Phone Protection
+      document.addEventListener("DOMContentLoaded", () => {
+        // Helper: Reverse string
+        const reverse = (str) => str.split("").reverse().join("");
+
+        // Helper: ROT13 encode
+        const rot13 = (str) => {
+          return str.replace(/[a-zA-Z]/g, (char) => {
+            const start = char <= "Z" ? 65 : 97;
+            return String.fromCharCode(
+              ((char.charCodeAt(0) - start + 13) % 26) + start
+            );
+          });
+        };
+
+        // Protect all emails in the document
+        const protectEmails = () => {
+          const emailRegex =
+            /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/gi;
+          const walker = document.createTreeWalker(
+            document.body,
+            NodeFilter.SHOW_TEXT,
+            null
+          );
+
+          const nodesToReplace = [];
+          let node;
+
+          while ((node = walker.nextNode())) {
+            if (emailRegex.test(node.nodeValue)) {
+              nodesToReplace.push(node);
+            }
+          }
+
+          nodesToReplace.forEach((node) => {
+            const parent = node.parentNode;
+            const text = node.nodeValue;
+            const fragment = document.createDocumentFragment();
+
+            let lastIndex = 0;
+            text.replace(emailRegex, (match, email, offset) => {
+              // Add text before email
+              if (offset > lastIndex) {
+                fragment.appendChild(
+                  document.createTextNode(text.substring(lastIndex, offset))
+                );
+              }
+
+              // Create protected email link
+              const link = document.createElement("a");
+              link.href = `mailto:${email}`;
+              link.textContent = email;
+              link.className =
+                "text-green-600 font-medium hover:text-green-700 underline";
+
+              // Add obfuscation attributes (for anti-spam)
+              link.setAttribute("data-reversed", reverse(email));
+              link.setAttribute("data-rot13", rot13(email));
+
+              fragment.appendChild(link);
+              lastIndex = offset + match.length;
+            });
+
+            // Add remaining text
+            if (lastIndex < text.length) {
+              fragment.appendChild(
+                document.createTextNode(text.substring(lastIndex))
+              );
+            }
+
+            parent.replaceChild(fragment, node);
+          });
+        };
+
+        // Protect all phone numbers in the document
+        const protectPhones = () => {
+          const phoneRegex =
+            /(\+?\d{1,3}[\s.-]?\(?\d{1,4}\)?[\s.-]?\d{1,4}[\s.-]?\d{1,9})/g;
+          const walker = document.createTreeWalker(
+            document.body,
+            NodeFilter.SHOW_TEXT,
+            null
+          );
+
+          const nodesToReplace = [];
+          let node;
+
+          while ((node = walker.nextNode())) {
+            if (phoneRegex.test(node.nodeValue)) {
+              nodesToReplace.push(node);
+            }
+          }
+
+          nodesToReplace.forEach((node) => {
+            const parent = node.parentNode;
+            const text = node.nodeValue;
+            const fragment = document.createDocumentFragment();
+
+            let lastIndex = 0;
+            text.replace(phoneRegex, (match, phone, offset) => {
+              // Skip if already in a link
+              if (parent.tagName === "A") return;
+
+              // Add text before phone
+              if (offset > lastIndex) {
+                fragment.appendChild(
+                  document.createTextNode(text.substring(lastIndex, offset))
+                );
+              }
+
+              // Create protected phone link
+              const cleanPhone = phone.replace(/[\s.-]/g, "");
+              const link = document.createElement("a");
+              link.href = `tel:${cleanPhone}`;
+              link.textContent = phone;
+              link.className =
+                "text-green-600 font-medium hover:text-green-700";
+
+              // Add obfuscation attribute
+              link.setAttribute("data-reversed", reverse(cleanPhone));
+
+              fragment.appendChild(link);
+              lastIndex = offset + match.length;
+            });
+
+            // Add remaining text
+            if (lastIndex < text.length) {
+              fragment.appendChild(
+                document.createTextNode(text.substring(lastIndex))
+              );
+            }
+
+            parent.replaceChild(fragment, node);
+          });
+        };
+
+        // Run protection
+        protectEmails();
+        protectPhones();
+      });
+    </script>
+  </body>
+</html>

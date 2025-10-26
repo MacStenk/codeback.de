@@ -1,0 +1,12 @@
+---
+import { getEntry } from 'astro:content';
+import LegalLayout from '../layouts/LegalLayout.astro';
+
+// Load impressum content from content collection
+const impressum = await getEntry('legal', 'impressum');
+const { Content } = await impressum.render();
+---
+
+<LegalLayout frontmatter={impressum.data}>
+  <Content />
+</LegalLayout>

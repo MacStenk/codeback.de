@@ -1,0 +1,107 @@
+---
+// EmailProtection.astro
+// Schützt Email-Adressen vor Spam-Bots
+// Methode 1: Reverse (rückwärts)
+// Methode 2: ROT13 Obfuscation
+
+interface Props {
+  email: string;
+  method?: 'reverse' | 'rot13' | 'both';
+  class?: string;
+}
+
+const { email, method = 'both', class: className = '' } = Astro.props;
+
+// ROT13 Encoding
+function rot13(str: string): string {
+  return str.replace(/[a-zA-Z]/g, (char) => {
+    const start = char <= 'Z' ? 65 : 97;
+    return String.fromCharCode(((char.charCodeAt(0) - start + 13) % 26) + start);
+  });
+}
+
+// Email rückwärts
+const reversedEmail = email.split('').reverse().join('');
+
+// ROT13 encoded
+const rot13Email = rot13(email);
+
+// Data-Attribute für JavaScript
+const dataAttr = method === 'reverse' 
+  ? `data-reversed="${reversedEmail}"` 
+  : method === 'rot13'
+  ? `data-rot13="${rot13Email}"`
+  : `data-reversed="${reversedEmail}" data-rot13="${rot13Email}"`;
+---
+
+<!-- Email Link mit Schutz -->
+<span class={`email-protected ${className}`} {dataAttr}>
+  <!-- Placeholder - wird von JS ersetzt -->
+  <span class="email-placeholder text-green-600 font-medium cursor-not-allowed">
+    [Email-Adresse wird geladen...]
+  </span>
+</span>
+
+<!-- Fallback für Nutzer ohne JavaScript -->
+<noscript>
+  <span class="text-sm text-zinc-600">
+    (Bitte aktivieren Sie JavaScript, um die Email-Adresse zu sehen)
+  </span>
+</noscript>
+
+<script>
+  // Email-Schutz Initialisierung
+  function initEmailProtection() {
+    const emailElements = document.querySelectorAll('.email-protected');
+    
+    emailElements.forEach((element) => {
+      const reversed = element.getAttribute('data-reversed');
+      const rot13 = element.getAttribute('data-rot13');
+      
+      let email = '';
+      
+      // Methode 1: Reverse
+      if (reversed) {
+        email = reversed.split('').reverse().join('');
+      }
+      
+      // Methode 2: ROT13 (als Fallback oder Alternative)
+      if (!email && rot13) {
+        email = rot13.replace(/[a-zA-Z]/g, (char) => {
+          const start = char <= 'Z' ? 65 : 97;
+          return String.fromCharCode(((char.charCodeAt(0) - start + 13) % 26) + start);
+        });
+      }
+      
+      if (email) {
+        // Ersetze Placeholder mit echtem Link
+        const link = document.createElement('a');
+        link.href = `mailto:${email}`;
+        link.textContent = email;
+        link.className = 'text-green-600 font-medium hover:text-green-700 underline';
+        
+        // Ersetze den gesamten Inhalt
+        element.innerHTML = '';
+        element.appendChild(link);
+      }
+    });
+  }
+  
+  // Nach DOM-Load ausführen
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initEmailProtection);
+  } else {
+    initEmailProtection();
+  }
+</script>
+
+<style>
+  .email-protected {
+    display: inline-block;
+  }
+  
+  .email-placeholder {
+    font-style: italic;
+    opacity: 0.7;
+  }
+</style>
