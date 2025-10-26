@@ -1,0 +1,8 @@
+# CodeBack Robots.txt
+# https://codeback.de/robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://codeback.de/sitemap-index.xml
