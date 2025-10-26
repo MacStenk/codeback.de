@@ -1,114 +1,132 @@
 ---
-import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/layout/Header.astro';
+import Breadcrumbs from '../../components/layout/Breadcrumbs.astro';
 import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
-import Header from '../../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import ReadingTime from '../../components/ReadingTime.astro';
+import '../../styles/global.css';
 
 const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Blog' }
+];
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>
-									{post.data.heroImage && (
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
-									)}
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-	</body>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <BaseHead 
+    title="Blog - CodeBack" 
+    description="Insights zu LLM-SEO, Answer Engine Optimization und der Zukunft der digitalen Sichtbarkeit." 
+  />
+</head>
+
+<body class="bg-white text-zinc-900">
+  
+  <Header />
+
+  <main class="max-w-7xl mx-auto px-6 py-12">
+    
+    <!-- Breadcrumbs -->
+    <Breadcrumbs items={breadcrumbs} />
+
+    <!-- Page Header -->
+    <header class="mb-16">
+      <h1 class="text-5xl font-bold mb-4">Blog</h1>
+      <p class="text-xl text-zinc-600 max-w-2xl">
+        Insights zu LLM-SEO, Answer Engine Optimization und wie Coaches 
+        in der KI-Ära gefunden werden.
+      </p>
+    </header>
+
+    <!-- Blog Posts Grid -->
+    <section>
+      {posts.length === 0 ? (
+        <div class="text-center py-20">
+          <p class="text-zinc-500">Noch keine Artikel veröffentlicht.</p>
+        </div>
+      ) : (
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+{posts.map((post) => (
+  <article class="group">
+    <a 
+      href={`/blog/${post.id}/`}
+      class="block"
+    >
+      <!-- Image -->
+      {post.data.heroImage && (
+        <div class="mb-4 overflow-hidden rounded-lg border border-zinc-200 aspect-video">
+          <img 
+            src={post.data.heroImage.src}
+            alt={post.data.title}
+            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        </div>
+      )}
+
+      <!-- Meta: Date + Reading Time -->
+      <div class="flex items-center gap-3 mb-3">
+        <time class="text-sm text-zinc-500">
+          <FormattedDate date={post.data.pubDate} />
+        </time>
+        <span class="text-zinc-300">•</span>
+        <ReadingTime content={post.body} />
+      </div>
+
+      <!-- Title -->
+      <h2 class="text-xl font-bold mb-2 text-zinc-900 group-hover:text-green-600 transition">
+        {post.data.title}
+      </h2>
+
+      <!-- Description -->
+      {post.data.description && (
+        <p class="text-zinc-600 text-sm line-clamp-3">
+          {post.data.description}
+        </p>
+      )}
+
+      <!-- Read More -->
+      <div class="mt-4 text-green-600 text-sm font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
+        Weiterlesen
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </div>
+    </a>
+  </article>
+))}
+        </div>
+      )}
+    </section>
+
+    <!-- Back to Home -->
+    <footer class="mt-20 pt-12 border-t border-zinc-200 text-center">
+      <a 
+        href="/" 
+        class="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 font-medium"
+      >
+        ← Zurück zur Homepage
+      </a>
+    </footer>
+
+  </main>
+
+  <Footer />
+</body>
 </html>
+
+<style>
+  /* Line clamp utility */
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
