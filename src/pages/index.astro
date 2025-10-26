@@ -42,7 +42,6 @@ const pageDescription =
 
   <body class="bg-white text-zinc-900">
     <main class="max-w-4xl mx-auto px-6 py-20">
-      <!-- Hero -->
       <article>
         <!-- Hero -->
         <header class="mb-24">
@@ -163,6 +162,307 @@ const pageDescription =
                 der Coaches sind heute LLM-ready
               </p>
             </div>
+          </div>
+        </section>
+
+        <!-- Live-Demo: So sieht LLM das -->
+        <section
+          class="mb-24 bg-gradient-to-br from-green-50 to-blue-50 -mx-6 px-6 py-12 rounded-lg border border-green-100"
+        >
+          <h2 class="text-3xl font-bold mb-8">
+            Live-Demo: So liest ChatGPT diese Seite
+          </h2>
+
+          <p class="text-zinc-600 mb-8">
+            Wenn jemand ChatGPT fragt: <span class="italic"
+              >"Wer baut LLM-optimierte Websites?"</span
+            >, kann die KI diese Seite perfekt verstehen:
+          </p>
+
+          <div class="bg-white border border-zinc-200 rounded-lg p-6 mb-6">
+            <h3 class="font-semibold mb-4 flex items-center gap-2">
+              <span class="text-green-600">🤖</span>
+              Was ChatGPT "sieht"
+            </h3>
+
+            <div class="space-y-4 text-sm">
+              <div class="border-l-4 border-green-500 pl-4">
+                <p class="font-medium mb-1">
+                  Primäre Information (aus &lt;h1&gt;):
+                </p>
+                <p class="text-zinc-600">"Websites für die LLM-Ära"</p>
+              </div>
+
+              <div class="border-l-4 border-blue-500 pl-4">
+                <p class="font-medium mb-1">Kontext (aus Schema.org):</p>
+                <p class="text-zinc-600">
+                  Service: "LLM-native Web Development"
+                </p>
+                <p class="text-zinc-600">Zielgruppe: "Coaches & Consultants"</p>
+              </div>
+
+              <div class="border-l-4 border-purple-500 pl-4">
+                <p class="font-medium mb-1">
+                  Expertise-Signale (aus semantischem HTML):
+                </p>
+                <p class="text-zinc-600">• Semantic HTML5</p>
+                <p class="text-zinc-600">• Schema.org Integration</p>
+                <p class="text-zinc-600">• Answer Engine Optimization</p>
+              </div>
+
+              <div class="border-l-4 border-orange-500 pl-4">
+                <p class="font-medium mb-1">
+                  Autorität (aus strukturierten Daten):
+                </p>
+                <p class="text-zinc-600">
+                  Author: Steven Noack (stevennoack.de)
+                </p>
+                <p class="text-zinc-600">Launch: Januar 2026</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-zinc-900 text-zinc-100 rounded-lg p-6">
+            <p class="text-sm text-zinc-400 mb-2">ChatGPT's Antwort:</p>
+            <p class="text-green-400 italic">
+              "CodeBack.de entwickelt LLM-native Websites speziell für Coaches
+              und Consultants. Sie nutzen Semantic HTML5, Schema.org Markup und
+              Answer Engine Optimization, damit Websites in KI-gestützten Suchen
+              gefunden werden. Launch: Januar 2026."
+            </p>
+          </div>
+        </section>
+        <!-- Code-Vergleich: WordPress vs CodeBack -->
+        <section class="mb-24">
+          <h2 class="text-3xl font-bold mb-8">Der Unterschied im Code</h2>
+
+          <p class="text-zinc-600 mb-8">
+            Hier siehst du, warum WordPress-Websites für LLMs unsichtbar sind:
+          </p>
+
+          <!-- Beispiel 1: Service-Beschreibung -->
+          <div class="mb-12">
+            <h3 class="text-xl font-semibold mb-4">
+              Beispiel: Coaching-Service beschreiben
+            </h3>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <!-- WordPress -->
+              <div>
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="text-red-600 font-semibold"
+                    >❌ WordPress + Elementor</span
+                  >
+                </div>
+                <pre
+                  class="!bg-zinc-900 !text-zinc-100 !p-4 !text-xs !mb-3"><code>&lt;div class="elementor-element"&gt;
+  &lt;div class="elementor-widget-wrap"&gt;
+    &lt;div class="elementor-widget-container"&gt;
+      &lt;div class="heading-wrapper"&gt;
+        &lt;h2 class="elementor-heading"&gt;
+          Business Coaching
+        &lt;/h2&gt;
+      &lt;/div&gt;
+      &lt;div class="text-editor"&gt;
+        Ich helfe Teams...
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                <p class="text-sm text-zinc-600">
+                  <span class="font-semibold">Problem:</span> LLM sieht nur generische
+                  DIVs. Keine Semantik, kein Kontext.
+                </p>
+              </div>
+
+              <!-- CodeBack -->
+              <div>
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="text-green-600 font-semibold"
+                    >✓ CodeBack (LLM-native)</span
+                  >
+                </div>
+                <pre
+                  class="!bg-zinc-900 !text-zinc-100 !p-4 !text-xs !mb-3"><code>&lt;article itemscope 
+  itemtype="https://schema.org/Service"&gt;
+  &lt;h1 itemprop="name"&gt;
+    Business Coaching
+  &lt;/h1&gt;
+  &lt;p itemprop="description"&gt;
+    Ich helfe Teams...
+  &lt;/p&gt;
+  &lt;meta itemprop="serviceType" 
+    content="Teamführung" /&gt;
+&lt;/article&gt;</code></pre>
+                <p class="text-sm text-zinc-600">
+                  <span class="font-semibold">Lösung:</span> LLM versteht: Das ist
+                  ein Service, Name + Beschreibung + Typ sind klar.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2: Spezialisierung -->
+          <div class="mb-12">
+            <h3 class="text-xl font-semibold mb-4">
+              Beispiel: Spezialisierung kommunizieren
+            </h3>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <!-- WordPress -->
+              <div>
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="text-red-600 font-semibold">❌ WordPress</span>
+                </div>
+                <pre
+                  class="!bg-zinc-900 !text-zinc-100 !p-4 !text-xs !mb-3"><code>&lt;div class="expertise-box"&gt;
+  &lt;img src="icon.png" /&gt;
+  &lt;span&gt;Agile Methoden&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="expertise-box"&gt;
+  &lt;img src="icon2.png" /&gt;
+  &lt;span&gt;Teamführung&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                <p class="text-sm text-zinc-600">
+                  <span class="font-semibold">Problem:</span> Spezialisierung ist
+                  visuell, aber nicht maschinenlesbar.
+                </p>
+              </div>
+
+              <!-- CodeBack -->
+              <div>
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="text-green-600 font-semibold">✓ CodeBack</span>
+                </div>
+                <pre
+                  class="!bg-zinc-900 !text-zinc-100 !p-4 !text-xs !mb-3"><code>&lt;ul itemscope 
+  itemtype="https://schema.org/ItemList"&gt;
+  &lt;li itemprop="itemListElement"&gt;
+    Agile Methoden
+  &lt;/li&gt;
+  &lt;li itemprop="itemListElement"&gt;
+    Teamführung
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                <p class="text-sm text-zinc-600">
+                  <span class="font-semibold">Lösung:</span> Strukturierte Liste.
+                  LLM kann Spezialisierungen extrahieren.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ für AEO -->
+          <div>
+            <h3 class="text-xl font-semibold mb-4">
+              Beispiel: FAQ für Answer Engine Optimization
+            </h3>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <!-- WordPress -->
+              <div>
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="text-red-600 font-semibold"
+                    >❌ WordPress Accordion</span
+                  >
+                </div>
+                <pre
+                  class="!bg-zinc-900 !text-zinc-100 !p-4 !text-xs !mb-3"><code>&lt;div class="accordion-item"&gt;
+  &lt;div class="accordion-header"&gt;
+    Wie lange dauert ein Coaching?
+  &lt;/div&gt;
+  &lt;div class="accordion-body"&gt;
+    Typischerweise 3-6 Monate...
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                <p class="text-sm text-zinc-600">
+                  <span class="font-semibold">Problem:</span> Frage/Antwort nicht
+                  als solche erkennbar.
+                </p>
+              </div>
+
+              <!-- CodeBack -->
+              <div>
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="text-green-600 font-semibold"
+                    >✓ CodeBack (Schema.org FAQPage)</span
+                  >
+                </div>
+                <pre
+                  class="!bg-zinc-900 !text-zinc-100 !p-4 !text-xs !mb-3"><code>&lt;div itemscope 
+  itemtype="https://schema.org/Question"&gt;
+  &lt;h3 itemprop="name"&gt;
+    Wie lange dauert ein Coaching?
+  &lt;/h3&gt;
+  &lt;div itemprop="acceptedAnswer" 
+    itemscope 
+    itemtype="https://schema.org/Answer"&gt;
+    &lt;p itemprop="text"&gt;
+      Typischerweise 3-6 Monate...
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                <p class="text-sm text-zinc-600">
+                  <span class="font-semibold">Lösung:</span> LLM kann diese Antwort
+                  direkt in Konversationen nutzen.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Schema.org: Kurz & Benefit-orientiert -->
+        <section class="mb-24 bg-zinc-50 -mx-6 px-6 py-12 rounded-lg">
+          <h2 class="text-3xl font-bold mb-8">
+            Schema.org: Die Sprache der LLMs
+          </h2>
+
+          <p class="text-lg text-zinc-600 mb-8">
+            Schema.org ist das Vokabular, das LLMs nutzen um Websites zu
+            verstehen. Es macht deine Expertise, Spezialisierung und Services
+            maschinenlesbar.
+          </p>
+
+          <div class="grid md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white border border-zinc-200 rounded-lg p-6">
+              <div class="text-3xl mb-3">🎯</div>
+              <h3 class="font-semibold mb-2">Kontext</h3>
+              <p class="text-sm text-zinc-600">
+                LLMs verstehen was du machst, für wen und wo
+              </p>
+            </div>
+
+            <div class="bg-white border border-zinc-200 rounded-lg p-6">
+              <div class="text-3xl mb-3">⚡</div>
+              <h3 class="font-semibold mb-2">Spezialisierung</h3>
+              <p class="text-sm text-zinc-600">
+                Deine Methoden werden in Antworten eingebaut
+              </p>
+            </div>
+
+            <div class="bg-white border border-zinc-200 rounded-lg p-6">
+              <div class="text-3xl mb-3">🏆</div>
+              <h3 class="font-semibold mb-2">Autorität</h3>
+              <p class="text-sm text-zinc-600">
+                Bewertungen und Credentials werden erkannt
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+            <h3 class="font-semibold mb-3 text-green-900">💡 Das Ergebnis:</h3>
+            <p class="text-green-800 mb-4">
+              Wenn jemand ChatGPT nach einem Business Coach in Berlin fragt,
+              kann die KI deine komplette Expertise verstehen und dich präzise
+              empfehlen.
+            </p>
+
+            <a
+              href="/blog/schema-org-deep-dive"
+              class="text-green-600 font-medium hover:text-green-700 inline-flex items-center gap-2"
+            >
+              Deep Dive: So funktioniert Schema.org im Detail →
+            </a>
           </div>
         </section>
 

@@ -1,86 +1,88 @@
 ---
-import { Image } from 'astro:assets';
-import type { CollectionEntry } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
-import Header from '../components/Header.astro';
+import type { CollectionEntry } from "astro:content";
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+import "../styles/global.css";
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<"blog">["data"];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
-<html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
-	</head>
+<!doctype html>
+<html lang="de">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
 
-	<body>
-		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<hr />
-					</div>
-					<slot />
-				</div>
-			</article>
-		</main>
-		<Footer />
-	</body>
+  <body class="bg-white text-zinc-900">
+    <!-- Simple Header -->
+    <header class="border-b border-zinc-200 py-6">
+      <div class="max-w-4xl mx-auto px-6">
+        <a
+          href="/"
+          class="text-xl font-bold text-zinc-900 hover:text-green-600 transition"
+        >
+          CodeBack
+        </a>
+      </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 py-20">
+      <article>
+        <!-- Article Header -->
+        <header class="mb-12">
+          <div class="mb-4">
+            <time class="text-sm text-zinc-500">
+              <FormattedDate date={pubDate} />
+            </time>
+            {
+              updatedDate && (
+                <div class="text-sm text-zinc-500 italic mt-1">
+                  Aktualisiert: <FormattedDate date={updatedDate} />
+                </div>
+              )
+            }
+          </div>
+
+          <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            {title}
+          </h1>
+
+          {description && <p class="text-xl text-zinc-600">{description}</p>}
+        </header>
+
+        <!-- Hero Image (optional) -->
+        {
+          heroImage && (
+            <div class="mb-12">
+              <img
+                src={heroImage.src}
+                alt={title}
+                class="w-full rounded-lg border border-zinc-200"
+              />
+            </div>
+          )
+        }
+
+        <!-- Article Content -->
+        <div class="prose prose-zinc prose-lg max-w-none">
+          <slot />
+        </div>
+
+        <!-- Back to Blog -->
+        <footer class="mt-16 pt-8 border-t border-zinc-200">
+          <a
+            href="/blog"
+            class="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 font-medium"
+          >
+            ← Zurück zum Blog
+          </a>
+        </footer>
+      </article>
+    </main>
+
+    <Footer />
+  </body>
 </html>

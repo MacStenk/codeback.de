@@ -28,11 +28,91 @@ pre {
 }
 
 pre code {
-  @apply bg-transparent p-0 text-sm;
+  @apply bg-transparent p-0;
+  color: #222224 !important; /* zinc-200 */
   font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+}
+
+/* Inline Code */
+code {
+  @apply font-mono text-sm bg-zinc-100 text-zinc-900 px-2 py-1 rounded;
+}
+
+/* Override für Code in Pre */
+pre code {
+  @apply bg-transparent px-0 py-0 text-zinc-100;
 }
 
 /* Smooth transitions */
 * {
   @apply transition-colors duration-200;
+}
+
+/* Prose Styling für Blog Posts */
+.prose {
+  @apply text-zinc-700 leading-relaxed;
+}
+
+.prose h1 {
+  @apply text-4xl font-bold text-zinc-900 mb-6 mt-12;
+}
+
+.prose h2 {
+  @apply text-3xl font-bold text-zinc-900 mb-4 mt-10;
+}
+
+.prose h3 {
+  @apply text-2xl font-semibold text-zinc-900 mb-3 mt-8;
+}
+
+.prose h4 {
+  @apply text-xl font-semibold text-zinc-900 mb-2 mt-6;
+}
+
+.prose p {
+  @apply mb-6;
+}
+
+.prose ul, .prose ol {
+  @apply mb-6 pl-6 space-y-2;
+}
+
+.prose ul {
+  @apply list-disc;
+}
+
+.prose ol {
+  @apply list-decimal;
+}
+
+.prose li {
+  @apply text-zinc-700;
+}
+
+.prose strong {
+  @apply font-semibold text-zinc-900;
+}
+
+.prose a {
+  @apply text-green-600 hover:text-green-700 underline;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-green-500 pl-4 italic text-zinc-600 my-6;
+}
+
+.prose hr {
+  @apply border-zinc-200 my-8;
+}
+
+.prose code {
+  @apply bg-zinc-100 text-zinc-900 px-2 py-1 rounded text-sm font-mono;
+}
+
+.prose pre {
+  @apply bg-zinc-900 text-zinc-100 p-6 rounded-lg overflow-x-auto my-6;
+}
+
+.prose pre code {
+  @apply bg-transparent p-0 text-zinc-100;
 }
