@@ -1,0 +1,50 @@
+---
+// Button.astro - Reusable Button Component
+interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost' | 'dark';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  class?: string;
+  ariaLabel?: string;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  type = 'button',
+  class: className = '',
+  ariaLabel,
+} = Astro.props;
+
+// Base styles
+const baseStyles = 'inline-flex items-center justify-center font-medium rounded-lg transition focus:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2';
+
+// Variant styles
+const variants = {
+  primary: 'bg-green-600 text-white hover:bg-green-700',
+  secondary: 'bg-white text-zinc-900 border-2 border-zinc-200 hover:border-zinc-300 hover:bg-zinc-50',
+  ghost: 'text-zinc-700 hover:text-zinc-900 hover:bg-zinc-50',
+  dark: 'bg-zinc-900 text-white hover:bg-zinc-800',
+};
+
+// Size styles
+const sizes = {
+  sm: 'px-4 py-2 text-sm',
+  md: 'px-6 py-3 text-base',
+  lg: 'px-8 py-4 text-lg',
+};
+
+const classes = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`;
+
+// Render as link or button
+const Tag = href ? 'a' : 'button';
+const props = href 
+  ? { href } 
+  : { type };
+---
+
+<Tag class={classes} aria-label={ariaLabel} {...props}>
+  <slot />
+</Tag>

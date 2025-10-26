@@ -1,5 +1,6 @@
 ---
 // CTASection.astro - Launch CTA
+import Button from '../Button.astro';
 ---
 
 <section class="border-t border-zinc-200 pt-12">
@@ -9,10 +10,7 @@
     Folge dem Blog für Updates zu LLM-SEO, Answer Engine Optimization 
     und der Zukunft der digitalen Sichtbarkeit.
   </p>
-  <a 
-    href="/blog" 
-    class="inline-block px-6 py-3 bg-zinc-900 text-white font-medium rounded-lg hover:bg-zinc-800 transition"
-  >
+  <Button href="/blog" variant="dark">
     Zum Blog →
-  </a>
+  </Button>
 </section>

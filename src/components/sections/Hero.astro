@@ -1,5 +1,6 @@
 ---
 // Hero.astro - Homepage Hero Section
+import Button from '../Button.astro';
 ---
 
 <header class="mb-24">
@@ -21,17 +22,11 @@
   </p>
   
   <div class="flex gap-4 items-center flex-wrap">
-    <a 
-      href="#konzept" 
-      class="inline-block px-6 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition"
-    >
+    <Button href="#konzept" variant="primary">
       Wie funktioniert das?
-    </a>
-    <a 
-      href="/blog" 
-      class="inline-block px-6 py-3 text-zinc-700 font-medium hover:text-zinc-900 transition"
-    >
+    </Button>
+    <Button href="/blog" variant="ghost">
       Blog lesen →
-    </a>
+    </Button>
   </div>
 </header>
