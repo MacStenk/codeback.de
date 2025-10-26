@@ -1,17 +1,15 @@
 ---
-interface Props {
-	date: Date;
-}
-
 const { date } = Astro.props;
+// Konvertiere zu Date-Objekt falls String
+const dateObj = date instanceof Date ? date : new Date(date);
 ---
 
-<time datetime={date.toISOString()}>
-	{
-		date.toLocaleDateString('en-us', {
-			year: 'numeric',
-			month: 'short',
-			day: 'numeric',
-		})
-	}
+<time datetime={dateObj.toISOString()}>
+  {
+    dateObj.toLocaleDateString("de-DE", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })
+  }
 </time>
