@@ -29,7 +29,7 @@ pre {
 
 pre code {
   @apply bg-transparent p-0;
-  color: #222224 !important; /* zinc-200 */
+  color: #d4ffdf !important; /* zinc-200 */
   font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
 }
 

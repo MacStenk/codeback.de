@@ -1,0 +1,211 @@
+---
+// PricingSection.astro - Pricing & Packages Component
+---
+
+<section id="loesung" class="mb-24">
+  <div class="text-center mb-12">
+    <h2 class="text-3xl font-bold mb-4">Die Lösung: Deine LLM-native Website</h2>
+    <p class="text-xl text-zinc-600 mb-8">
+      Wähle das Package, das zu deinem Business passt
+    </p>
+
+    <!-- Status Badge -->
+    <div class="inline-flex items-center gap-3 bg-green-50 border border-green-200 rounded-full px-6 py-3">
+      <div class="flex items-center gap-2">
+        <div class="flex gap-1">
+          <div class="w-3 h-3 bg-green-600 rounded-full"></div>
+          <div class="w-3 h-3 bg-green-600 rounded-full"></div>
+          <div class="w-3 h-3 bg-green-600 rounded-full"></div>
+          <div class="w-3 h-3 bg-zinc-300 rounded-full"></div>
+        </div>
+        <span class="text-sm font-medium text-zinc-700">
+          Verfügbarkeit Januar 2026
+        </span>
+      </div>
+      <span class="text-sm font-semibold text-green-700">
+        3 von 4 Plätzen belegt
+      </span>
+    </div>
+  </div>
+
+  <!-- Pricing Cards -->
+  <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+    
+    <!-- Bronze Package -->
+    <div class="border-2 border-zinc-200 rounded-lg p-8 bg-white hover:border-zinc-300 transition">
+      <div class="text-4xl mb-4">🥉</div>
+      <h3 class="text-2xl font-bold mb-2">Bronze</h3>
+      <div class="mb-6">
+        <div class="text-4xl font-bold text-zinc-900">5.000€</div>
+        <div class="text-sm text-zinc-500">7 Tage Lieferzeit</div>
+      </div>
+
+      <ul class="space-y-3 mb-8">
+        <li class="flex items-start gap-2">
+          <span class="text-green-600 mt-1">✓</span>
+          <span class="text-sm text-zinc-700">Homepage + 3 Unterseiten</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-green-600 mt-1">✓</span>
+          <span class="text-sm text-zinc-700">LLM-native Struktur</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-green-600 mt-1">✓</span>
+          <span class="text-sm text-zinc-700">Schema.org Basis-Integration</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-green-600 mt-1">✓</span>
+          <span class="text-sm text-zinc-700">Blog-Setup</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-green-600 mt-1">✓</span>
+          <span class="text-sm text-zinc-700">1 Revision-Runde</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-zinc-400 mt-1">○</span>
+          <span class="text-sm text-zinc-400">Content-Templates provided</span>
+        </li>
+      </ul>
+
+      <a 
+        href="#kontakt" 
+        class="block w-full px-6 py-3 bg-zinc-900 text-white text-center font-medium rounded-lg hover:bg-zinc-800 transition"
+      >
+        Projekt anfragen
+      </a>
+    </div>
+
+    <!-- Silver Package (Featured) -->
+    <div class="border-2 border-green-500 rounded-lg p-8 bg-green-50 relative transform md:scale-105 shadow-lg">
+      <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-green-600 text-white text-xs font-bold px-4 py-1 rounded-full">
+        BELIEBT
+      </div>
+      
+      <div class="text-4xl mb-4">🥈</div>
+      <h3 class="text-2xl font-bold mb-2">Silver</h3>
+      <div class="mb-6">
+        <div class="text-4xl font-bold text-zinc-900">9.000€</div>
+        <div class="text-sm text-zinc-500">14 Tage Lieferzeit</div>
+      </div>
+
+      <ul class="space-y-3 mb-8">
+        <li class="flex items-start gap-2">
+          <span class="text-green-600 mt-1">✓</span>
+          <span class="text-sm text-zinc-700">Homepage + 10 Unterseiten</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-green-600 mt-1">✓</span>
+          <span class="text-sm text-zinc-700">Custom Sections</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-green-600 mt-1">✓</span>
+          <span class="text-sm text-zinc-700">Schema.org Full Integration</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-green-600 mt-1">✓</span>
+          <span class="text-sm text-zinc-700">FAQ-Schema (AEO)</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-green-600 mt-1">✓</span>
+          <span class="text-sm text-zinc-700">2 Revision-Runden</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-green-600 mt-1">✓</span>
+          <span class="text-sm text-zinc-700">KI-gestützter Content-Workflow</span>
+        </li>
+      </ul>
+
+      <a 
+        href="#kontakt" 
+        class="block w-full px-6 py-3 bg-green-600 text-white text-center font-medium rounded-lg hover:bg-green-700 transition"
+      >
+        Jetzt starten
+      </a>
+    </div>
+
+    <!-- Gold Package -->
+    <div class="border-2 border-zinc-200 rounded-lg p-8 bg-white hover:border-zinc-300 transition">
+      <div class="text-4xl mb-4">🥇</div>
+      <h3 class="text-2xl font-bold mb-2">Gold</h3>
+      <div class="mb-6">
+        <div class="text-4xl font-bold text-zinc-900">15.000€</div>
+        <div class="text-sm text-zinc-500">30 Tage Lieferzeit</div>
+      </div>
+
+      <ul class="space-y-3 mb-8">
+        <li class="flex items-start gap-2">
+          <span class="text-green-600 mt-1">✓</span>
+          <span class="text-sm text-zinc-700">Unlimited Pages</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-green-600 mt-1">✓</span>
+          <span class="text-sm text-zinc-700">Full Custom Design</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-green-600 mt-1">✓</span>
+          <span class="text-sm text-zinc-700">Advanced Schema.org</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-green-600 mt-1">✓</span>
+          <span class="text-sm text-zinc-700">n8n Automation Setup</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-green-600 mt-1">✓</span>
+          <span class="text-sm text-zinc-700">3 Revision-Runden</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-green-600 mt-1">✓</span>
+          <span class="text-sm text-zinc-700">Priority Support</span>
+        </li>
+      </ul>
+
+      <a 
+        href="#kontakt" 
+        class="block w-full px-6 py-3 bg-zinc-900 text-white text-center font-medium rounded-lg hover:bg-zinc-800 transition"
+      >
+        Enterprise anfragen
+      </a>
+    </div>
+
+  </div>
+
+  <!-- FAQ unter Pricing -->
+  <div class="mt-16 max-w-3xl mx-auto">
+    <h3 class="text-xl font-bold mb-6 text-center">Häufige Fragen</h3>
+    
+    <div class="space-y-4">
+      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6">
+        <summary class="font-semibold cursor-pointer">
+          Wie läuft der Prozess ab?
+        </summary>
+        <p class="text-zinc-600 mt-3 text-sm">
+          1. Qualifying-Gespräch (passen wir zusammen?)<br/>
+          2. Content-Briefing mit KI-Template<br/>
+          3. Entwicklung & regelmäßige Updates<br/>
+          4. Review & Revision<br/>
+          5. Launch & Übergabe
+        </p>
+      </details>
+
+      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6">
+        <summary class="font-semibold cursor-pointer">
+          Was passiert nach dem Launch?
+        </summary>
+        <p class="text-zinc-600 mt-3 text-sm">
+          Du erhältst vollständigen Zugriff auf Code & Deployment. 
+          Optional: Wartungs-Pakete ab 500€/Monat verfügbar.
+        </p>
+      </details>
+
+      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6">
+        <summary class="font-semibold cursor-pointer">
+          Brauche ich technisches Know-how?
+        </summary>
+        <p class="text-zinc-600 mt-3 text-sm">
+          Nein. Du lieferst Content, ich baue die Technik. 
+          Updates später über einfaches Markdown möglich.
+        </p>
+      </details>
+    </div>
+  </div>
+</section>

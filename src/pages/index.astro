@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Header from "../components/layout/Header.astro";
 import Footer from "../components/Footer.astro";
+import PricingSection from "../components/sections/PricingSection.astro";
 
 const pageTitle = "CodeBack - Die erste LLM-native Website Deutschlands";
 const pageDescription =
@@ -43,6 +44,7 @@ const pageDescription =
 
   <body class="bg-white text-zinc-900">
     <Header />
+
     <main class="max-w-4xl mx-auto px-6 py-20">
       <article>
         <!-- Hero -->
@@ -189,14 +191,12 @@ const pageDescription =
 
             <div class="space-y-4 text-sm">
               <div class="border-l-4 border-green-500 pl-4">
-                <p class="font-medium mb-1">
-                  Primäre Information (aus &lt;h1&gt;):
-                </p>
+                <p class="font-medium mb-1">Primäre Information:</p>
                 <p class="text-zinc-600">"Websites für die LLM-Ära"</p>
               </div>
 
               <div class="border-l-4 border-blue-500 pl-4">
-                <p class="font-medium mb-1">Kontext (aus Schema.org):</p>
+                <p class="font-medium mb-1">Kontext:</p>
                 <p class="text-zinc-600">
                   Service: "LLM-native Web Development"
                 </p>
@@ -204,18 +204,14 @@ const pageDescription =
               </div>
 
               <div class="border-l-4 border-purple-500 pl-4">
-                <p class="font-medium mb-1">
-                  Expertise-Signale (aus semantischem HTML):
-                </p>
+                <p class="font-medium mb-1">Expertise-Signale:</p>
                 <p class="text-zinc-600">• Semantic HTML5</p>
                 <p class="text-zinc-600">• Schema.org Integration</p>
                 <p class="text-zinc-600">• Answer Engine Optimization</p>
               </div>
 
               <div class="border-l-4 border-orange-500 pl-4">
-                <p class="font-medium mb-1">
-                  Autorität (aus strukturierten Daten):
-                </p>
+                <p class="font-medium mb-1">Autorität:</p>
                 <p class="text-zinc-600">
                   Author: Steven Noack (stevennoack.de)
                 </p>
@@ -234,179 +230,159 @@ const pageDescription =
             </p>
           </div>
         </section>
-        <!-- Code-Vergleich: WordPress vs CodeBack -->
-        <section class="mb-24">
-          <h2 class="text-3xl font-bold mb-8">Der Unterschied im Code</h2>
 
-          <p class="text-zinc-600 mb-8">
-            Hier siehst du, warum WordPress-Websites für LLMs unsichtbar sind:
+        <!-- Der Unterschied: WordPress vs. CodeBack -->
+        <section id="problem" class="mb-24">
+          <h2 class="text-3xl font-bold mb-8">Der Unterschied für ChatGPT</h2>
+
+          <p class="text-lg text-zinc-600 mb-12">
+            Stell dir vor, jemand fragt ChatGPT: <span class="italic"
+              >"Wer kann mir bei Teamführung helfen?"</span
+            ><br />
+            Was sieht die KI auf deiner Website?
           </p>
 
-          <!-- Beispiel 1: Service-Beschreibung -->
-          <div class="mb-12">
-            <h3 class="text-xl font-semibold mb-4">
-              Beispiel: Coaching-Service beschreiben
-            </h3>
-
-            <div class="grid md:grid-cols-2 gap-6">
-              <!-- WordPress -->
-              <div>
-                <div class="flex items-center gap-2 mb-3">
-                  <span class="text-red-600 font-semibold"
-                    >❌ WordPress + Elementor</span
-                  >
-                </div>
-                <pre
-                  class="!bg-zinc-900 !text-zinc-100 !p-4 !text-xs !mb-3"><code>&lt;div class="elementor-element"&gt;
-  &lt;div class="elementor-widget-wrap"&gt;
-    &lt;div class="elementor-widget-container"&gt;
-      &lt;div class="heading-wrapper"&gt;
-        &lt;h2 class="elementor-heading"&gt;
-          Business Coaching
-        &lt;/h2&gt;
-      &lt;/div&gt;
-      &lt;div class="text-editor"&gt;
-        Ich helfe Teams...
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-                <p class="text-sm text-zinc-600">
-                  <span class="font-semibold">Problem:</span> LLM sieht nur generische
-                  DIVs. Keine Semantik, kein Kontext.
-                </p>
+          <!-- Metapher-Vergleich -->
+          <div class="grid md:grid-cols-2 gap-8">
+            <!-- WordPress: Unsichtbar -->
+            <div class="border-2 border-red-200 rounded-lg p-8 bg-red-50/50">
+              <div class="flex items-center gap-3 mb-6">
+                <div class="text-3xl">👻</div>
+                <h3 class="text-2xl font-bold text-red-900">
+                  WordPress-Website
+                </h3>
               </div>
 
-              <!-- CodeBack -->
-              <div>
-                <div class="flex items-center gap-2 mb-3">
-                  <span class="text-green-600 font-semibold"
-                    >✓ CodeBack (LLM-native)</span
-                  >
+              <div class="mb-6">
+                <p class="text-zinc-700 mb-4 font-medium">
+                  Was ChatGPT "sieht":
+                </p>
+                <div
+                  class="bg-white border border-red-200 rounded-lg p-4 text-zinc-500 italic"
+                >
+                  "Irgendeine Coaching-Seite... aber wofür genau? Keine klaren
+                  Informationen erkennbar."
                 </div>
-                <pre
-                  class="!bg-zinc-900 !text-zinc-100 !p-4 !text-xs !mb-3"><code>&lt;article itemscope 
-  itemtype="https://schema.org/Service"&gt;
-  &lt;h1 itemprop="name"&gt;
-    Business Coaching
-  &lt;/h1&gt;
-  &lt;p itemprop="description"&gt;
-    Ich helfe Teams...
-  &lt;/p&gt;
-  &lt;meta itemprop="serviceType" 
-    content="Teamführung" /&gt;
-&lt;/article&gt;</code></pre>
-                <p class="text-sm text-zinc-600">
-                  <span class="font-semibold">Lösung:</span> LLM versteht: Das ist
-                  ein Service, Name + Beschreibung + Typ sind klar.
+              </div>
+
+              <div class="space-y-3">
+                <div class="flex items-start gap-2">
+                  <span class="text-red-600 mt-1">✗</span>
+                  <p class="text-sm text-zinc-700">
+                    Deine Spezialisierung ist in Bildern versteckt
+                  </p>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="text-red-600 mt-1">✗</span>
+                  <p class="text-sm text-zinc-700">
+                    Expertise ist visuell, aber nicht lesbar für KI
+                  </p>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="text-red-600 mt-1">✗</span>
+                  <p class="text-sm text-zinc-700">
+                    Wird bei Anfragen nicht empfohlen
+                  </p>
+                </div>
+              </div>
+
+              <div class="mt-6 p-4 bg-red-100 rounded-lg border border-red-200">
+                <p class="text-sm font-semibold text-red-900">Ergebnis:</p>
+                <p class="text-sm text-red-800">
+                  ChatGPT empfiehlt deine Konkurrenz
+                </p>
+              </div>
+            </div>
+
+            <!-- CodeBack: Sichtbar -->
+            <div
+              class="border-2 border-green-500 rounded-lg p-8 bg-green-50/50"
+            >
+              <div class="flex items-center gap-3 mb-6">
+                <div class="text-3xl">✨</div>
+                <h3 class="text-2xl font-bold text-green-900">
+                  CodeBack-Website
+                </h3>
+              </div>
+
+              <div class="mb-6">
+                <p class="text-zinc-700 mb-4 font-medium">
+                  Was ChatGPT versteht:
+                </p>
+                <div class="bg-white border border-green-500 rounded-lg p-4">
+                  <p class="text-green-900 font-medium mb-2">
+                    "Business Coach in Berlin"
+                  </p>
+                  <p class="text-zinc-700 text-sm mb-2">
+                    Spezialisierung: Teamführung & Agile Methoden
+                  </p>
+                  <p class="text-zinc-600 text-sm">
+                    Services: 1:1 Coaching, Team Workshops
+                  </p>
+                </div>
+              </div>
+
+              <div class="space-y-3">
+                <div class="flex items-start gap-2">
+                  <span class="text-green-600 mt-1">✓</span>
+                  <p class="text-sm text-zinc-700">
+                    Expertise klar strukturiert und lesbar
+                  </p>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="text-green-600 mt-1">✓</span>
+                  <p class="text-sm text-zinc-700">
+                    Spezialisierungen maschinenlesbar hinterlegt
+                  </p>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="text-green-600 mt-1">✓</span>
+                  <p class="text-sm text-zinc-700">
+                    Wird bei passenden Anfragen empfohlen
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="mt-6 p-4 bg-green-100 rounded-lg border border-green-500"
+              >
+                <p class="text-sm font-semibold text-green-900">Ergebnis:</p>
+                <p class="text-sm text-green-800">
+                  ChatGPT empfiehlt DICH als Experten
                 </p>
               </div>
             </div>
           </div>
 
-          <!-- Beispiel 2: Spezialisierung -->
-          <div class="mb-12">
-            <h3 class="text-xl font-semibold mb-4">
-              Beispiel: Spezialisierung kommunizieren
-            </h3>
-
-            <div class="grid md:grid-cols-2 gap-6">
-              <!-- WordPress -->
-              <div>
-                <div class="flex items-center gap-2 mb-3">
-                  <span class="text-red-600 font-semibold">❌ WordPress</span>
-                </div>
-                <pre
-                  class="!bg-zinc-900 !text-zinc-100 !p-4 !text-xs !mb-3"><code>&lt;div class="expertise-box"&gt;
-  &lt;img src="icon.png" /&gt;
-  &lt;span&gt;Agile Methoden&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class="expertise-box"&gt;
-  &lt;img src="icon2.png" /&gt;
-  &lt;span&gt;Teamführung&lt;/span&gt;
-&lt;/div&gt;</code></pre>
-                <p class="text-sm text-zinc-600">
-                  <span class="font-semibold">Problem:</span> Spezialisierung ist
-                  visuell, aber nicht maschinenlesbar.
-                </p>
-              </div>
-
-              <!-- CodeBack -->
-              <div>
-                <div class="flex items-center gap-2 mb-3">
-                  <span class="text-green-600 font-semibold">✓ CodeBack</span>
-                </div>
-                <pre
-                  class="!bg-zinc-900 !text-zinc-100 !p-4 !text-xs !mb-3"><code>&lt;ul itemscope 
-  itemtype="https://schema.org/ItemList"&gt;
-  &lt;li itemprop="itemListElement"&gt;
-    Agile Methoden
-  &lt;/li&gt;
-  &lt;li itemprop="itemListElement"&gt;
-    Teamführung
-  &lt;/li&gt;
-&lt;/ul&gt;</code></pre>
-                <p class="text-sm text-zinc-600">
-                  <span class="font-semibold">Lösung:</span> Strukturierte Liste.
-                  LLM kann Spezialisierungen extrahieren.
-                </p>
-              </div>
+          <!-- Real-World Beispiel -->
+          <div class="mt-12 bg-zinc-900 text-white rounded-lg p-8">
+            <h3 class="text-xl font-bold mb-4">💬 Echte ChatGPT-Anfrage:</h3>
+            <div class="bg-zinc-800 border border-zinc-700 rounded-lg p-6 mb-6">
+              <p class="text-zinc-300 italic">
+                "Ich suche einen Business Coach in Berlin, der mit agilen
+                Methoden arbeitet und Erfahrung in Teamführung hat. Kannst du
+                jemanden empfehlen?"
+              </p>
             </div>
-          </div>
-
-          <!-- FAQ für AEO -->
-          <div>
-            <h3 class="text-xl font-semibold mb-4">
-              Beispiel: FAQ für Answer Engine Optimization
-            </h3>
 
             <div class="grid md:grid-cols-2 gap-6">
-              <!-- WordPress -->
               <div>
-                <div class="flex items-center gap-2 mb-3">
-                  <span class="text-red-600 font-semibold"
-                    >❌ WordPress Accordion</span
-                  >
-                </div>
-                <pre
-                  class="!bg-zinc-900 !text-zinc-100 !p-4 !text-xs !mb-3"><code>&lt;div class="accordion-item"&gt;
-  &lt;div class="accordion-header"&gt;
-    Wie lange dauert ein Coaching?
-  &lt;/div&gt;
-  &lt;div class="accordion-body"&gt;
-    Typischerweise 3-6 Monate...
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-                <p class="text-sm text-zinc-600">
-                  <span class="font-semibold">Problem:</span> Frage/Antwort nicht
-                  als solche erkennbar.
+                <p class="text-sm font-semibold text-red-400 mb-2">
+                  WordPress-Website:
+                </p>
+                <p class="text-sm text-zinc-400">
+                  Wird nicht gefunden oder als "möglicherweise relevant"
+                  erwähnt, aber ohne konkrete Empfehlung.
                 </p>
               </div>
-
-              <!-- CodeBack -->
               <div>
-                <div class="flex items-center gap-2 mb-3">
-                  <span class="text-green-600 font-semibold"
-                    >✓ CodeBack (Schema.org FAQPage)</span
-                  >
-                </div>
-                <pre
-                  class="!bg-zinc-900 !text-zinc-100 !p-4 !text-xs !mb-3"><code>&lt;div itemscope 
-  itemtype="https://schema.org/Question"&gt;
-  &lt;h3 itemprop="name"&gt;
-    Wie lange dauert ein Coaching?
-  &lt;/h3&gt;
-  &lt;div itemprop="acceptedAnswer" 
-    itemscope 
-    itemtype="https://schema.org/Answer"&gt;
-    &lt;p itemprop="text"&gt;
-      Typischerweise 3-6 Monate...
-    &lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-                <p class="text-sm text-zinc-600">
-                  <span class="font-semibold">Lösung:</span> LLM kann diese Antwort
-                  direkt in Konversationen nutzen.
+                <p class="text-sm font-semibold text-green-400 mb-2">
+                  CodeBack-Website:
+                </p>
+                <p class="text-sm text-zinc-100">
+                  "Ich empfehle [Dein Name]. Spezialisierung: Teamführung mit
+                  agilen Methoden in Berlin. Bietet 1:1 Coaching und
+                  Team-Workshops."
                 </p>
               </div>
             </div>
@@ -458,7 +434,6 @@ const pageDescription =
               kann die KI deine komplette Expertise verstehen und dich präzise
               empfehlen.
             </p>
-
             <a
               href="/blog/schema-org-deep-dive"
               class="text-green-600 font-medium hover:text-green-700 inline-flex items-center gap-2"
@@ -468,146 +443,116 @@ const pageDescription =
           </div>
         </section>
 
-        <!-- Das Problem -->
-        <section id="problem" class="mb-24">
-          <h2 class="text-3xl font-bold mb-8">Das Problem mit WordPress</h2>
-
-          <div class="space-y-6">
-            <div class="border-l-4 border-red-500 pl-6 py-4">
-              <h3 class="text-xl font-semibold mb-3">
-                ❌ Unsichtbar für ChatGPT & Co.
-              </h3>
-              <p class="text-zinc-600 mb-3">
-                WordPress-Websites sind für Google-Crawler optimiert. Aber LLMs
-                brauchen semantische Struktur, klare Hierarchien und
-                maschinenlesbare Metadaten.
-              </p>
-              <ul class="space-y-2 text-sm text-zinc-600">
-                <li>• Verschachtelte DIV-Strukturen verwirren LLMs</li>
-                <li>• Content in Shortcodes versteckt</li>
-                <li>• Keine Schema.org Integration</li>
-                <li>• PageBuilder-Chaos statt klarer HTML-Semantik</li>
-              </ul>
-            </div>
-
-            <div class="border-l-4 border-green-600 pl-6 py-4 bg-green-50">
-              <h3 class="text-xl font-semibold mb-3">
-                ✓ LLM-native mit CodeBack
-              </h3>
-              <p class="text-zinc-600 mb-3">
-                Wir bauen Websites die LLMs verstehen, kontextualisieren und
-                empfehlen.
-              </p>
-              <ul class="space-y-2 text-sm text-zinc-600">
-                <li>• Semantic HTML5 – jedes Element hat Bedeutung</li>
-                <li>• Schema.org Markup – maschinenlesbare Metadaten</li>
-                <li>• Answer Engine Optimization – präzise Antworten</li>
-                <li>
-                  • Klare Content-Hierarchie – LLMs finden was wichtig ist
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Beispiel -->
-          <div class="mt-8 bg-zinc-50 border border-zinc-200 rounded-lg p-6">
-            <h4 class="font-semibold mb-4">Beispiel: ChatGPT-Anfrage</h4>
-            <div class="bg-white border border-zinc-300 rounded p-4 mb-4">
-              <p class="text-zinc-700 italic">
-                "Finde mir einen Business Coach in Berlin der auf Teamführung
-                spezialisiert ist und mit agilen Methoden arbeitet"
-              </p>
-            </div>
-            <p class="text-sm text-zinc-600">
-              <span class="font-semibold">WordPress-Site:</span> Wird nicht gefunden
-              – Spezialisierung ist in Bildern und PageBuilder versteckt.
-            </p>
-            <p class="text-sm text-green-600 font-semibold mt-2">
-              <span class="font-semibold">CodeBack-Site:</span> Wird empfohlen –
-              Spezialisierung ist in strukturierten Daten hinterlegt.
-            </p>
-          </div>
-        </section>
-
         <!-- Das Konzept -->
         <section id="konzept" class="mb-24">
           <h2 class="text-3xl font-bold mb-8">LLM-Native: Was bedeutet das?</h2>
 
-          <div class="prose prose-zinc max-w-none">
-            <p class="text-lg text-zinc-600 mb-6">
-              Eine LLM-native Website ist so strukturiert, dass Large Language
-              Models (wie ChatGPT, Claude, Gemini) den Content optimal
-              verstehen, kontextualisieren und in Antworten integrieren können.
-            </p>
+          <p class="text-lg text-zinc-600 mb-12">
+            Eine LLM-native Website ist wie ein Gespräch, das ChatGPT verstehen
+            kann. Statt nur schön auszusehen, kommuniziert sie aktiv mit
+            KI-Systemen.
+          </p>
 
-            <h3 class="text-xl font-semibold mb-4 mt-8">1. Semantic HTML</h3>
-            <p class="text-zinc-600 mb-4">
-              Statt generischen <code>&lt;div&gt;</code> Tags nutzen wir semantische
-              Elemente die Bedeutung transportieren:
-            </p>
-
-            <div class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 mb-6">
-              <div class="grid md:grid-cols-2 gap-6">
-                <div>
-                  <p class="text-sm font-medium text-red-600 mb-2">
-                    ❌ WordPress-Chaos
-                  </p>
-                  <pre
-                    class="!bg-zinc-900 !text-zinc-100 !p-4 !my-0 !text-xs"><code>&lt;div class="elementor-widget"&gt;
-  &lt;div class="heading"&gt;Coach&lt;/div&gt;
-  &lt;div class="text"&gt;...&lt;/div&gt;
-&lt;/div&gt;</code></pre>
-                </div>
-
-                <div>
-                  <p class="text-sm font-medium text-green-600 mb-2">
-                    ✓ LLM-native
-                  </p>
-                  <pre
-                    class="!bg-zinc-900 !text-zinc-100 !p-4 !my-0 !text-xs"><code>&lt;article itemscope itemtype="Person"&gt;
-  &lt;h1 itemprop="name"&gt;Coach&lt;/h1&gt;
-  &lt;p itemprop="description"&gt;...&lt;/p&gt;
-&lt;/article&gt;</code></pre>
-                </div>
+          <!-- 3 Säulen als Cards -->
+          <div class="grid md:grid-cols-3 gap-8">
+            <!-- Säule 1: Klare Struktur -->
+            <div class="bg-zinc-50 border border-zinc-200 rounded-lg p-6">
+              <div
+                class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white text-2xl mb-4"
+              >
+                1
+              </div>
+              <h3 class="text-xl font-semibold mb-3">Klare Struktur</h3>
+              <p class="text-zinc-600 text-sm mb-4">
+                Wie ein gut organisiertes Regal: Jedes Element hat seinen Platz
+                und seine Bedeutung. ChatGPT findet sofort, was wichtig ist.
+              </p>
+              <div class="bg-white border border-zinc-200 rounded p-3">
+                <p class="text-xs text-zinc-500 mb-2">Metapher:</p>
+                <p class="text-sm text-zinc-700">
+                  <strong>WordPress:</strong> Wie eine Schublade voller Zettel<br
+                  />
+                  <strong>CodeBack:</strong> Wie ein beschriftetes Archiv
+                </p>
               </div>
             </div>
 
-            <h3 class="text-xl font-semibold mb-4 mt-8">
-              2. Schema.org Markup
-            </h3>
-            <p class="text-zinc-600 mb-4">
-              LLMs nutzen strukturierte Daten um Expertise, Spezialisierung und
-              Autorität zu verstehen:
-            </p>
+            <!-- Säule 2: Maschinenlesbare Daten -->
+            <div class="bg-zinc-50 border border-zinc-200 rounded-lg p-6">
+              <div
+                class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white text-2xl mb-4"
+              >
+                2
+              </div>
+              <h3 class="text-xl font-semibold mb-3">Maschinenlesbare Daten</h3>
+              <p class="text-zinc-600 text-sm mb-4">
+                Deine Expertise wird so hinterlegt, dass LLMs sie extrahieren
+                und in Antworten integrieren können.
+              </p>
+              <div class="bg-white border border-zinc-200 rounded p-3">
+                <p class="text-xs text-zinc-500 mb-2">Was ChatGPT sieht:</p>
+                <p class="text-sm text-zinc-700">
+                  Service: Business Coaching<br />
+                  Spezialisierung: Teamführung<br />
+                  Location: Berlin
+                </p>
+              </div>
+            </div>
 
-            <pre
-              class="!text-xs"><code>{`{
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "Business Coaching Berlin",
-  "areaServed": "Berlin",
-  "serviceType": "Teamführung & Agile Methoden",
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Coaching Services"
-  }
-}`}</code></pre>
+            <!-- Säule 3: Answer Engine Optimization -->
+            <div class="bg-zinc-50 border border-zinc-200 rounded-lg p-6">
+              <div
+                class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white text-2xl mb-4"
+              >
+                3
+              </div>
+              <h3 class="text-xl font-semibold mb-3">
+                Answer Engine Optimization
+              </h3>
+              <p class="text-zinc-600 text-sm mb-4">
+                Statt Keywords optimieren wir für Antworten. Wenn jemand eine
+                Frage stellt, bist DU die Antwort.
+              </p>
+              <div class="bg-white border border-zinc-200 rounded p-3">
+                <p class="text-xs text-zinc-500 mb-2">Beispiel:</p>
+                <p class="text-sm text-zinc-700">
+                  Frage: "Wie lange dauert Coaching?"<br />
+                  Antwort: Direkt in ChatGPT verfügbar
+                </p>
+              </div>
+            </div>
+          </div>
 
-            <h3 class="text-xl font-semibold mb-4 mt-8">
-              3. Answer Engine Optimization (AEO)
-            </h3>
-            <p class="text-zinc-600 mb-4">
-              Statt Keywords optimieren wir für Antworten:
-            </p>
-
-            <ul class="space-y-2 text-zinc-600 list-disc pl-6">
-              <li>Klare, vollständige Antworten auf häufige Fragen</li>
-              <li>Strukturierte FAQ-Bereiche mit Schema.org</li>
-              <li>Kontextuelle Tiefe statt Keyword-Dichte</li>
-              <li>Autorität durch Expertise-Signale</li>
-            </ul>
+          <!-- Analogie-Box -->
+          <div
+            class="mt-12 bg-gradient-to-br from-green-50 to-blue-50 border border-green-200 rounded-lg p-8"
+          >
+            <h4 class="text-xl font-semibold mb-4">
+              🎯 Die Bibliothek-Analogie
+            </h4>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <p class="font-medium text-zinc-900 mb-2">WordPress-Website:</p>
+                <p class="text-zinc-700 text-sm">
+                  Wie ein Buch ohne Inhaltsverzeichnis oder Register. Schön
+                  gestaltet, aber ChatGPT muss jede Seite durchblättern um zu
+                  verstehen, worum es geht.
+                </p>
+              </div>
+              <div>
+                <p class="font-medium text-green-900 mb-2">CodeBack-Website:</p>
+                <p class="text-zinc-700 text-sm">
+                  Wie ein perfekt katalogisiertes Buch. Autor, Thema, Kapitel,
+                  Schlagworte – alles sofort findbar. ChatGPT kann gezielt die
+                  relevanten Informationen extrahieren.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
+
+        <!-- Pricing Section Component -->
+        <PricingSection />
 
         <!-- Die Zukunft -->
         <section class="mb-24">
