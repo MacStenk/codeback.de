@@ -1,0 +1,106 @@
+---
+// TableOfContents.astro - Sticky Sidebar Navigation
+---
+
+<aside class="toc-sidebar">
+  <nav class="toc-sticky bg-zinc-50 border border-zinc-200 rounded-lg p-6">
+    <h2
+      class="text-sm font-semibold mb-4 text-zinc-900 uppercase tracking-wide"
+    >
+      Inhalt
+    </h2>
+    <div id="toc-list" class="space-y-2"></div>
+  </nav>
+</aside>
+
+<script>
+  function generateTOC() {
+    const article = document.querySelector(".article-content");
+    if (!article) return;
+
+    const headings = article.querySelectorAll("h2, h3");
+    const tocList = document.getElementById("toc-list");
+    if (!tocList) return;
+
+    headings.forEach((heading, index) => {
+      // ID hinzufügen
+      if (!heading.id) {
+        const id =
+          heading.textContent
+            ?.toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/(^-|-$)/g, "") || `heading-${index}`;
+        heading.id = id;
+      }
+
+      const link = document.createElement("a");
+      link.href = `#${heading.id}`;
+      link.textContent = heading.textContent || "";
+      link.className =
+        heading.tagName === "H2"
+          ? "toc-link block text-zinc-700 hover:text-green-600 transition font-medium text-sm py-1"
+          : "toc-link block text-zinc-600 hover:text-green-600 transition pl-4 text-xs py-1";
+
+      link.dataset.target = heading.id;
+      tocList.appendChild(link);
+    });
+
+    // Active State beim Scrollen
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            document.querySelectorAll(".toc-link").forEach((link) => {
+              link.classList.remove("active");
+              if (link.dataset.target === id) {
+                link.classList.add("active");
+              }
+            });
+          }
+        });
+      },
+      { rootMargin: "-100px 0px -80% 0px" }
+    );
+
+    headings.forEach((heading) => observer.observe(heading));
+  }
+
+  document.addEventListener("DOMContentLoaded", generateTOC);
+</script>
+
+<style>
+  .toc-sidebar {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .toc-sidebar {
+      display: block;
+    }
+
+    .toc-sticky {
+      position: sticky;
+      top: 2rem;
+      max-height: calc(100vh - 4rem);
+      overflow-y: auto;
+    }
+  }
+
+  .toc-link {
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    padding-left: 0.75rem;
+    margin-left: -0.75rem;
+  }
+
+  .toc-link:hover {
+    border-left-color: #22c55e;
+  }
+
+  .toc-link.active {
+    color: #16a34a;
+    border-left-color: #16a34a;
+    font-weight: 600;
+  }
+</style>
