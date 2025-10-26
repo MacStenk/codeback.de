@@ -75,7 +75,7 @@ CodeBack.de
 Deutschland
 
 **E-Mail:** kontakt@codeback.de  
-**Telefon:** +49 (0) 172 160 96 18]
+**Telefon:** +49 (0) 1721609618
 
 Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z.B. Namen, E-Mail-Adressen o. Ä.) entscheidet.
 
@@ -132,7 +132,3 @@ Wenn Sie uns per E-Mail kontaktieren, wird Ihre Anfrage inklusive aller daraus h
 ## 6. Newsletter (zukünftig geplant)
 
 Falls wir zukünftig einen Newsletter anbieten, werden wir Sie an dieser Stelle über die Datenverarbeitung informieren. Eine Newsletter-Anmeldung erfolgt grundsätzlich nur mit Ihrer ausdrücklichen Einwilligung (Double-Opt-In-Verfahren).
-
----
-
-**Stand:** Oktober 2025
