@@ -1,5 +1,6 @@
 ---
-// PricingSection.astro - Pricing & Packages Component
+// PricingSection.astro - Pricing & Packages Component (Responsive)
+import Button from '../Button.astro';
 ---
 
 <section id="loesung" class="mb-24">
@@ -28,11 +29,11 @@
     </div>
   </div>
 
-  <!-- Pricing Cards -->
-  <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+  <!-- Pricing Cards - Responsive: 1 col mobile, 2 col tablet, 3 col desktop -->
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
     
     <!-- Bronze Package -->
-    <div class="border-2 border-zinc-200 rounded-lg p-8 bg-white hover:border-zinc-300 transition">
+    <div class="border-2 border-zinc-200 rounded-lg p-6 sm:p-8 bg-white hover:border-zinc-300 transition">
       <div class="text-4xl mb-4">🥉</div>
       <h3 class="text-2xl font-bold mb-2">Bronze</h3>
       <div class="mb-6">
@@ -67,16 +68,13 @@
         </li>
       </ul>
 
-      <a 
-        href="#kontakt" 
-        class="block w-full px-6 py-3 bg-zinc-900 text-white text-center font-medium rounded-lg hover:bg-zinc-800 transition"
-      >
+      <Button href="#kontakt" variant="dark" class="w-full justify-center">
         Projekt anfragen
-      </a>
+      </Button>
     </div>
 
     <!-- Silver Package (Featured) -->
-    <div class="border-2 border-green-500 rounded-lg p-8 bg-green-50 relative transform md:scale-105 shadow-lg">
+    <div class="border-2 border-green-500 rounded-lg p-6 sm:p-8 bg-green-50 relative lg:transform lg:scale-105 shadow-lg sm:col-span-2 lg:col-span-1">
       <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-green-600 text-white text-xs font-bold px-4 py-1 rounded-full">
         BELIEBT
       </div>
@@ -115,16 +113,13 @@
         </li>
       </ul>
 
-      <a 
-        href="#kontakt" 
-        class="block w-full px-6 py-3 bg-green-600 text-white text-center font-medium rounded-lg hover:bg-green-700 transition"
-      >
+      <Button href="#kontakt" variant="primary" class="w-full justify-center">
         Jetzt starten
-      </a>
+      </Button>
     </div>
 
     <!-- Gold Package -->
-    <div class="border-2 border-zinc-200 rounded-lg p-8 bg-white hover:border-zinc-300 transition">
+    <div class="border-2 border-zinc-200 rounded-lg p-6 sm:p-8 bg-white hover:border-zinc-300 transition sm:col-span-2 lg:col-span-1">
       <div class="text-4xl mb-4">🥇</div>
       <h3 class="text-2xl font-bold mb-2">Gold</h3>
       <div class="mb-6">
@@ -159,12 +154,9 @@
         </li>
       </ul>
 
-      <a 
-        href="#kontakt" 
-        class="block w-full px-6 py-3 bg-zinc-900 text-white text-center font-medium rounded-lg hover:bg-zinc-800 transition"
-      >
+      <Button href="#kontakt" variant="dark" class="w-full justify-center">
         Enterprise anfragen
-      </a>
+      </Button>
     </div>
 
   </div>
@@ -174,8 +166,8 @@
     <h3 class="text-xl font-bold mb-6 text-center">Häufige Fragen</h3>
     
     <div class="space-y-4">
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6">
-        <summary class="font-semibold cursor-pointer">
+      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer">
+        <summary class="font-semibold">
           Wie läuft der Prozess ab?
         </summary>
         <p class="text-zinc-600 mt-3 text-sm">
@@ -187,8 +179,8 @@
         </p>
       </details>
 
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6">
-        <summary class="font-semibold cursor-pointer">
+      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer">
+        <summary class="font-semibold">
           Was passiert nach dem Launch?
         </summary>
         <p class="text-zinc-600 mt-3 text-sm">
@@ -197,8 +189,8 @@
         </p>
       </details>
 
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6">
-        <summary class="font-semibold cursor-pointer">
+      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer">
+        <summary class="font-semibold">
           Brauche ich technisches Know-how?
         </summary>
         <p class="text-zinc-600 mt-3 text-sm">
