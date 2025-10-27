@@ -1,6 +1,5 @@
 import { defineConfig } from "tinacms";
 
-// Your hosting provider likely exposes this as an environment variable
 const branch =
   process.env.GITHUB_BRANCH ||
   process.env.VERCEL_GIT_COMMIT_REF ||
@@ -10,28 +9,29 @@ const branch =
 export default defineConfig({
   branch,
 
-  // Get this from tina.io
-  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
-  // Get this from tina.io
+  // Deine TinaCloud Client ID
+  clientId: "c2b183f6-e2c7-495c-aee1-7cdcf967ecfa",
   token: process.env.TINA_TOKEN,
 
   build: {
     outputFolder: "admin",
     publicFolder: "public",
   },
+  
   media: {
     tina: {
-      mediaRoot: "",
+      mediaRoot: "images",
       publicFolder: "public",
     },
   },
-  // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/r/content-modelling-collections/
+  
   schema: {
     collections: [
       {
-        name: "post",
-        label: "Posts",
-         path: "src/content/blog",  // ← FIX!
+        name: "posts",
+        label: "Blog Posts",
+        path: "src/content/blog",
+        format: "md",
         fields: [
           {
             type: "string",
@@ -39,6 +39,33 @@ export default defineConfig({
             label: "Title",
             isTitle: true,
             required: true,
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Description",
+          },
+          {
+            type: "string",
+            name: "pubDate",
+            label: "Published Date (Format: Oct 26 2024 oder 2024-10-26)",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "author",
+            label: "Author",
+          },
+          {
+            type: "string",
+            name: "tags",
+            label: "Tags",
+            list: true,
+          },
+          {
+            type: "boolean",
+            name: "draft",
+            label: "Draft",
           },
           {
             type: "rich-text",
