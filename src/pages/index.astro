@@ -1,89 +1,95 @@
 ---
-import '../styles/global.css';
-import SEO from '../components/SEO.astro';
-import Header from '../components/layout/Header.astro';
-import Footer from '../components/Footer.astro';
-import Hero from '../components/sections/Hero.astro';
-import TargetAudience from '../components/sections/TargetAudience.astro';
-import LiveDemo from '../components/sections/LiveDemo.astro';
-import ProblemSection from '../components/sections/ProblemSection.astro';
-import ConceptSection from '../components/sections/ConceptSection.astro';
-import PricingSection from '../components/sections/PricingSection.astro';
-import FutureSection from '../components/sections/FutureSection.astro';
-import TechStack from '../components/sections/TechStack.astro';
-import CTASection from '../components/sections/CTASection.astro';
+import "../styles/global.css";
+import SEO from "../components/SEO.astro";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/sections/Hero.astro";
+import TargetAudience from "../components/sections/TargetAudience.astro";
+import LiveDemo from "../components/sections/LiveDemo.astro";
+import ProblemSection from "../components/sections/ProblemSection.astro";
+import ConceptSection from "../components/sections/ConceptSection.astro";
+import PricingSection from "../components/sections/PricingSection.astro";
+import FutureSection from "../components/sections/FutureSection.astro";
+import TechStack from "../components/sections/TechStack.astro";
+import CTASection from "../components/sections/CTASection.astro";
+import FAQSection from "../components/sections/FAQSection.astro";
 
-const pageTitle = "CodeBack - Die erste LLM-native Website Deutschlands";
-const pageDescription = "Websites für die LLM-Ära. Während andere für Google optimieren, baust du für ChatGPT.";
+const pageTitle = "Codeback. Websites die Antworten werden";
+const pageDescription =
+  "LLM SEO und Answer Engine Optimization für die Zukunft der digitalen Sichtbarkeit";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-  <SEO 
-    title={pageTitle}
-    description={pageDescription}
-    canonical="https://codeback.de"
-    type="website"
-  />
-  
-  <!-- Schema.org für LLMs -->
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "CodeBack",
-    "url": "https://codeback.de",
-    "description": pageDescription,
-    "author": {
-      "@type": "Person",
-      "name": "Steven Noack",
-      "url": "https://stevennoack.de"
-    },
-    "about": {
-      "@type": "Service",
-      "name": "LLM-native Web Development",
-      "description": "Entwicklung von Websites die für Large Language Models optimiert sind"
-    }
-  })} />
-</head>
+  <head>
+    <SEO
+      title={pageTitle}
+      description={pageDescription}
+      canonical="https://codeback.de"
+      type="website"
+    />
 
-<body class="bg-white text-zinc-900">
-  
-  <Header />
-  
-  <main id="main-content" class="max-w-4xl mx-auto px-6 py-20">
-    
-    <article>
-      <!-- Hero -->
-      <Hero />
-      
-      <!-- Wer braucht das? -->
-      <TargetAudience />
-      
-      <!-- Live-Demo -->
-      <LiveDemo />
-      
-      <!-- Das Problem -->
-      <ProblemSection />
-      
-      <!-- Das Konzept -->
-      <ConceptSection />
-      
-      <!-- Die Lösung: Pricing -->
-      <PricingSection />
-      
-      <!-- Die Zukunft -->
-      <FutureSection />
-      
-      <!-- Tech Stack -->
-      <TechStack />
-      
-      <!-- CTA -->
-      <CTASection />
-    </article>
+    <!-- Schema.org für LLMs -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "CodeBack",
+        url: "https://codeback.de",
+        description: pageDescription,
+        author: {
+          "@type": "Person",
+          name: "Steven Noack",
+          url: "https://stevennoack.de",
+        },
+        about: {
+          "@type": "Service",
+          name: "LLM-native Web Development",
+          description:
+            "Entwicklung von Websites die für Large Language Models optimiert sind",
+        },
+      })}
+    />
+  </head>
 
-  </main>
+  <body class="bg-white text-zinc-900">
+    <Header />
 
-  <Footer />
-</body>
+    <main id="main-content" class="max-w-4xl mx-auto px-6 py-20">
+      <article>
+        <!-- Hero -->
+        <Hero />
+
+        <!-- Wer braucht das? -->
+        <TargetAudience />
+
+        <!-- Live-Demo -->
+        <LiveDemo />
+
+        <!-- Das Problem -->
+        <ProblemSection />
+
+        <!-- Das Konzept -->
+        <ConceptSection />
+
+        <!-- Die Lösung: Pricing -->
+        <PricingSection />
+
+        <!-- Die Zukunft -->
+        <FutureSection />
+
+        <!-- Tech Stack -->
+        <TechStack />
+
+        <!-- FAQ -->
+        <FAQSection />
+
+        <!-- CTA -->
+        <CTASection />
+      </article>
+    </main>
+
+    <Footer />
+  </body>
 </html>

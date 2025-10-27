@@ -1,13 +1,13 @@
 ---
-// PricingSection.astro - Pricing & Packages Component (Responsive)
+// PricingSection.astro - Packages & Pricing
 import Button from '../Button.astro';
 ---
 
 <section id="loesung" class="mb-24">
   <div class="text-center mb-12">
-    <h2 class="text-3xl font-bold mb-4">Die Lösung: Deine LLM-native Website</h2>
+    <h2 class="text-3xl font-bold mb-4">Wähle dein Package</h2>
     <p class="text-xl text-zinc-600 mb-8">
-      Wähle das Package, das zu deinem Business passt
+      Moderne Webarchitektur. Maschinenlesbare Inhalte. Technische Souveränität.
     </p>
 
     <!-- Status Badge -->
@@ -20,16 +20,16 @@ import Button from '../Button.astro';
           <div class="w-3 h-3 bg-zinc-300 rounded-full"></div>
         </div>
         <span class="text-sm font-medium text-zinc-700">
-          Verfügbarkeit Januar 2026
+          Launch Januar 2026
         </span>
       </div>
       <span class="text-sm font-semibold text-green-700">
-        3 von 4 Plätzen belegt
+        3 von 4 Slots belegt
       </span>
     </div>
   </div>
 
-  <!-- Pricing Cards - Responsive: 1 col mobile, 2 col tablet, 3 col desktop -->
+  <!-- Pricing Cards -->
   <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
     
     <!-- Bronze Package -->
@@ -48,7 +48,7 @@ import Button from '../Button.astro';
         </li>
         <li class="flex items-start gap-2">
           <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">LLM-native Struktur</span>
+          <span class="text-sm text-zinc-700">Astro + JAMstack Architektur</span>
         </li>
         <li class="flex items-start gap-2">
           <span class="text-green-600 mt-1">✓</span>
@@ -56,27 +56,27 @@ import Button from '../Button.astro';
         </li>
         <li class="flex items-start gap-2">
           <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Blog-Setup</span>
+          <span class="text-sm text-zinc-700">Blog-Setup mit Markdown</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-green-600 mt-1">✓</span>
+          <span class="text-sm text-zinc-700">GitHub + Cloudflare Deployment</span>
         </li>
         <li class="flex items-start gap-2">
           <span class="text-green-600 mt-1">✓</span>
           <span class="text-sm text-zinc-700">1 Revision-Runde</span>
         </li>
-        <li class="flex items-start gap-2">
-          <span class="text-zinc-400 mt-1">○</span>
-          <span class="text-sm text-zinc-400">Content-Templates provided</span>
-        </li>
       </ul>
 
       <Button href="#kontakt" variant="dark" class="w-full justify-center">
-        Projekt anfragen
+        Anfragen
       </Button>
     </div>
 
     <!-- Silver Package (Featured) -->
     <div class="border-2 border-green-500 rounded-lg p-6 sm:p-8 bg-green-50 relative lg:transform lg:scale-105 shadow-lg sm:col-span-2 lg:col-span-1">
       <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-green-600 text-white text-xs font-bold px-4 py-1 rounded-full">
-        BELIEBT
+        EMPFOHLEN
       </div>
       
       <div class="text-4xl mb-4">🥈</div>
@@ -93,7 +93,7 @@ import Button from '../Button.astro';
         </li>
         <li class="flex items-start gap-2">
           <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Custom Sections</span>
+          <span class="text-sm text-zinc-700">Custom Component Library</span>
         </li>
         <li class="flex items-start gap-2">
           <span class="text-green-600 mt-1">✓</span>
@@ -101,15 +101,15 @@ import Button from '../Button.astro';
         </li>
         <li class="flex items-start gap-2">
           <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">FAQ-Schema (AEO)</span>
+          <span class="text-sm text-zinc-700">FAQ-Schema für Answer Engines</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-green-600 mt-1">✓</span>
+          <span class="text-sm text-zinc-700">n8n Basis-Automation Setup</span>
         </li>
         <li class="flex items-start gap-2">
           <span class="text-green-600 mt-1">✓</span>
           <span class="text-sm text-zinc-700">2 Revision-Runden</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">KI-gestützter Content-Workflow</span>
         </li>
       </ul>
 
@@ -134,23 +134,23 @@ import Button from '../Button.astro';
         </li>
         <li class="flex items-start gap-2">
           <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Full Custom Design</span>
+          <span class="text-sm text-zinc-700">Full Custom Design System</span>
         </li>
         <li class="flex items-start gap-2">
           <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Advanced Schema.org</span>
+          <span class="text-sm text-zinc-700">Advanced Schema.org + JSON-LD</span>
         </li>
         <li class="flex items-start gap-2">
           <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">n8n Automation Setup</span>
+          <span class="text-sm text-zinc-700">n8n Full Workflow-Automation</span>
         </li>
         <li class="flex items-start gap-2">
           <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">3 Revision-Runden</span>
+          <span class="text-sm text-zinc-700">CRM + Kalender Integration</span>
         </li>
         <li class="flex items-start gap-2">
           <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Priority Support</span>
+          <span class="text-sm text-zinc-700">3 Revision-Runden + Priority Support</span>
         </li>
       </ul>
 
@@ -161,7 +161,7 @@ import Button from '../Button.astro';
 
   </div>
 
-  <!-- FAQ unter Pricing -->
+  <!-- FAQ -->
   <div class="mt-16 max-w-3xl mx-auto">
     <h3 class="text-xl font-bold mb-6 text-center">Häufige Fragen</h3>
     
@@ -171,11 +171,11 @@ import Button from '../Button.astro';
           Wie läuft der Prozess ab?
         </summary>
         <p class="text-zinc-600 mt-3 text-sm">
-          1. Qualifying-Gespräch (passen wir zusammen?)<br/>
-          2. Content-Briefing mit KI-Template<br/>
-          3. Entwicklung & regelmäßige Updates<br/>
+          1. Qualifying-Call (passen wir zusammen?)<br/>
+          2. Content-Briefing mit strukturiertem Template<br/>
+          3. Entwicklung mit regelmäßigen Updates<br/>
           4. Review & Revision<br/>
-          5. Launch & Übergabe
+          5. Launch & Übergabe mit Dokumentation
         </p>
       </details>
 
@@ -184,8 +184,9 @@ import Button from '../Button.astro';
           Was passiert nach dem Launch?
         </summary>
         <p class="text-zinc-600 mt-3 text-sm">
-          Du erhältst vollständigen Zugriff auf Code & Deployment. 
-          Optional: Wartungs-Pakete ab 500€/Monat verfügbar.
+          Du erhältst vollständigen Zugriff auf Code, GitHub-Repository und Deployment. 
+          Wartung und Updates kannst du selbst machen (über Markdown) oder als 
+          Wartungs-Paket ab 500€/Monat buchen.
         </p>
       </details>
 
@@ -194,8 +195,32 @@ import Button from '../Button.astro';
           Brauche ich technisches Know-how?
         </summary>
         <p class="text-zinc-600 mt-3 text-sm">
-          Nein. Du lieferst Content, ich baue die Technik. 
-          Updates später über einfaches Markdown möglich.
+          Nein. Du lieferst Inhalte, ich baue die technische Struktur. 
+          Spätere Updates sind über einfaches Markdown möglich – wie in einem 
+          Texteditor. Keine Coding-Kenntnisse erforderlich.
+        </p>
+      </details>
+
+      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer">
+        <summary class="font-semibold">
+          Warum kein WordPress mit KI-Plugin?
+        </summary>
+        <p class="text-zinc-600 mt-3 text-sm">
+          WordPress-Plugins können Schema.org hinzufügen, aber nicht die 
+          fundamentalen HTML-Strukturprobleme lösen, die Pagebuilder erzeugen. 
+          CodeBack baut von Grund auf sauberes, semantisches HTML.
+        </p>
+      </details>
+
+      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer">
+        <summary class="font-semibold">
+          Wo werden die Daten gehostet?
+        </summary>
+        <p class="text-zinc-600 mt-3 text-sm">
+          <strong>Option 1:</strong> Cloudflare Pages für statische Sites (globales Edge-Netzwerk, DSGVO-konform).<br/>
+          <strong>Option 2:</strong> Hetzner eigenständige virtuelle Server in Deutschland für volle Kontrolle – 
+          keine Shared Hosting, Root-Zugriff, Made in Germany.<br/>
+          Du entscheidest, was besser zu deinen Anforderungen passt.
         </p>
       </details>
     </div>
