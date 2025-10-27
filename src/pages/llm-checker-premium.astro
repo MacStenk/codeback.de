@@ -1,0 +1,519 @@
+---
+// Premium LLM-Readability Checker Page with Email Capture
+// Angepasst an CodeBack.de Design
+const pageTitle = "LLM-Readability Checker";
+const pageDescription = "Prüfe wie gut deine Website für ChatGPT und andere LLMs lesbar ist";
+---
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content={pageDescription}>
+  <title>{pageTitle} - CodeBack.de</title>
+</head>
+
+<body class="bg-white text-gray-900 font-sans antialiased">
+  
+  <!-- Header -->
+  <header class="border-b border-gray-200 py-4">
+    <div class="max-w-6xl mx-auto px-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 text-xl font-semibold hover:opacity-80 transition">
+        <span class="text-gray-900">Code<span class="text-green-600">Back</span></span>
+        <span class="text-xs text-gray-500 font-normal">LLM-native</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="/" class="text-gray-600 hover:text-green-600 transition">Home</a>
+        <a href="/#das-problem" class="text-gray-600 hover:text-green-600 transition">Das Problem</a>
+        <a href="/blog" class="text-gray-600 hover:text-green-600 transition">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-4 py-16">
+    
+    <!-- Hero Section -->
+    <div class="max-w-3xl mx-auto text-center mb-16">
+      <div class="inline-block bg-green-100 text-green-700 px-4 py-1 rounded-full text-sm font-medium mb-6">
+        Kostenloser Check
+      </div>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900">
+        LLM-Readability Checker
+      </h1>
+      <p class="text-xl text-gray-600 mb-4">
+        Was sagt ChatGPT über dich, wenn jemand nach deinen Services fragt?
+      </p>
+      <p class="text-gray-500">
+        LLM-Sichtbarkeit ist das neue SEO. Teste jetzt ob du empfohlen wirst oder ignoriert.
+      </p>
+    </div>
+
+    <!-- Input Form -->
+    <div class="max-w-2xl mx-auto mb-16">
+      <form id="checker-form" class="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+        <label for="url-input" class="block text-sm font-medium text-gray-700 mb-3">
+          Website-URL
+        </label>
+        <div class="flex flex-col gap-3 mb-4">
+          <input 
+            type="url" 
+            id="url-input" 
+            placeholder="https://deine-website.de"
+            required
+            class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition"
+          />
+          <input 
+            type="text" 
+            id="query-input" 
+            placeholder="z.B. 'Business Coach Hamburg' (optional)"
+            class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition"
+          />
+        </div>
+        <button 
+          type="submit"
+          class="w-full bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition shadow-sm"
+        >
+          Jetzt testen
+        </button>
+        <p class="text-xs text-gray-500 mt-3">
+          ⚡ Dauert nur 30 Sekunden · Keine Anmeldung
+        </p>
+      </form>
+
+      <!-- Loading State -->
+      <div id="loading" class="hidden mt-8">
+        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-100 text-center">
+          <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mb-4"></div>
+          <p class="text-lg font-medium text-gray-900 mb-2">Analysiere Website...</p>
+          <p class="text-sm text-gray-500">Prüfe HTML, Schema.org, Semantic Markup...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Results -->
+    <div id="basic-results" class="hidden max-w-4xl mx-auto space-y-6">
+      
+      <!-- Score Card -->
+      <div class="bg-gradient-to-br from-green-50 to-white rounded-xl shadow-lg p-8 border border-green-100">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">📊 Dein Basic Score</h2>
+        <div class="flex items-center gap-6 mb-6">
+          <div class="text-6xl font-bold text-green-600" id="basic-score-display">--</div>
+          <div>
+            <div class="text-sm text-gray-600">von 100 Punkten</div>
+            <div id="basic-score-label" class="text-xl font-semibold"></div>
+          </div>
+        </div>
+        <div class="h-3 bg-gray-200 rounded-full overflow-hidden">
+          <div id="basic-score-fill" class="h-full bg-gradient-to-r from-green-500 to-green-600 transition-all duration-1000 rounded-full" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Top Issues -->
+      <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+        <h3 class="text-xl font-bold text-gray-900 mb-4">⚠️ Top Probleme</h3>
+        <div id="basic-issues-list" class="space-y-3"></div>
+      </div>
+
+      <!-- Email Capture CTA -->
+      <div class="bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl shadow-xl p-8 text-white">
+        <div class="text-center mb-6">
+          <h3 class="text-2xl font-bold mb-3">
+            🚀 Willst du den VOLLSTÄNDIGEN Report?
+          </h3>
+          <p class="text-blue-100 text-lg mb-2">
+            Erhalte exklusiv:
+          </p>
+          <ul class="text-left inline-block text-blue-50 space-y-2">
+            <li>✓ <strong>LLM Response Preview:</strong> Was sagt ChatGPT über dich?</li>
+            <li>✓ <strong>Citation Probability:</strong> Wie oft wirst du empfohlen?</li>
+            <li>✓ <strong>Konkurrenz-Vergleich:</strong> Wer ist besser optimiert?</li>
+            <li>✓ <strong>Entity Recognition:</strong> Verstehen LLMs wer du bist?</li>
+            <li>✓ <strong>Content Quality Score:</strong> Detaillierte Analyse</li>
+            <li>✓ <strong>Konkrete Handlungsempfehlungen</strong></li>
+          </ul>
+        </div>
+        
+        <form id="email-form" class="max-w-md mx-auto">
+          <div class="flex gap-3">
+            <input 
+              type="email" 
+              id="email-input" 
+              placeholder="deine@email.de"
+              required
+              class="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:ring-2 focus:ring-white outline-none"
+            />
+            <button 
+              type="submit"
+              class="bg-white text-blue-600 px-8 py-3 rounded-lg font-bold hover:bg-blue-50 transition whitespace-nowrap"
+            >
+              Report anfordern
+            </button>
+          </div>
+          <p class="text-xs text-blue-200 mt-3 text-center">
+            100% kostenlos · Kein Spam · Jederzeit abmeldbar
+          </p>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Premium Results -->
+    <div id="premium-results" class="hidden max-w-4xl mx-auto space-y-6">
+      
+      <!-- LLM Response Preview (KILLER FEATURE!) -->
+      <div id="llm-preview-section" class="bg-gradient-to-br from-purple-50 to-white rounded-xl shadow-xl p-8 border-2 border-purple-200">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="text-4xl">🤖</span>
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900">LLM Response Preview</h2>
+            <p class="text-sm text-gray-600">Was ChatGPT über dich sagen würde</p>
+          </div>
+        </div>
+        
+        <div id="llm-preview-content" class="space-y-4">
+          <!-- Wird dynamisch gefüllt -->
+        </div>
+      </div>
+
+      <!-- Citation Probability -->
+      <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+        <h3 class="text-xl font-bold text-gray-900 mb-4">📈 Citation Probability</h3>
+        <div class="flex items-center gap-6 mb-4">
+          <div class="text-5xl font-bold text-blue-600" id="citation-score">--</div>
+          <div>
+            <div class="text-sm text-gray-600">Wahrscheinlichkeit</div>
+            <div id="citation-label" class="text-lg font-semibold"></div>
+          </div>
+        </div>
+        <p class="text-gray-700" id="citation-explanation"></p>
+      </div>
+
+      <!-- Competitor Comparison -->
+      <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+        <h3 class="text-xl font-bold text-gray-900 mb-6">🎯 Konkurrenz-Vergleich</h3>
+        <div id="competitor-list" class="space-y-4">
+          <!-- Wird dynamisch gefüllt -->
+        </div>
+      </div>
+
+      <!-- Entity Recognition -->
+      <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+        <h3 class="text-xl font-bold text-gray-900 mb-4">👤 Entity Recognition</h3>
+        <div id="entity-recognition-content"></div>
+      </div>
+
+      <!-- Content Quality -->
+      <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+        <h3 class="text-xl font-bold text-gray-900 mb-4">📝 Content Quality</h3>
+        <div id="content-quality-content"></div>
+      </div>
+
+      <!-- Premium Recommendations -->
+      <div class="bg-green-50 rounded-xl p-8 border border-green-100">
+        <h3 class="text-xl font-bold text-gray-900 mb-4">💡 Premium Empfehlungen</h3>
+        <div id="premium-recommendations-list" class="space-y-3"></div>
+      </div>
+
+      <!-- CTA -->
+      <div class="bg-gradient-to-r from-green-600 to-green-700 rounded-xl shadow-xl p-8 text-white text-center">
+        <h3 class="text-2xl font-bold mb-4">
+          Brauchst du Hilfe beim Umsetzen?
+        </h3>
+        <p class="text-green-50 mb-6 text-lg">
+          Ich helfe dir, deine Website LLM-ready zu machen.<br>
+          Damit ChatGPT dich empfiehlt, wenn jemand nach deinen Services fragt.
+        </p>
+        <a 
+          href="mailto:kontakt@codeback.de"
+          class="inline-block bg-white text-green-600 px-8 py-4 rounded-lg font-semibold hover:bg-green-50 transition shadow-lg"
+        >
+          📞 Kostenlose Beratung buchen
+        </a>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-200 py-8 mt-20 text-center text-sm text-gray-600">
+    <div class="max-w-6xl mx-auto px-4">
+      <p>Made with 💚 by <a href="https://codeback.de" class="text-green-600 hover:text-green-700 font-medium">CodeBack.de</a></p>
+      <p class="mt-2">LLM-native JAMstack Development</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    const form = document.getElementById('checker-form');
+    const emailForm = document.getElementById('email-form');
+    const loading = document.getElementById('loading');
+    const basicResults = document.getElementById('basic-results');
+    const premiumResults = document.getElementById('premium-results');
+    const urlInput = document.getElementById('url-input');
+    const queryInput = document.getElementById('query-input');
+    const emailInput = document.getElementById('email-input');
+    
+    let currentUrl = '';
+    let currentQuery = '';
+
+    // Basic Check
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      currentUrl = urlInput.value.trim();
+      currentQuery = queryInput.value.trim();
+      
+      if (!currentUrl.startsWith('http://') && !currentUrl.startsWith('https://')) {
+        alert('Bitte gib eine vollständige URL an (mit http:// oder https://)');
+        return;
+      }
+
+      loading.classList.remove('hidden');
+      basicResults.classList.add('hidden');
+      premiumResults.classList.add('hidden');
+
+      try {
+        const response = await fetch('/api/check-llm', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url: currentUrl })
+        });
+
+        if (!response.ok) throw new Error('Fehler beim Analysieren');
+        const data = await response.json();
+        
+        loading.classList.add('hidden');
+        displayBasicResults(data);
+        
+      } catch (error) {
+        console.error('Error:', error);
+        loading.classList.add('hidden');
+        alert('Fehler beim Analysieren der Website. Bitte versuche es erneut.');
+      }
+    });
+
+    // Premium Check (with email)
+    emailForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const email = emailInput.value.trim();
+      
+      loading.classList.remove('hidden');
+      basicResults.classList.add('hidden');
+
+      try {
+        const response = await fetch('/api/check-llm-premium', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            url: currentUrl, 
+            query: currentQuery || `Services auf ${new URL(currentUrl).hostname}`,
+            email: email 
+          })
+        });
+
+        if (!response.ok) throw new Error('Fehler beim Premium-Check');
+        const data = await response.json();
+        
+        loading.classList.add('hidden');
+        displayPremiumResults(data);
+        
+      } catch (error) {
+        console.error('Error:', error);
+        loading.classList.add('hidden');
+        alert('Fehler beim Premium-Check. Bitte versuche es erneut.');
+      }
+    });
+
+    function displayBasicResults(data) {
+      basicResults.classList.remove('hidden');
+      basicResults.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      const score = data.score || 0;
+      document.getElementById('basic-score-display').textContent = score;
+      document.getElementById('basic-score-fill').style.width = score + '%';
+      
+      const scoreLabel = document.getElementById('basic-score-label');
+      if (score >= 80) {
+        scoreLabel.textContent = '✅ Sehr gut!';
+        scoreLabel.className = 'text-xl font-semibold text-green-600';
+      } else if (score >= 60) {
+        scoreLabel.textContent = '⚠️ Verbesserbar';
+        scoreLabel.className = 'text-xl font-semibold text-yellow-600';
+      } else {
+        scoreLabel.textContent = '❌ Problematisch';
+        scoreLabel.className = 'text-xl font-semibold text-red-600';
+      }
+
+      const issuesList = document.getElementById('basic-issues-list');
+      issuesList.innerHTML = '';
+      if (data.issues && data.issues.length > 0) {
+        data.issues.slice(0, 5).forEach(issue => {
+          const issueDiv = document.createElement('div');
+          issueDiv.className = 'flex items-start gap-3 p-3 bg-red-50 rounded-lg border border-red-100';
+          issueDiv.innerHTML = `
+            <span class="text-red-500 text-lg flex-shrink-0">❌</span>
+            <span class="text-gray-700">${issue}</span>
+          `;
+          issuesList.appendChild(issueDiv);
+        });
+      }
+    }
+
+    function displayPremiumResults(data) {
+      premiumResults.classList.remove('hidden');
+      premiumResults.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // LLM Response Preview
+      if (data.llmResponsePreview) {
+        const previewContent = document.getElementById('llm-preview-content');
+        const wasRecommended = data.llmResponsePreview.wasRecommended;
+        
+        previewContent.innerHTML = `
+          <div class="bg-gray-50 border-l-4 ${wasRecommended ? 'border-green-500' : 'border-red-500'} p-4 rounded">
+            <p class="text-sm text-gray-600 mb-2"><strong>Nutzer-Anfrage:</strong> "${data.llmResponsePreview.query}"</p>
+            <p class="text-gray-800 italic">"${data.llmResponsePreview.response}"</p>
+          </div>
+          <div class="flex items-center gap-2 text-lg font-semibold ${wasRecommended ? 'text-green-600' : 'text-red-600'}">
+            ${wasRecommended ? '✅ Du wurdest empfohlen!' : '❌ Du wurdest NICHT empfohlen!'}
+          </div>
+        `;
+      }
+
+      // Citation Probability
+      const citationScore = data.citationProbability || 0;
+      document.getElementById('citation-score').textContent = citationScore + '%';
+      const citationLabel = document.getElementById('citation-label');
+      const citationExplanation = document.getElementById('citation-explanation');
+      
+      if (citationScore >= 70) {
+        citationLabel.textContent = '✅ Hoch';
+        citationLabel.className = 'text-lg font-semibold text-green-600';
+        citationExplanation.textContent = 'Sehr gut! LLMs werden dich wahrscheinlich empfehlen.';
+      } else if (citationScore >= 40) {
+        citationLabel.textContent = '⚠️ Mittel';
+        citationLabel.className = 'text-lg font-semibold text-yellow-600';
+        citationExplanation.textContent = 'Verbesserungspotenzial vorhanden. Mit Optimierungen kannst du die Wahrscheinlichkeit deutlich erhöhen.';
+      } else {
+        citationLabel.textContent = '❌ Niedrig';
+        citationLabel.className = 'text-lg font-semibold text-red-600';
+        citationExplanation.textContent = 'Kritisch! LLMs werden dich selten bis nie empfehlen. Deine Konkurrenz hat einen klaren Vorteil.';
+      }
+
+      // Competitor Comparison
+      if (data.competitorAnalysis) {
+        const competitorList = document.getElementById('competitor-list');
+        competitorList.innerHTML = `
+          <div class="text-sm text-gray-600 mb-4">
+            Dein Ranking: <strong>#${data.competitorAnalysis.yourRanking}</strong> | 
+            Markt-Durchschnitt: <strong>${data.competitorAnalysis.marketAverage}/100</strong>
+          </div>
+        `;
+        
+        data.competitorAnalysis.competitors.forEach((comp, index) => {
+          const compDiv = document.createElement('div');
+          compDiv.className = 'flex items-center justify-between p-4 bg-gray-50 rounded-lg';
+          compDiv.innerHTML = `
+            <div>
+              <div class="font-semibold">#${index + 1} ${comp.domain}</div>
+              <div class="text-sm text-gray-600">Citation: ${comp.citationProbability}%</div>
+            </div>
+            <div class="text-2xl font-bold text-gray-900">${comp.score}/100</div>
+          `;
+          competitorList.appendChild(compDiv);
+        });
+        
+        // Your score
+        const yourDiv = document.createElement('div');
+        yourDiv.className = 'flex items-center justify-between p-4 bg-blue-50 rounded-lg border-2 border-blue-200';
+        yourDiv.innerHTML = `
+          <div>
+            <div class="font-semibold text-blue-600">#${data.competitorAnalysis.yourRanking} Deine Website</div>
+            <div class="text-sm text-gray-600">Citation: ${data.citationProbability}%</div>
+          </div>
+          <div class="text-2xl font-bold text-blue-600">${data.basicScore}/100</div>
+        `;
+        competitorList.appendChild(yourDiv);
+      }
+
+      // Entity Recognition
+      if (data.entityRecognition) {
+        const entityContent = document.getElementById('entity-recognition-content');
+        const clarity = data.entityRecognition.clarity;
+        const clarityText = clarity === 'high' ? 'Hoch (Sehr gut!)' : 
+                           clarity === 'medium' ? 'Mittel (Verbesserbar)' : 
+                           'Niedrig (Problematisch)';
+        const clarityColor = clarity === 'high' ? 'text-green-600' : 
+                            clarity === 'medium' ? 'text-yellow-600' : 
+                            'text-red-600';
+        
+        entityContent.innerHTML = `
+          <div class="mb-4">
+            <div class="text-sm text-gray-600">Clarity Score:</div>
+            <div class="text-2xl font-bold ${clarityColor}">${clarityText}</div>
+          </div>
+          <div class="grid grid-cols-2 gap-4 text-sm">
+            <div class="flex items-center gap-2">
+              ${data.entityRecognition.hasName ? '✅' : '❌'} Name/Identität
+            </div>
+            <div class="flex items-center gap-2">
+              ${data.entityRecognition.hasLocation ? '✅' : '❌'} Standort
+            </div>
+            <div class="flex items-center gap-2">
+              ${data.entityRecognition.hasCredentials ? '✅' : '❌'} Credentials
+            </div>
+            <div class="flex items-center gap-2">
+              ${data.entityRecognition.hasExperience ? '✅' : '❌'} Erfahrung
+            </div>
+          </div>
+        `;
+      }
+
+      // Content Quality
+      if (data.contentQuality) {
+        const contentContent = document.getElementById('content-quality-content');
+        contentContent.innerHTML = `
+          <div class="grid grid-cols-2 gap-4 text-sm">
+            <div>
+              <div class="text-gray-600">Wortanzahl:</div>
+              <div class="font-semibold">${data.contentQuality.wordCount} Wörter</div>
+            </div>
+            <div>
+              <div class="text-gray-600">Quality Score:</div>
+              <div class="font-semibold">${data.contentQuality.score}/100</div>
+            </div>
+            <div class="flex items-center gap-2">
+              ${data.contentQuality.hasStatistics ? '✅' : '❌'} Statistiken
+            </div>
+            <div class="flex items-center gap-2">
+              ${data.contentQuality.hasCaseStudies ? '✅' : '❌'} Case Studies
+            </div>
+            <div class="flex items-center gap-2">
+              ${data.contentQuality.hasTestimonials ? '✅' : '❌'} Testimonials
+            </div>
+          </div>
+        `;
+      }
+
+      // Premium Recommendations
+      const recList = document.getElementById('premium-recommendations-list');
+      recList.innerHTML = '';
+      if (data.recommendations && data.recommendations.length > 0) {
+        data.recommendations.forEach(rec => {
+          const recDiv = document.createElement('div');
+          recDiv.className = 'flex items-start gap-3 p-3 bg-white rounded-lg border border-green-200';
+          recDiv.innerHTML = `
+            <span class="text-green-600 text-lg flex-shrink-0">✓</span>
+            <span class="text-gray-700">${rec}</span>
+          `;
+          recList.appendChild(recDiv);
+        });
+      }
+    }
+  </script>
+
+</body>
+</html>
