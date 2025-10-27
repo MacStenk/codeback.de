@@ -1,0 +1,327 @@
+---
+// LLM-Readability Checker Page
+// Angepasst an CodeBack.de Design
+const pageTitle = "LLM-Readability Checker";
+const pageDescription = "Prüfe wie gut deine Website für ChatGPT und andere LLMs lesbar ist";
+---
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content={pageDescription}>
+  <title>{pageTitle} - CodeBack.de</title>
+  
+  <!-- Nutze dein existierendes Tailwind (kein CDN mehr!) -->
+</head>
+
+<body class="bg-white text-gray-900 font-sans antialiased">
+  
+  <!-- Header - Minimalistisch wie auf Homepage -->
+  <header class="border-b border-gray-200 py-4">
+    <div class="max-w-6xl mx-auto px-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 text-xl font-semibold hover:opacity-80 transition">
+        <span class="text-gray-900">Code<span class="text-green-600">Back</span></span>
+        <span class="text-xs text-gray-500 font-normal">LLM-native</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="/" class="text-gray-600 hover:text-green-600 transition">Home</a>
+        <a href="/#das-problem" class="text-gray-600 hover:text-green-600 transition">Das Problem</a>
+        <a href="/#das-konzept" class="text-gray-600 hover:text-green-600 transition">Das Konzept</a>
+        <a href="/blog" class="text-gray-600 hover:text-green-600 transition">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-4 py-16">
+    
+    <!-- Hero Section -->
+    <div class="max-w-3xl mx-auto text-center mb-16">
+      <div class="inline-block bg-green-100 text-green-700 px-4 py-1 rounded-full text-sm font-medium mb-6">
+        Kostenloser Check
+      </div>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900">
+        LLM-Readability Checker
+      </h1>
+      <p class="text-xl text-gray-600 mb-4">
+        Ist deine Website für ChatGPT lesbar?
+      </p>
+      <p class="text-gray-500">
+        LLM-Sichtbarkeit ist das neue SEO. Teste jetzt wie gut ChatGPT, Claude und Gemini deine Inhalte verstehen.
+      </p>
+    </div>
+
+    <!-- Input Form -->
+    <div class="max-w-2xl mx-auto mb-16">
+      <form id="checker-form" class="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+        <label for="url-input" class="block text-sm font-medium text-gray-700 mb-3">
+          Website-URL
+        </label>
+        <div class="flex flex-col md:flex-row gap-3">
+          <input 
+            type="url" 
+            id="url-input" 
+            placeholder="https://deine-website.de"
+            required
+            class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition"
+          />
+          <button 
+            type="submit"
+            class="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition shadow-sm whitespace-nowrap"
+          >
+            Jetzt testen
+          </button>
+        </div>
+        <p class="text-xs text-gray-500 mt-3">
+          ⚡ Dauert nur 30 Sekunden · Keine Anmeldung · Keine Kosten
+        </p>
+      </form>
+
+      <!-- Loading State -->
+      <div id="loading" class="hidden mt-8 text-center">
+        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+          <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mb-4"></div>
+          <p class="text-lg font-medium text-gray-900 mb-2">Analysiere Website...</p>
+          <p class="text-sm text-gray-500">Prüfe HTML, Schema.org, Semantic Markup...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results" class="hidden max-w-4xl mx-auto space-y-6">
+      
+      <!-- Score Card -->
+      <div class="bg-gradient-to-br from-green-50 to-white rounded-xl shadow-lg p-8 border border-green-100">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">📊 Dein Ergebnis</h2>
+        <div class="flex items-center gap-6 mb-6">
+          <div class="text-6xl font-bold text-green-600" id="score-display">--</div>
+          <div>
+            <div class="text-sm text-gray-600">von 100 Punkten</div>
+            <div id="score-label" class="text-xl font-semibold"></div>
+          </div>
+        </div>
+        <div class="h-3 bg-gray-200 rounded-full overflow-hidden">
+          <div id="score-fill" class="h-full bg-gradient-to-r from-green-500 to-green-600 transition-all duration-1000 rounded-full" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Issues Card -->
+      <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+        <h3 class="text-xl font-bold text-gray-900 mb-4">⚠️ Gefundene Probleme</h3>
+        <div id="issues-list" class="space-y-3"></div>
+      </div>
+
+      <!-- Recommendations Card -->
+      <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+        <h3 class="text-xl font-bold text-gray-900 mb-4">💡 Empfehlungen</h3>
+        <div id="recommendations-list" class="space-y-3"></div>
+      </div>
+
+      <!-- What This Means -->
+      <div class="bg-blue-50 rounded-xl p-8 border border-blue-100">
+        <h3 class="text-xl font-bold text-gray-900 mb-4">🎯 Was das bedeutet</h3>
+        <div id="meaning-text" class="space-y-3 text-gray-700"></div>
+      </div>
+
+      <!-- CTA Card -->
+      <div class="bg-gradient-to-r from-green-600 to-green-700 rounded-xl shadow-xl p-8 text-white text-center">
+        <h3 class="text-2xl font-bold mb-4">
+          Brauchst du Hilfe beim Optimieren?
+        </h3>
+        <p class="text-green-50 mb-6 text-lg">
+          Ich helfe dir, deine Website LLM-ready zu machen.<br>
+          Damit ChatGPT dich empfiehlt, wenn jemand nach deinen Services fragt.
+        </p>
+        <a 
+          href="mailto:kontakt@codeback.de"
+          class="inline-block bg-white text-green-600 px-8 py-4 rounded-lg font-semibold hover:bg-green-50 transition shadow-lg"
+        >
+          📞 Kostenlose Beratung buchen
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Info Section -->
+    <div class="max-w-4xl mx-auto mt-16 bg-gray-50 rounded-xl p-8 border border-gray-200">
+      <h3 class="text-lg font-bold text-gray-900 mb-4">ℹ️ Was wird getestet?</h3>
+      <div class="grid md:grid-cols-2 gap-4 text-sm text-gray-700">
+        <div class="flex items-start gap-2">
+          <span class="text-green-600 mt-0.5">✓</span>
+          <span>Schema.org Markup für strukturierte Daten</span>
+        </div>
+        <div class="flex items-start gap-2">
+          <span class="text-green-600 mt-0.5">✓</span>
+          <span>Semantisches HTML5 (article, section, nav)</span>
+        </div>
+        <div class="flex items-start gap-2">
+          <span class="text-green-600 mt-0.5">✓</span>
+          <span>JavaScript-Rendering vs. Server-Side Content</span>
+        </div>
+        <div class="flex items-start gap-2">
+          <span class="text-green-600 mt-0.5">✓</span>
+          <span>Meta-Beschreibungen und Title-Tags</span>
+        </div>
+        <div class="flex items-start gap-2">
+          <span class="text-green-600 mt-0.5">✓</span>
+          <span>Content-Struktur und Lesbarkeit</span>
+        </div>
+        <div class="flex items-start gap-2">
+          <span class="text-green-600 mt-0.5">✓</span>
+          <span>Überschriften-Hierarchie (H1-H6)</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-200 py-8 mt-20 text-center text-sm text-gray-600">
+    <div class="max-w-6xl mx-auto px-4">
+      <p>Made with 💚 by <a href="https://codeback.de" class="text-green-600 hover:text-green-700 font-medium">CodeBack.de</a></p>
+      <p class="mt-2">LLM-native JAMstack Development</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    const form = document.getElementById('checker-form');
+    const loading = document.getElementById('loading');
+    const results = document.getElementById('results');
+    const urlInput = document.getElementById('url-input');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const url = urlInput.value.trim();
+      
+      // Validate URL
+      if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        alert('Bitte gib eine vollständige URL an (mit http:// oder https://)');
+        return;
+      }
+
+      // Show loading, hide results
+      loading.classList.remove('hidden');
+      results.classList.add('hidden');
+
+      try {
+        // Call API endpoint
+        const response = await fetch('/api/check-llm', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ url })
+        });
+
+        if (!response.ok) {
+          throw new Error('Fehler beim Analysieren der Website');
+        }
+
+        const data = await response.json();
+        
+        // Hide loading, show results
+        loading.classList.add('hidden');
+        displayResults(data);
+        
+      } catch (error) {
+        console.error('Error:', error);
+        loading.classList.add('hidden');
+        alert('Fehler beim Analysieren der Website. Bitte prüfe die URL und versuche es erneut.');
+      }
+    });
+
+    function displayResults(data) {
+      // Show results section
+      results.classList.remove('hidden');
+      
+      // Scroll to results
+      results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // Display score
+      const score = data.score || 0;
+      document.getElementById('score-display').textContent = score;
+      document.getElementById('score-fill').style.width = score + '%';
+      
+      // Score label with colors
+      const scoreLabel = document.getElementById('score-label');
+      if (score >= 80) {
+        scoreLabel.textContent = '✅ Hervorragend!';
+        scoreLabel.className = 'text-xl font-semibold text-green-600';
+      } else if (score >= 60) {
+        scoreLabel.textContent = '⚠️ Gut, aber verbesserbar';
+        scoreLabel.className = 'text-xl font-semibold text-yellow-600';
+      } else if (score >= 40) {
+        scoreLabel.textContent = '⚠️ Probleme erkannt';
+        scoreLabel.className = 'text-xl font-semibold text-orange-600';
+      } else {
+        scoreLabel.textContent = '❌ Kritisch!';
+        scoreLabel.className = 'text-xl font-semibold text-red-600';
+      }
+
+      // Display issues
+      const issuesList = document.getElementById('issues-list');
+      issuesList.innerHTML = '';
+      if (data.issues && data.issues.length > 0) {
+        data.issues.forEach(issue => {
+          const issueDiv = document.createElement('div');
+          issueDiv.className = 'flex items-start gap-3 p-3 bg-red-50 rounded-lg border border-red-100';
+          issueDiv.innerHTML = `
+            <span class="text-red-500 text-lg flex-shrink-0">❌</span>
+            <span class="text-gray-700">${issue}</span>
+          `;
+          issuesList.appendChild(issueDiv);
+        });
+      } else {
+        issuesList.innerHTML = '<div class="p-4 bg-green-50 rounded-lg border border-green-100"><p class="text-green-700 flex items-center gap-2"><span class="text-xl">✅</span> Keine kritischen Probleme gefunden!</p></div>';
+      }
+
+      // Display recommendations
+      const recList = document.getElementById('recommendations-list');
+      recList.innerHTML = '';
+      if (data.recommendations && data.recommendations.length > 0) {
+        data.recommendations.forEach(rec => {
+          const recDiv = document.createElement('div');
+          recDiv.className = 'flex items-start gap-3 p-3 bg-green-50 rounded-lg border border-green-100';
+          recDiv.innerHTML = `
+            <span class="text-green-600 text-lg flex-shrink-0">✓</span>
+            <span class="text-gray-700">${rec}</span>
+          `;
+          recList.appendChild(recDiv);
+        });
+      }
+
+      // Meaning text based on score
+      const meaningText = document.getElementById('meaning-text');
+      meaningText.innerHTML = '';
+      
+      if (score >= 80) {
+        meaningText.innerHTML = `
+          <p class="text-green-700 font-medium">✅ Deine Website ist hervorragend für LLMs optimiert!</p>
+          <p>ChatGPT kann deine Inhalte gut lesen und wird dich wahrscheinlich empfehlen, wenn jemand nach relevanten Services fragt.</p>
+        `;
+      } else if (score >= 60) {
+        meaningText.innerHTML = `
+          <p class="text-yellow-700 font-medium">⚠️ Deine Website ist grundsätzlich lesbar, aber es gibt Verbesserungspotenzial.</p>
+          <p>Mit einigen Optimierungen könntest du deine Sichtbarkeit in LLM-Empfehlungen deutlich erhöhen.</p>
+        `;
+      } else if (score >= 40) {
+        meaningText.innerHTML = `
+          <p class="text-orange-700 font-medium">⚠️ Deine Website hat einige Probleme die LLMs am Lesen hindern.</p>
+          <p>ChatGPT wird Schwierigkeiten haben, deine Inhalte zu verstehen und wird dich wahrscheinlich NICHT empfehlen.</p>
+        `;
+      } else {
+        meaningText.innerHTML = `
+          <p class="text-red-700 font-bold">❌ Deine Website ist für LLMs kaum lesbar!</p>
+          <p>ChatGPT wird dich NICHT empfehlen wenn jemand nach deinen Services fragt, weil er deine Inhalte nicht verstehen kann.</p>
+          <p class="font-semibold mt-3">Das ist kritisch für deine Sichtbarkeit in der Zukunft!</p>
+        `;
+      }
+    }
+  </script>
+
+</body>
+</html>
