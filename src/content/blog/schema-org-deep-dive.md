@@ -37,13 +37,13 @@ Dieser ausführliche Artikel ist aktuell in Arbeit und erscheint in Kürze.
 * JSON-LD vs. Microdata
 * Testing mit Google Rich Results
 * LLM-Validierung
-* Häufige Fehler vermeiden 
+* Häufige Fehler vermeiden
 
 ### 5. Messung & Optimierung
 
 * Wie misst man LLM-Visibility?
 * Tools für Schema.org Monitoring
-* Iterative Verbesserung
+* Iterative Verbesserung 
 
 ## Bleib dran!
 
