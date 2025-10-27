@@ -6,11 +6,12 @@ import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
   site: 'https://codeback.de',
-  output: 'hybrid', 
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    mode: 'directory'
+  }),  // ← SCHLIESSE cloudflare() mit }),
   integrations: [
     mdx(), 
-    sitemap({
+    sitemap({  // ← ÖFFNE sitemap mit ({
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),
