@@ -1,38 +1,81 @@
 ---
-// Hero.astro - Homepage Hero Section
-import Button from '../Button.astro';
+// Hero.astro - Homepage Hero Section (EDITIERBAR)
+import Button from "../Button.astro";
+
+interface Props {
+  badge?: string;
+  headline: string;
+  highlightedText?: string;
+  description: string;
+  primaryButtonText: string;
+  primaryButtonLink: string;
+  secondaryButtonText?: string;
+  secondaryButtonLink?: string;
+  trustBadgeIcon?: string;
+  trustBadgeText?: string;
+}
+
+const {
+  badge = "Der Code ist zurück",
+  headline,
+  highlightedText,
+  description,
+  primaryButtonText,
+  primaryButtonLink,
+  secondaryButtonText,
+  secondaryButtonLink,
+  trustBadgeIcon = "⚡",
+  trustBadgeText = "Kostenloser LLM-Readability Check in 30 Sekunden",
+} = Astro.props;
 ---
 
 <header class="mb-24">
-  <div class="inline-block mb-6">
-    <span class="text-sm font-medium text-green-600 bg-green-50 px-3 py-1 rounded-full">
-      Der Code ist zurück
-    </span>
-  </div>
-  
+  {
+    badge && (
+      <div class="inline-block mb-6">
+        <span class="text-sm font-medium text-green-600 bg-green-50 px-3 py-1 rounded-full">
+          {badge}
+        </span>
+      </div>
+    )
+  }
+
   <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-    ChatGPT empfiehlt<br/>
-    <span class="text-green-600">deine Konkurrenz</span> – nicht dich
+    {headline}
+    {
+      highlightedText && (
+        <>
+          <br />
+          <span class="text-green-600">{highlightedText}</span>
+        </>
+      )
+    }
   </h1>
-  
+
   <p class="text-xl text-zinc-600 mb-8 leading-relaxed max-w-2xl">
-    Deine Expertise ist in Pagebuildern versteckt, statt maschinenlesbar strukturiert. 
-    Wir bauen die technische Grundlage, damit KI dein Wissen findet, versteht und als Antwort nutzt. 
-    Digitale Grundstruktur für nachhaltige Sichtbarkeit.
+    {description}
   </p>
-  
+
   <div class="flex gap-4 items-center flex-wrap">
-    <Button href="/llm-checker" variant="primary">
-      Website jetzt testen →
+    <Button href={primaryButtonLink} variant="primary">
+      {primaryButtonText}
     </Button>
-    <Button href="#problem" variant="ghost">
-      Wie funktioniert das?
-    </Button>
+    {
+      secondaryButtonText && secondaryButtonLink && (
+        <Button href={secondaryButtonLink} variant="ghost">
+          {secondaryButtonText}
+        </Button>
+      )
+    }
   </div>
 
-  <!-- Trust Badge unter Buttons -->
-  <div class="mt-6 flex items-center gap-2 text-sm text-zinc-500">
-    <span>⚡</span>
-    <span>Kostenloser LLM-Readability Check in 30 Sekunden</span>
-  </div>
+  {/* Trust Badge unter Buttons */}
+  {
+    trustBadgeText && (
+      <div class="mt-6 flex items-center gap-2 text-sm text-zinc-500">
+        <span>{trustBadgeIcon}</span>
+        <span>{trustBadgeText}</span>
+      </div>
+    )
+  }
 </header>

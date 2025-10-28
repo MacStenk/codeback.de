@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+
+// 🎯 Importiere DEINE Hero aus sections/
+import Hero from "../components/sections/Hero.astro";
+
+export async function getStaticPaths() {
+  const pages = await getCollection("pages");
+  return pages.map((page) => ({
+    params: { slug: page.slug },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+const { data } = page;
+
+// 🗺️ Component Map: Template name → Component
+const componentMap = {
+  hero: Hero,
+  // Weitere Komponenten später hier hinzufügen
+};
+---
+
+<Layout title={data.title}>
+  <main>
+    {
+      data.blocks?.map((block) => {
+        const Component = componentMap[block._template];
+        if (!Component) {
+          console.warn(`Unknown template: ${block._template}`);
+          return null;
+        }
+        return <Component {...block} />;
+      })
+    }
+  </main>
+</Layout>
