@@ -1,228 +1,118 @@
 ---
 // PricingSection.astro - Packages & Pricing
 import Button from '../Button.astro';
+
+interface Props {
+  data: {
+    headline: string;
+    subheadline: string;
+    statusBadge: {
+      launchDate: string;
+      slotsTotal: number;
+      slotsTaken: number;
+    };
+    packages: Array<{
+      icon: string;
+      name: string;
+      price: number;
+      deliveryTime: string;
+      featured: boolean;
+      features: string[];
+      buttonText: string;
+    }>;
+    faqs: Array<{
+      question: string;
+      answer: string;
+    }>;
+  };
+}
+
+const { data } = Astro.props;
 ---
 
 <section id="loesung" class="mb-24">
   <div class="text-center mb-12">
-    <h2 class="text-3xl font-bold mb-4">Wähle dein Package</h2>
+    <h2 class="text-3xl font-bold mb-4">{data.headline}</h2>
     <p class="text-xl text-zinc-600 mb-8">
-      Moderne Webarchitektur. Maschinenlesbare Inhalte. Technische Souveränität.
+      {data.subheadline}
     </p>
 
     <!-- Status Badge -->
     <div class="inline-flex items-center gap-3 bg-green-50 border border-green-200 rounded-full px-6 py-3">
       <div class="flex items-center gap-2">
         <div class="flex gap-1">
-          <div class="w-3 h-3 bg-green-600 rounded-full"></div>
-          <div class="w-3 h-3 bg-green-600 rounded-full"></div>
-          <div class="w-3 h-3 bg-green-600 rounded-full"></div>
-          <div class="w-3 h-3 bg-zinc-300 rounded-full"></div>
+          {Array.from({ length: data.statusBadge.slotsTotal }).map((_, i) => (
+            <div class={`w-3 h-3 rounded-full ${i < data.statusBadge.slotsTaken ? 'bg-green-600' : 'bg-zinc-300'}`}></div>
+          ))}
         </div>
         <span class="text-sm font-medium text-zinc-700">
-          Launch Januar 2026
+          {data.statusBadge.launchDate}
         </span>
       </div>
       <span class="text-sm font-semibold text-green-700">
-        3 von 4 Slots belegt
+        {data.statusBadge.slotsTaken} von {data.statusBadge.slotsTotal} Slots belegt
       </span>
     </div>
   </div>
 
   <!-- Pricing Cards -->
   <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
-    
-    <!-- Bronze Package -->
-    <div class="border-2 border-zinc-200 rounded-lg p-6 sm:p-8 bg-white hover:border-zinc-300 transition">
-      <div class="text-4xl mb-4">🥉</div>
-      <h3 class="text-2xl font-bold mb-2">Bronze</h3>
-      <div class="mb-6">
-        <div class="text-4xl font-bold text-zinc-900">5.000€</div>
-        <div class="text-sm text-zinc-500">7 Tage Lieferzeit</div>
+
+    {data.packages.map(pkg => (
+      <div class={`border-2 rounded-lg p-6 sm:p-8 ${
+        pkg.featured
+          ? 'border-green-500 bg-green-50 relative lg:transform lg:scale-105 shadow-lg sm:col-span-2 lg:col-span-1'
+          : 'border-zinc-200 bg-white hover:border-zinc-300 transition sm:col-span-2 lg:col-span-1'
+      }`}>
+        {pkg.featured && (
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-green-600 text-white text-xs font-bold px-4 py-1 rounded-full">
+            EMPFOHLEN
+          </div>
+        )}
+
+        <div class="text-4xl mb-4">{pkg.icon}</div>
+        <h3 class="text-2xl font-bold mb-2">{pkg.name}</h3>
+        <div class="mb-6">
+          <div class="text-4xl font-bold text-zinc-900">{pkg.price.toLocaleString('de-DE')}€</div>
+          <div class="text-sm text-zinc-500">{pkg.deliveryTime}</div>
+        </div>
+
+        <ul class="space-y-3 mb-8">
+          {pkg.features.map(feature => (
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-1">✓</span>
+              <span class="text-sm text-zinc-700">{feature}</span>
+            </li>
+          ))}
+        </ul>
+
+        <Button
+          href="#kontakt"
+          variant={pkg.featured ? 'primary' : 'dark'}
+          class="w-full justify-center"
+        >
+          {pkg.buttonText}
+        </Button>
       </div>
-
-      <ul class="space-y-3 mb-8">
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Homepage + 3 Unterseiten</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Astro + JAMstack Architektur</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Schema.org Basis-Integration</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Blog-Setup mit Markdown</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">GitHub + Cloudflare Deployment</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">1 Revision-Runde</span>
-        </li>
-      </ul>
-
-      <Button href="#kontakt" variant="dark" class="w-full justify-center">
-        Anfragen
-      </Button>
-    </div>
-
-    <!-- Silver Package (Featured) -->
-    <div class="border-2 border-green-500 rounded-lg p-6 sm:p-8 bg-green-50 relative lg:transform lg:scale-105 shadow-lg sm:col-span-2 lg:col-span-1">
-      <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-green-600 text-white text-xs font-bold px-4 py-1 rounded-full">
-        EMPFOHLEN
-      </div>
-      
-      <div class="text-4xl mb-4">🥈</div>
-      <h3 class="text-2xl font-bold mb-2">Silver</h3>
-      <div class="mb-6">
-        <div class="text-4xl font-bold text-zinc-900">9.000€</div>
-        <div class="text-sm text-zinc-500">14 Tage Lieferzeit</div>
-      </div>
-
-      <ul class="space-y-3 mb-8">
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Homepage + 10 Unterseiten</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Custom Component Library</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Schema.org Full Integration</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">FAQ-Schema für Answer Engines</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">n8n Basis-Automation Setup</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">2 Revision-Runden</span>
-        </li>
-      </ul>
-
-      <Button href="#kontakt" variant="primary" class="w-full justify-center">
-        Jetzt starten
-      </Button>
-    </div>
-
-    <!-- Gold Package -->
-    <div class="border-2 border-zinc-200 rounded-lg p-6 sm:p-8 bg-white hover:border-zinc-300 transition sm:col-span-2 lg:col-span-1">
-      <div class="text-4xl mb-4">🥇</div>
-      <h3 class="text-2xl font-bold mb-2">Gold</h3>
-      <div class="mb-6">
-        <div class="text-4xl font-bold text-zinc-900">15.000€</div>
-        <div class="text-sm text-zinc-500">30 Tage Lieferzeit</div>
-      </div>
-
-      <ul class="space-y-3 mb-8">
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Unlimited Pages</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Full Custom Design System</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Advanced Schema.org + JSON-LD</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">n8n Full Workflow-Automation</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">CRM + Kalender Integration</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">3 Revision-Runden + Priority Support</span>
-        </li>
-      </ul>
-
-      <Button href="#kontakt" variant="dark" class="w-full justify-center">
-        Enterprise anfragen
-      </Button>
-    </div>
+    ))}
 
   </div>
 
   <!-- FAQ -->
   <div class="mt-16 max-w-3xl mx-auto">
     <h3 class="text-xl font-bold mb-6 text-center">Häufige Fragen</h3>
-    
+
     <div class="space-y-4">
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer">
-        <summary class="font-semibold">
-          Wie läuft der Prozess ab?
-        </summary>
-        <p class="text-zinc-600 mt-3 text-sm">
-          1. Qualifying-Call (passen wir zusammen?)<br/>
-          2. Content-Briefing mit strukturiertem Template<br/>
-          3. Entwicklung mit regelmäßigen Updates<br/>
-          4. Review & Revision<br/>
-          5. Launch & Übergabe mit Dokumentation
-        </p>
-      </details>
-
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer">
-        <summary class="font-semibold">
-          Was passiert nach dem Launch?
-        </summary>
-        <p class="text-zinc-600 mt-3 text-sm">
-          Du erhältst vollständigen Zugriff auf Code, GitHub-Repository und Deployment. 
-          Wartung und Updates kannst du selbst machen (über Markdown) oder als 
-          Wartungs-Paket ab 500€/Monat buchen.
-        </p>
-      </details>
-
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer">
-        <summary class="font-semibold">
-          Brauche ich technisches Know-how?
-        </summary>
-        <p class="text-zinc-600 mt-3 text-sm">
-          Nein. Du lieferst Inhalte, ich baue die technische Struktur. 
-          Spätere Updates sind über einfaches Markdown möglich – wie in einem 
-          Texteditor. Keine Coding-Kenntnisse erforderlich.
-        </p>
-      </details>
-
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer">
-        <summary class="font-semibold">
-          Warum kein WordPress mit KI-Plugin?
-        </summary>
-        <p class="text-zinc-600 mt-3 text-sm">
-          WordPress-Plugins können Schema.org hinzufügen, aber nicht die 
-          fundamentalen HTML-Strukturprobleme lösen, die Pagebuilder erzeugen. 
-          CodeBack baut von Grund auf sauberes, semantisches HTML.
-        </p>
-      </details>
-
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer">
-        <summary class="font-semibold">
-          Wo werden die Daten gehostet?
-        </summary>
-        <p class="text-zinc-600 mt-3 text-sm">
-          <strong>Option 1:</strong> Cloudflare Pages für statische Sites (globales Edge-Netzwerk, DSGVO-konform).<br/>
-          <strong>Option 2:</strong> Hetzner eigenständige virtuelle Server in Deutschland für volle Kontrolle – 
-          keine Shared Hosting, Root-Zugriff, Made in Germany.<br/>
-          Du entscheidest, was besser zu deinen Anforderungen passt.
-        </p>
-      </details>
+      {data.faqs.map(faq => (
+        <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer">
+          <summary class="font-semibold">
+            {faq.question}
+          </summary>
+          <p class="text-zinc-600 mt-3 text-sm" style="white-space: pre-line">
+            {faq.answer}
+          </p>
+        </details>
+      ))}
     </div>
   </div>
 </section>

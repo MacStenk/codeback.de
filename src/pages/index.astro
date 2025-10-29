@@ -13,6 +13,11 @@ import FutureSection from "../components/sections/FutureSection.astro";
 import TechStack from "../components/sections/TechStack.astro";
 import CTASection from "../components/sections/CTASection.astro";
 import FAQSection from "../components/sections/FAQSection.astro";
+import { getEntry } from 'astro:content';
+
+// Load homepage data from TinaCMS
+const homepageData = await getEntry('homepage', 'index');
+const blocks = homepageData?.data?.blocks || [];
 
 const pageTitle = "Codeback. Websites die Antworten werden";
 const pageDescription =
@@ -58,35 +63,33 @@ const pageDescription =
 
     <main id="main-content" class="max-w-4xl mx-auto px-6 py-20">
       <article>
-        <!-- Hero -->
-        <Hero />
-
-        <!-- Wer braucht das? -->
-        <TargetAudience />
-
-        <!-- Live-Demo -->
-        <LiveDemo />
-
-        <!-- Das Problem -->
-        <ProblemSection />
-
-        <!-- Das Konzept -->
-        <ConceptSection />
-
-        <!-- Die Lösung: Pricing -->
-        <PricingSection />
-
-        <!-- Die Zukunft -->
-        <FutureSection />
-
-        <!-- Tech Stack -->
-        <TechStack />
-
-        <!-- FAQ -->
-        <FAQSection />
-
-        <!-- CTA -->
-        <CTASection />
+        <!-- Dynamic Block Rendering from TinaCMS -->
+        {blocks.map((block: any) => {
+          switch (block._template) {
+            case 'hero':
+              return <Hero data={block} />;
+            case 'targetAudience':
+              return <TargetAudience data={block} />;
+            case 'liveDemo':
+              return <LiveDemo data={block} />;
+            case 'problem':
+              return <ProblemSection data={block} />;
+            case 'concept':
+              return <ConceptSection data={block} />;
+            case 'pricing':
+              return <PricingSection data={block} />;
+            case 'future':
+              return <FutureSection data={block} />;
+            case 'techStack':
+              return <TechStack data={block} />;
+            case 'faq':
+              return <FAQSection data={block} />;
+            case 'cta':
+              return <CTASection data={block} />;
+            default:
+              return null;
+          }
+        })}
       </article>
     </main>
 

@@ -645,6 +645,632 @@ export default defineConfig({
           },
         ],
       },
+
+      // ═══════════════════════════════════════════════════════════════
+      // HOMEPAGE COLLECTION (Block-based with TinaCMS)
+      // ═══════════════════════════════════════════════════════════════
+      {
+        name: "homepage",
+        label: "🏠 Homepage",
+        path: "src/content/homepage",
+        format: "json",
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Page Title",
+            required: true,
+          },
+          {
+            type: "object",
+            name: "blocks",
+            label: "Page Blocks",
+            list: true,
+            templates: [
+
+              // ═══ HERO BLOCK ═══
+              {
+                name: "hero",
+                label: "Hero Section",
+                fields: [
+                  {
+                    type: "string",
+                    name: "badge",
+                    label: "Badge Text",
+                    description: "Kleiner Badge über der Headline",
+                  },
+                  {
+                    type: "string",
+                    name: "headline",
+                    label: "Headline",
+                    required: true,
+                    ui: { component: "textarea" },
+                  },
+                  {
+                    type: "string",
+                    name: "highlightText",
+                    label: "Highlight Text",
+                    description: "Text der grün hervorgehoben wird",
+                  },
+                  {
+                    type: "string",
+                    name: "description",
+                    label: "Description",
+                    required: true,
+                    ui: { component: "textarea" },
+                  },
+                  {
+                    type: "object",
+                    name: "primaryButton",
+                    label: "Primary Button",
+                    fields: [
+                      { type: "string", name: "text", label: "Button Text" },
+                      { type: "string", name: "href", label: "Button Link" },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "secondaryButton",
+                    label: "Secondary Button",
+                    fields: [
+                      { type: "string", name: "text", label: "Button Text" },
+                      { type: "string", name: "href", label: "Button Link" },
+                    ],
+                  },
+                  {
+                    type: "string",
+                    name: "trustBadge",
+                    label: "Trust Badge Text",
+                  },
+                ],
+              },
+
+              // ═══ TARGET AUDIENCE BLOCK ═══
+              {
+                name: "targetAudience",
+                label: "Target Audience Section",
+                fields: [
+                  {
+                    type: "string",
+                    name: "headline",
+                    label: "Headline",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "description",
+                    label: "Description",
+                    ui: { component: "textarea" },
+                  },
+                  {
+                    type: "object",
+                    name: "audiences",
+                    label: "Zielgruppen",
+                    list: true,
+                    fields: [
+                      { type: "string", name: "icon", label: "Emoji Icon" },
+                      { type: "string", name: "title", label: "Titel" },
+                      { type: "string", name: "description", label: "Beschreibung", ui: { component: "textarea" } },
+                      { type: "string", name: "highlight", label: "Highlight Text" },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "stats",
+                    label: "Statistiken",
+                    list: true,
+                    fields: [
+                      { type: "string", name: "value", label: "Wert (z.B. 73%)" },
+                      { type: "string", name: "description", label: "Beschreibung" },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "earlyMover",
+                    label: "Early Mover Box",
+                    fields: [
+                      { type: "string", name: "title", label: "Titel" },
+                      { type: "string", name: "description", label: "Beschreibung", ui: { component: "textarea" } },
+                    ],
+                  },
+                ],
+              },
+
+              // ═══ LIVE DEMO BLOCK ═══
+              {
+                name: "liveDemo",
+                label: "Live Demo Section",
+                fields: [
+                  {
+                    type: "string",
+                    name: "headline",
+                    label: "Headline",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "description",
+                    label: "Description",
+                    ui: { component: "textarea" },
+                  },
+                  {
+                    type: "object",
+                    name: "demoItems",
+                    label: "Demo Items",
+                    list: true,
+                    fields: [
+                      { type: "string", name: "label", label: "Label" },
+                      { type: "string", name: "value", label: "Value" },
+                      { type: "string", name: "technical", label: "Technical Note" },
+                      { type: "string", name: "color", label: "Border Color (green/blue/purple/orange)" },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "chatResponse",
+                    label: "ChatGPT Response",
+                    fields: [
+                      { type: "string", name: "intro", label: "Intro Text" },
+                      { type: "string", name: "main", label: "Main Response", ui: { component: "textarea" } },
+                      { type: "string", name: "footer", label: "Footer Text" },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "comparison",
+                    label: "Vergleich",
+                    fields: [
+                      { type: "string", name: "withoutTitle", label: "Ohne Struktur - Titel" },
+                      { type: "string", name: "withoutText", label: "Ohne Struktur - Text", ui: { component: "textarea" } },
+                      { type: "string", name: "withTitle", label: "Mit Struktur - Titel" },
+                      { type: "string", name: "withText", label: "Mit Struktur - Text", ui: { component: "textarea" } },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "cta",
+                    label: "CTA Box",
+                    fields: [
+                      { type: "string", name: "headline", label: "Headline" },
+                      { type: "string", name: "description", label: "Description" },
+                      { type: "string", name: "buttonText", label: "Button Text" },
+                      { type: "string", name: "buttonLink", label: "Button Link" },
+                      { type: "string", name: "note", label: "Note Text" },
+                    ],
+                  },
+                ],
+              },
+
+              // ═══ PROBLEM SECTION BLOCK ═══
+              {
+                name: "problem",
+                label: "Problem Section",
+                fields: [
+                  {
+                    type: "string",
+                    name: "headline",
+                    label: "Headline",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "description",
+                    label: "Description",
+                    ui: { component: "textarea" },
+                  },
+                  {
+                    type: "object",
+                    name: "pagebuilder",
+                    label: "Pagebuilder Seite (Negativ)",
+                    fields: [
+                      { type: "string", name: "icon", label: "Icon Emoji" },
+                      { type: "string", name: "title", label: "Titel" },
+                      { type: "string", name: "aiSees", label: "Was KI sieht", ui: { component: "textarea" } },
+                      {
+                        type: "string",
+                        name: "negativePoints",
+                        label: "Negative Punkte",
+                        list: true,
+                        ui: { component: "tags" }
+                      },
+                      { type: "string", name: "resultLabel", label: "Ergebnis Label" },
+                      { type: "string", name: "resultText", label: "Ergebnis Text" },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "codeback",
+                    label: "CodeBack Seite (Positiv)",
+                    fields: [
+                      { type: "string", name: "icon", label: "Icon Emoji" },
+                      { type: "string", name: "title", label: "Titel" },
+                      { type: "string", name: "aiUnderstandsTitle", label: "KI versteht - Titel" },
+                      { type: "string", name: "aiUnderstandsSubtitle", label: "KI versteht - Untertitel" },
+                      { type: "string", name: "aiUnderstandsDetails", label: "KI versteht - Details" },
+                      {
+                        type: "string",
+                        name: "positivePoints",
+                        label: "Positive Punkte",
+                        list: true,
+                        ui: { component: "tags" }
+                      },
+                      { type: "string", name: "resultLabel", label: "Ergebnis Label" },
+                      { type: "string", name: "resultText", label: "Ergebnis Text" },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "realExample",
+                    label: "Real-World Beispiel",
+                    fields: [
+                      { type: "string", name: "title", label: "Titel" },
+                      { type: "string", name: "question", label: "ChatGPT Frage", ui: { component: "textarea" } },
+                      { type: "string", name: "pagebuilderResponse", label: "Pagebuilder Antwort", ui: { component: "textarea" } },
+                      { type: "string", name: "codebackResponse", label: "CodeBack Antwort", ui: { component: "textarea" } },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "schemaExplanation",
+                    label: "Schema.org Erklärung",
+                    fields: [
+                      { type: "string", name: "title", label: "Titel" },
+                      { type: "string", name: "description", label: "Beschreibung", ui: { component: "textarea" } },
+                      {
+                        type: "object",
+                        name: "benefits",
+                        label: "Benefits",
+                        list: true,
+                        fields: [
+                          { type: "string", name: "icon", label: "Icon Emoji" },
+                          { type: "string", name: "title", label: "Titel" },
+                          { type: "string", name: "description", label: "Beschreibung" },
+                        ],
+                      },
+                      { type: "string", name: "resultTitle", label: "Ergebnis Titel" },
+                      { type: "string", name: "resultMain", label: "Ergebnis Haupt-Text", ui: { component: "textarea" } },
+                      { type: "string", name: "resultFooter", label: "Ergebnis Footer" },
+                    ],
+                  },
+                ],
+              },
+
+              // ═══ CONCEPT SECTION BLOCK ═══
+              {
+                name: "concept",
+                label: "Concept Section",
+                fields: [
+                  {
+                    type: "string",
+                    name: "headline",
+                    label: "Headline",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "description",
+                    label: "Description",
+                    ui: { component: "textarea" },
+                  },
+                  {
+                    type: "object",
+                    name: "pillars",
+                    label: "3 Säulen",
+                    list: true,
+                    fields: [
+                      { type: "number", name: "number", label: "Nummer (1-3)" },
+                      { type: "string", name: "title", label: "Titel" },
+                      { type: "string", name: "description", label: "Beschreibung", ui: { component: "textarea" } },
+                      { type: "string", name: "technicalLabel", label: "Technical Label" },
+                      { type: "string", name: "technicalDetails", label: "Technical Details", ui: { component: "textarea" } },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "techComparison",
+                    label: "Tech vs Pagebuilder",
+                    fields: [
+                      { type: "string", name: "title", label: "Titel" },
+                      { type: "string", name: "subtitle", label: "Untertitel", ui: { component: "textarea" } },
+                      { type: "string", name: "pagebuilderLabel", label: "Pagebuilder Label" },
+                      { type: "string", name: "pagebuilderText", label: "Pagebuilder Text", ui: { component: "textarea" } },
+                      { type: "string", name: "codebackLabel", label: "CodeBack Label" },
+                      { type: "string", name: "codebackText", label: "CodeBack Text", ui: { component: "textarea" } },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "practiceExample",
+                    label: "Praxis-Beispiel",
+                    fields: [
+                      { type: "string", name: "title", label: "Titel" },
+                      { type: "string", name: "description", label: "Beschreibung", ui: { component: "textarea" } },
+                      { type: "string", name: "highlight", label: "Highlight Text" },
+                    ],
+                  },
+                ],
+              },
+
+              // ═══ PRICING SECTION BLOCK ═══
+              {
+                name: "pricing",
+                label: "Pricing Section",
+                fields: [
+                  {
+                    type: "string",
+                    name: "headline",
+                    label: "Headline",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "subheadline",
+                    label: "Subheadline",
+                  },
+                  {
+                    type: "object",
+                    name: "statusBadge",
+                    label: "Status Badge",
+                    fields: [
+                      { type: "string", name: "launchDate", label: "Launch Datum" },
+                      { type: "number", name: "slotsTotal", label: "Slots Gesamt" },
+                      { type: "number", name: "slotsTaken", label: "Slots Belegt" },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "packages",
+                    label: "Packages",
+                    list: true,
+                    fields: [
+                      { type: "string", name: "icon", label: "Icon Emoji" },
+                      { type: "string", name: "name", label: "Package Name (Bronze/Silver/Gold)" },
+                      { type: "number", name: "price", label: "Preis in EUR" },
+                      { type: "string", name: "deliveryTime", label: "Lieferzeit" },
+                      { type: "boolean", name: "featured", label: "Featured (empfohlen)" },
+                      {
+                        type: "string",
+                        name: "features",
+                        label: "Features",
+                        list: true,
+                        ui: { component: "tags" }
+                      },
+                      { type: "string", name: "buttonText", label: "Button Text" },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "faqs",
+                    label: "Mini FAQs",
+                    list: true,
+                    fields: [
+                      { type: "string", name: "question", label: "Frage" },
+                      { type: "string", name: "answer", label: "Antwort", ui: { component: "textarea" } },
+                    ],
+                  },
+                ],
+              },
+
+              // ═══ FUTURE SECTION BLOCK ═══
+              {
+                name: "future",
+                label: "Future Section",
+                fields: [
+                  {
+                    type: "string",
+                    name: "headline",
+                    label: "Headline",
+                    required: true,
+                  },
+                  {
+                    type: "object",
+                    name: "searchEra",
+                    label: "Search Engine Era",
+                    fields: [
+                      { type: "string", name: "timeframe", label: "Zeitraum" },
+                      { type: "string", name: "query", label: "Beispiel-Query" },
+                      { type: "string", name: "result", label: "Ergebnis" },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "answerEra",
+                    label: "Answer Engine Era",
+                    fields: [
+                      { type: "string", name: "timeframe", label: "Zeitraum" },
+                      { type: "string", name: "query", label: "Beispiel-Query" },
+                      { type: "string", name: "result", label: "Ergebnis" },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "criticalQuestion",
+                    label: "Kritische Frage",
+                    fields: [
+                      { type: "string", name: "label", label: "Label" },
+                      { type: "string", name: "question", label: "Frage", ui: { component: "textarea" } },
+                    ],
+                  },
+                  {
+                    type: "string",
+                    name: "firstMoverText",
+                    label: "First Mover Text",
+                  },
+                ],
+              },
+
+              // ═══ TECH STACK BLOCK ═══
+              {
+                name: "techStack",
+                label: "Tech Stack Section",
+                fields: [
+                  {
+                    type: "string",
+                    name: "headline",
+                    label: "Headline",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "description",
+                    label: "Description",
+                    ui: { component: "textarea" },
+                  },
+                  {
+                    type: "object",
+                    name: "technologies",
+                    label: "Technologien",
+                    list: true,
+                    fields: [
+                      { type: "string", name: "icon", label: "Icon Emoji" },
+                      { type: "string", name: "title", label: "Titel" },
+                      { type: "string", name: "description", label: "Beschreibung", ui: { component: "textarea" } },
+                      { type: "string", name: "badge", label: "Badge Text" },
+                      { type: "boolean", name: "featured", label: "Featured (grün highlightet)" },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "privacyBadge",
+                    label: "Privacy First Badge",
+                    fields: [
+                      { type: "string", name: "icon", label: "Icon Emoji" },
+                      { type: "string", name: "title", label: "Titel" },
+                      { type: "string", name: "subtitle", label: "Untertitel" },
+                      {
+                        type: "object",
+                        name: "features",
+                        label: "Privacy Features",
+                        list: true,
+                        fields: [
+                          { type: "string", name: "title", label: "Titel" },
+                          { type: "string", name: "description", label: "Beschreibung" },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "whyNotWordPress",
+                    label: "Why not WordPress Box",
+                    fields: [
+                      { type: "string", name: "title", label: "Titel" },
+                      { type: "string", name: "description", label: "Beschreibung", ui: { component: "textarea" } },
+                      { type: "string", name: "highlight", label: "Highlight Text", ui: { component: "textarea" } },
+                      { type: "string", name: "footer", label: "Footer Text", ui: { component: "textarea" } },
+                    ],
+                  },
+                ],
+              },
+
+              // ═══ FAQ SECTION BLOCK ═══
+              {
+                name: "faq",
+                label: "FAQ Section",
+                fields: [
+                  {
+                    type: "string",
+                    name: "headline",
+                    label: "Headline",
+                    required: true,
+                  },
+                  {
+                    type: "object",
+                    name: "faqs",
+                    label: "FAQs",
+                    list: true,
+                    fields: [
+                      { type: "string", name: "question", label: "Frage", required: true },
+                      { type: "string", name: "answer", label: "Antwort", required: true, ui: { component: "textarea" } },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "ctaBox",
+                    label: "CTA Box nach FAQs",
+                    fields: [
+                      { type: "string", name: "title", label: "Titel" },
+                      { type: "string", name: "description", label: "Beschreibung" },
+                      { type: "string", name: "buttonText", label: "Button Text" },
+                      { type: "string", name: "buttonLink", label: "Button Link" },
+                      { type: "string", name: "note", label: "Note Text" },
+                    ],
+                  },
+                ],
+              },
+
+              // ═══ CTA SECTION BLOCK ═══
+              {
+                name: "cta",
+                label: "CTA Section",
+                fields: [
+                  {
+                    type: "string",
+                    name: "headline",
+                    label: "Headline",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "description",
+                    label: "Description",
+                    ui: { component: "textarea" },
+                  },
+                  {
+                    type: "object",
+                    name: "primaryButton",
+                    label: "Primary Button",
+                    fields: [
+                      { type: "string", name: "text", label: "Button Text" },
+                      { type: "string", name: "href", label: "Button Link" },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "secondaryButton",
+                    label: "Secondary Button",
+                    fields: [
+                      { type: "string", name: "text", label: "Button Text" },
+                      { type: "string", name: "href", label: "Button Link" },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "blogLinks",
+                    label: "Blog Links Box",
+                    fields: [
+                      { type: "string", name: "title", label: "Titel" },
+                      {
+                        type: "string",
+                        name: "links",
+                        label: "Link Texte",
+                        list: true,
+                        ui: { component: "tags" }
+                      },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "footer",
+                    label: "Footer Info",
+                    fields: [
+                      { type: "string", name: "line1", label: "Zeile 1" },
+                      { type: "string", name: "line2", label: "Zeile 2" },
+                    ],
+                  },
+                ],
+              },
+
+            ],
+          },
+        ],
+      },
     ],
   },
 });

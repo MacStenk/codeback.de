@@ -1,371 +1,57 @@
 ---
 // FAQSection.astro - Häufig gestellte Fragen
+
+interface Props {
+  data: {
+    headline: string;
+    faqs: Array<{
+      question: string;
+      answer: string;
+    }>;
+    ctaBox: {
+      title: string;
+      description: string;
+      buttonText: string;
+      buttonLink: string;
+      note: string;
+    };
+  };
+}
+
+const { data } = Astro.props;
 ---
 
 <section class="mb-24">
   <div class="max-w-4xl mx-auto">
-    <h2 class="text-3xl font-bold mb-8 text-center">Häufig gestellte Fragen</h2>
-    
+    <h2 class="text-3xl font-bold mb-8 text-center">{data.headline}</h2>
+
     <div class="space-y-4">
-      
-      <!-- 1. Problem verstehen -->
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer group">
-        <summary class="font-semibold text-lg flex items-center justify-between">
-          <span>Warum ist meine Website unsichtbar für KI?</span>
-          <span class="text-green-600 group-open:rotate-180 transition-transform">▼</span>
-        </summary>
-        <div class="mt-4 text-zinc-600 text-sm space-y-3">
-          <p>
-            Viele Inhalte liegen in Pagebuildern, Bildern oder JavaScript versteckt. 
-            KI-Systeme können diese nicht eindeutig auslesen oder einordnen.
-          </p>
-          <p class="font-medium text-zinc-700">
-            Konkret: Deine Expertise steht in Bildern, deine Services in DIV-Suppen, 
-            deine Spezialisierung in Shortcodes. Für ChatGPT sieht das aus wie: 
-            "Irgendeine Website... aber wofür genau?"
-          </p>
-        </div>
-      </details>
-
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer group">
-        <summary class="font-semibold text-lg flex items-center justify-between">
-          <span>Ist das dasselbe wie SEO?</span>
-          <span class="text-green-600 group-open:rotate-180 transition-transform">▼</span>
-        </summary>
-        <div class="mt-4 text-zinc-600 text-sm space-y-3">
-          <p>
-            Ähnlich, aber für KI statt Google. <strong>SEO optimiert für Rankings.</strong> 
-            Wir optimieren dafür, dass ChatGPT dich in Antworten einbindet.
-          </p>
-          <p>
-            Das nennt man <strong>Answer Engine Optimization (AEO)</strong>. 
-            Während andere noch auf "10 blaue Links" setzen, bist du die direkte Antwort, 
-            die KI gibt wenn jemand nach deinen Services fragt.
-          </p>
-        </div>
-      </details>
-
-      <!-- 2. Lösung verstehen -->
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer group">
-        <summary class="font-semibold text-lg flex items-center justify-between">
-          <span>Was bedeutet maschinenlesbare Expertise?</span>
-          <span class="text-green-600 group-open:rotate-180 transition-transform">▼</span>
-        </summary>
-        <div class="mt-4 text-zinc-600 text-sm space-y-3">
-          <p>
-            Information ist so strukturiert, dass KI-Systeme eindeutig erkennen können:
-          </p>
-          <ul class="list-none space-y-2 ml-4">
-            <li>→ <strong>Wer du bist</strong> (Name, Rolle, Autorität)</li>
-            <li>→ <strong>Was du anbietest</strong> (Services, Methoden, Ansätze)</li>
-            <li>→ <strong>Für wen du relevant bist</strong> (Zielgruppe, Location, Spezialisierung)</li>
-          </ul>
-          <div class="bg-white border border-zinc-200 rounded-lg p-4 mt-3">
-            <p class="text-xs text-zinc-500 mb-2">Beispiel:</p>
-            <p class="text-sm text-zinc-700">
-              Statt "Ich helfe Teams" schreiben wir:<br/>
-              <code class="text-xs bg-zinc-100 px-2 py-1 rounded">
-                Service: Business Coaching | Spezialisierung: Agile Teamführung | 
-                Location: Berlin | Format: 1:1 + Workshops
-              </code>
-            </p>
-            <p class="text-xs text-zinc-500 mt-2">
-              → ChatGPT kann dich jetzt präzise empfehlen
-            </p>
+      {data.faqs.map(faq => (
+        <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer group">
+          <summary class="font-semibold text-lg flex items-center justify-between">
+            <span>{faq.question}</span>
+            <span class="text-green-600 group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <div class="mt-4 text-zinc-600 text-sm" style="white-space: pre-line">
+            {faq.answer}
           </div>
-        </div>
-      </details>
-
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer group">
-        <summary class="font-semibold text-lg flex items-center justify-between">
-          <span>Warum nicht einfach ein WordPress SEO-Plugin?</span>
-          <span class="text-green-600 group-open:rotate-180 transition-transform">▼</span>
-        </summary>
-        <div class="mt-4 text-zinc-600 text-sm space-y-3">
-          <p>
-            SEO-Plugins können Schema.org hinzufügen, aber nicht die fundamentalen 
-            <strong>HTML-Strukturprobleme</strong> lösen, die Pagebuilder erzeugen.
-          </p>
-          <p>
-            DIV-Suppen, Shortcodes und JavaScript-Rendering bleiben. Das ist wie: 
-            "Ich schmücke meine kaputte Wand mit einem schönen Poster."
-          </p>
-          <div class="bg-zinc-900 text-white rounded-lg p-4 mt-3">
-            <p class="text-green-400 text-sm font-medium mb-2">
-              JAMstack ist eigentlich das, was wir Mitte der 90er gemacht haben:
-            </p>
-            <p class="text-zinc-300 text-xs">
-              Statisches HTML. Schnell. Sicher. Wartbar. Zwischen den statischen Sites 
-              der 90er und WordPress lagen 20 Jahre unnötige Komplexität. 
-              JAMstack bringt uns zurück zu den Wurzeln – mit modernen Tools.
-            </p>
-          </div>
-          <p class="font-medium text-zinc-700">
-            CodeBack baut von Grund auf sauberes, semantisches HTML. 
-            Nicht kosmetisch, sondern strukturell. <strong>Der Code ist zurück.</strong>
-          </p>
-        </div>
-      </details>
-
-      <!-- 3. Umsetzung -->
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer group">
-        <summary class="font-semibold text-lg flex items-center justify-between">
-          <span>Kann ich mein WordPress behalten?</span>
-          <span class="text-green-600 group-open:rotate-180 transition-transform">▼</span>
-        </summary>
-        <div class="mt-4 text-zinc-600 text-sm space-y-3">
-          <p>
-            <strong>Technisch ja, aber nicht empfehlenswert.</strong>
-          </p>
-          <p>
-            WordPress mit Pagebuildern erzeugt strukturelle Probleme, die sich nicht 
-            einfach "wegoptimieren" lassen. Das ist wie: "Kann ich meinen Fiat 500 
-            zum Formel-1-Auto umbauen?" – Ja, aber günstiger ist ein neues Auto.
-          </p>
-          <p class="font-medium text-zinc-700">
-            Für echte KI-Sichtbarkeit brauchst du sauberes HTML von Grund auf. 
-            Das ist schneller, sicherer und zukunftssicherer als Flickwerk auf altem System.
-          </p>
-          <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-3">
-            <p class="text-sm text-green-800">
-              <strong>Der ehrliche Weg:</strong> Moderne Architektur (Astro + JAMstack) 
-              statt endloses WordPress-Patching. Langfristig günstiger und wartbarer.
-            </p>
-          </div>
-        </div>
-      </details>
-
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer group">
-        <summary class="font-semibold text-lg flex items-center justify-between">
-          <span>Wie lange dauert die Umsetzung?</span>
-          <span class="text-green-600 group-open:rotate-180 transition-transform">▼</span>
-        </summary>
-        <div class="mt-4 text-zinc-600 text-sm space-y-3">
-          <div class="grid md:grid-cols-3 gap-4">
-            <div>
-              <p class="font-semibold text-zinc-900 mb-1">Bronze</p>
-              <p class="text-2xl font-bold text-green-600">7 Tage</p>
-              <p class="text-xs">Homepage + 3 Seiten</p>
-            </div>
-            <div>
-              <p class="font-semibold text-zinc-900 mb-1">Silver</p>
-              <p class="text-2xl font-bold text-green-600">14 Tage</p>
-              <p class="text-xs">Homepage + 10 Seiten</p>
-            </div>
-            <div>
-              <p class="font-semibold text-zinc-900 mb-1">Gold</p>
-              <p class="text-2xl font-bold text-green-600">30 Tage</p>
-              <p class="text-xs">Unlimited + Automation</p>
-            </div>
-          </div>
-          <p class="text-xs text-zinc-500 mt-3">
-            Inklusive: Konzept, Entwicklung, Revisions, Launch, Übergabe
-          </p>
-        </div>
-      </details>
-
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer group">
-        <summary class="font-semibold text-lg flex items-center justify-between">
-          <span>Kann ich selbst Inhalte aktualisieren?</span>
-          <span class="text-green-600 group-open:rotate-180 transition-transform">▼</span>
-        </summary>
-        <div class="mt-4 text-zinc-600 text-sm space-y-3">
-          <p>
-            <strong>Ja, über TinaCMS</strong> (Git-basierter Editor) oder direkt in Markdown. 
-            So einfach wie in einem Texteditor.
-          </p>
-          <p>
-            Updates werden automatisch deployed. Keine Angst vor:
-          </p>
-          <ul class="list-none space-y-1 ml-4 text-xs">
-            <li>→ Kaputten Plugins nach Updates</li>
-            <li>→ "White Screen of Death"</li>
-            <li>→ Inkompatiblen Theme-Versionen</li>
-            <li>→ Langsamen Admin-Backends</li>
-          </ul>
-          <p class="font-medium text-green-700 mt-3">
-            Edit → Save → Deployed. Fertig.
-          </p>
-        </div>
-      </details>
-
-      <!-- 4. Ergebnis & Kontrolle -->
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer group">
-        <summary class="font-semibold text-lg flex items-center justify-between">
-          <span>Wie lange bis ich Ergebnisse sehe?</span>
-          <span class="text-green-600 group-open:rotate-180 transition-transform">▼</span>
-        </summary>
-        <div class="mt-4 text-zinc-600 text-sm space-y-3">
-          <p>
-            KI-Indexierung läuft kontinuierlich, ähnlich wie Google-Crawling.
-          </p>
-          <div class="space-y-2">
-            <div class="flex items-start gap-3">
-              <span class="text-green-600 font-bold">2-4 Wochen:</span>
-              <span>Erste Sichtbarkeit in LLM-Antworten</span>
-            </div>
-            <div class="flex items-start gap-3">
-              <span class="text-green-600 font-bold">2-3 Monate:</span>
-              <span>Volle Wirkung, wenn KIs deine Inhalte mehrfach gecrawlt haben</span>
-            </div>
-            <div class="flex items-start gap-3">
-              <span class="text-green-600 font-bold">6+ Monate:</span>
-              <span>Semantische Autorität aufgebaut, regelmäßige Zitierungen</span>
-            </div>
-          </div>
-          <p class="text-xs text-zinc-500 mt-3">
-            Je mehr strukturierte Inhalte du lieferst, desto schneller baut sich deine Sichtbarkeit auf.
-          </p>
-        </div>
-      </details>
-
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer group">
-        <summary class="font-semibold text-lg flex items-center justify-between">
-          <span>Wo liegen meine Daten?</span>
-          <span class="text-green-600 group-open:rotate-180 transition-transform">▼</span>
-        </summary>
-        <div class="mt-4 text-zinc-600 text-sm space-y-3">
-          <div class="grid md:grid-cols-2 gap-4">
-            <div class="bg-white border border-zinc-200 rounded-lg p-4">
-              <p class="font-semibold text-zinc-900 mb-2">Option 1: Cloudflare Pages</p>
-              <ul class="text-xs space-y-1">
-                <li>→ Globales Edge-Netzwerk</li>
-                <li>→ DSGVO-konform</li>
-                <li>→ Perfekt für statische Sites</li>
-              </ul>
-            </div>
-            <div class="bg-green-50 border border-green-500 rounded-lg p-4">
-              <p class="font-semibold text-green-900 mb-2">Option 2: Hetzner Deutschland</p>
-              <ul class="text-xs space-y-1">
-                <li>→ Eigenständige virtuelle Server</li>
-                <li>→ Deutsches Rechenzentrum</li>
-                <li>→ Root-Zugriff, keine Shared Hosting</li>
-                <li>→ Made in Germany</li>
-              </ul>
-            </div>
-          </div>
-          <p class="font-medium text-zinc-700 mt-3">
-            Du entscheidest, was zu deinen Anforderungen passt. 
-            Keine US-Clouds. Keine Vendor-Lock-ins.
-          </p>
-        </div>
-      </details>
-
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer group">
-        <summary class="font-semibold text-lg flex items-center justify-between">
-          <span>Was passiert, wenn ihr nicht mehr verfügbar seid?</span>
-          <span class="text-green-600 group-open:rotate-180 transition-transform">▼</span>
-        </summary>
-        <div class="mt-4 text-zinc-600 text-sm space-y-3">
-          <p>
-            <strong>Du hast vollständigen Zugriff auf Code und Deployment.</strong>
-          </p>
-          <p>
-            Alles liegt in deinem GitHub-Repository. Jeder Entwickler kann das übernehmen. 
-            Die gesamte Build-Pipeline ist dokumentiert.
-          </p>
-          <div class="bg-white border border-zinc-200 rounded-lg p-4 mt-3">
-            <p class="text-xs text-zinc-500 mb-2">Du besitzt:</p>
-            <ul class="text-sm space-y-1">
-              <li>✓ Kompletten Source Code</li>
-              <li>✓ Git History & Dokumentation</li>
-              <li>✓ Deployment-Konfiguration</li>
-              <li>✓ Alle Zugänge & Credentials</li>
-            </ul>
-          </div>
-          <p class="font-medium text-green-700 mt-3">
-            Kein Vendor-Lock-in wie bei proprietären Pagebuildern. 
-            Du bist nicht abhängig von uns.
-          </p>
-        </div>
-      </details>
-
-      <!-- 5. Differenzierung -->
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer group">
-        <summary class="font-semibold text-lg flex items-center justify-between">
-          <span>Was unterscheidet euch von anderen Webagenturen?</span>
-          <span class="text-green-600 group-open:rotate-180 transition-transform">▼</span>
-        </summary>
-        <div class="mt-4 text-zinc-600 text-sm space-y-3">
-          <p>
-            <strong>Wir bauen keine WordPress-Sites mit Plugins.</strong>
-          </p>
-          <div class="grid md:grid-cols-2 gap-4 mt-3">
-            <div>
-              <p class="font-medium text-red-900 mb-2">Andere Agenturen:</p>
-              <ul class="text-xs space-y-1 text-zinc-600">
-                <li>→ WordPress + Elementor/Divi</li>
-                <li>→ 50+ Plugins</li>
-                <li>→ Shared Hosting</li>
-                <li>→ Monatliche Wartung nötig</li>
-                <li>→ Langsam, unsicher</li>
-              </ul>
-            </div>
-            <div>
-              <p class="font-medium text-green-900 mb-2">CodeBack:</p>
-              <ul class="text-xs space-y-1 text-zinc-700">
-                <li>→ Astro + JAMstack</li>
-                <li>→ Zero-JS, semantisches HTML</li>
-                <li>→ Hetzner eigenständige Server</li>
-                <li>→ Wartungsarm by design</li>
-                <li>→ Schnell, sicher, KI-optimiert</li>
-              </ul>
-            </div>
-          </div>
-          <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-4">
-            <p class="text-sm text-green-800">
-              <strong>Der Code ist zurück.</strong> Wir nutzen moderne Webarchitektur, 
-              GitHub als Versionskontrolle, und du behältst volle Kontrolle über Code und Daten.
-            </p>
-          </div>
-        </div>
-      </details>
-
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer group">
-        <summary class="font-semibold text-lg flex items-center justify-between">
-          <span>Bietet ihr auch Wartung an?</span>
-          <span class="text-green-600 group-open:rotate-180 transition-transform">▼</span>
-        </summary>
-        <div class="mt-4 text-zinc-600 text-sm space-y-3">
-          <p>
-            <strong>Optional, aber nicht nötig.</strong>
-          </p>
-          <p>
-            JAMstack-Sites haben keine Plugins die brechen, keine Datenbank die gehackt 
-            werden kann, keine Updates die Funktionen zerstören.
-          </p>
-          <p>
-            Wenn du trotzdem Support willst: <strong>Ab 500€/Monat</strong> für:
-          </p>
-          <ul class="list-none space-y-1 ml-4 text-xs">
-            <li>→ Content-Updates & neue Seiten</li>
-            <li>→ Feature-Entwicklung</li>
-            <li>→ Automation-Erweiterungen</li>
-            <li>→ Performance-Monitoring</li>
-          </ul>
-          <p class="font-medium text-green-700 mt-3">
-            Aber ehrlich: Die meisten unserer Kunden brauchen keine laufende Wartung.
-          </p>
-        </div>
-      </details>
-
+        </details>
+      ))}
     </div>
 
     <!-- CTA Box nach FAQs -->
     <div class="mt-12 bg-gradient-to-br from-green-50 to-blue-50 border border-green-200 rounded-lg p-8 text-center">
-      <h3 class="text-xl font-bold mb-3">Noch Fragen?</h3>
+      <h3 class="text-xl font-bold mb-3">{data.ctaBox.title}</h3>
       <p class="text-zinc-600 mb-6">
-        Lass uns in einem kurzen Call klären, ob CodeBack zu deinem Business passt.
+        {data.ctaBox.description}
       </p>
-      <a 
-        href="mailto:steven@codeback.de" 
+      <a
+        href={data.ctaBox.buttonLink}
         class="inline-block bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition"
       >
-        Kostenlose Beratung buchen
+        {data.ctaBox.buttonText}
       </a>
-      <p class="text-xs text-zinc-500 mt-3">
-        Oder teste erst deine Website: <a href="/llm-checker" class="text-green-600 hover:text-green-700 font-medium">LLM-Readability Checker →</a>
-      </p>
+      <p class="text-xs text-zinc-500 mt-3" set:html={data.ctaBox.note} />
     </div>
 
   </div>

@@ -199,10 +199,23 @@ const pagesCollection = defineCollection({
 });
 
 // ═══════════════════════════════════════════════════════════════
+// HOMEPAGE COLLECTION SCHEMA (JSON-based, block structure)
+// ═══════════════════════════════════════════════════════════════
+
+const homepageCollection = defineCollection({
+  type: 'data',
+  schema: z.object({
+    title: z.string(),
+    blocks: z.array(z.any()), // Flexible schema for different block types
+  }),
+});
+
+// ═══════════════════════════════════════════════════════════════
 // EXPORT COLLECTIONS
 // ═══════════════════════════════════════════════════════════════
 
 export const collections = {
   'blog': blogCollection,
   'pages': pagesCollection,
+  'homepage': homepageCollection,
 };

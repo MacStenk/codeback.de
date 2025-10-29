@@ -1,51 +1,65 @@
 ---
 // CTASection.astro - Final Call to Action
 import Button from '../Button.astro';
+
+interface Props {
+  data: {
+    headline: string;
+    description: string;
+    primaryButton: {
+      text: string;
+      href: string;
+    };
+    secondaryButton: {
+      text: string;
+      href: string;
+    };
+    blogLinks: {
+      title: string;
+      links: string[];
+    };
+    footer: {
+      line1: string;
+      line2: string;
+    };
+  };
+}
+
+const { data } = Astro.props;
 ---
 
 <section id="kontakt" class="border-t border-zinc-200 pt-12">
   <div class="bg-gradient-to-br from-green-50 to-blue-50 rounded-lg p-8 border border-green-200">
-    <h2 class="text-3xl font-bold mb-4">Launch: Januar 2026</h2>
+    <h2 class="text-3xl font-bold mb-4">{data.headline}</h2>
     <p class="text-lg text-zinc-700 mb-6">
-      CodeBack ist in aktiver Entwicklung. 4 Launch-Slots – 3 sind belegt. 
-      Interesse? Setz dich auf die Warteliste.
+      {data.description}
     </p>
 
     <div class="flex gap-4 items-center flex-wrap mb-8">
-      <Button href="mailto:steven@codeback.de" variant="primary">
-        Warteliste beitreten
+      <Button href={data.primaryButton.href} variant="primary">
+        {data.primaryButton.text}
       </Button>
-      <Button href="/blog" variant="ghost">
-        Blog lesen →
+      <Button href={data.secondaryButton.href} variant="ghost">
+        {data.secondaryButton.text}
       </Button>
     </div>
 
     <div class="border-t border-green-200 pt-6 mt-6">
-      <h3 class="font-semibold mb-3 text-zinc-900">Was du im Blog findest:</h3>
+      <h3 class="font-semibold mb-3 text-zinc-900">{data.blogLinks.title}</h3>
       <ul class="space-y-2 text-sm text-zinc-700">
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">→</span>
-          <span>Answer Engine Optimization: Wie KI deine Website versteht</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">→</span>
-          <span>Schema.org Deep Dive: Maschinenlesbare Strukturen erklärt</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">→</span>
-          <span>JAMstack vs. WordPress: Der technische Vergleich</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">→</span>
-          <span>Entwicklungs-Updates: Der Weg zu CodeBack</span>
-        </li>
+        {data.blogLinks.links.map(link => (
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">→</span>
+            <span>{link}</span>
+          </li>
+        ))}
       </ul>
     </div>
   </div>
 
   <!-- Footer-Info -->
   <div class="mt-8 text-center text-sm text-zinc-500">
-    <p class="mb-2">Entwickelt von Steven Noack</p>
-    <p>29 Jahre Internet-Erfahrung · Privacy First · Der Code ist zurück</p>
+    <p class="mb-2">{data.footer.line1}</p>
+    <p>{data.footer.line2}</p>
   </div>
 </section>

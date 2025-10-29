@@ -1,45 +1,67 @@
 ---
 // FutureSection.astro - Die Zukunft der Suche
+
+interface Props {
+  data: {
+    headline: string;
+    searchEra: {
+      timeframe: string;
+      query: string;
+      result: string;
+    };
+    answerEra: {
+      timeframe: string;
+      query: string;
+      result: string;
+    };
+    criticalQuestion: {
+      label: string;
+      question: string;
+    };
+    firstMoverText: string;
+  };
+}
+
+const { data } = Astro.props;
 ---
 
 <section class="mb-24">
   <div class="bg-zinc-900 text-white rounded-lg p-8">
-    <h2 class="text-2xl font-bold mb-4">Der Shift von Search zu Answer</h2>
-    
+    <h2 class="text-2xl font-bold mb-4">{data.headline}</h2>
+
     <div class="space-y-6">
       <div>
-        <p class="text-sm text-zinc-400 mb-2">2010-2023: Search Engine Era</p>
+        <p class="text-sm text-zinc-400 mb-2">{data.searchEra.timeframe}</p>
         <p class="text-lg text-zinc-300">
-          "Hey Google, zeig mir Business Coaches in Berlin"
+          {data.searchEra.query}
         </p>
         <p class="text-sm text-zinc-500 mt-2">
-          → 10 blaue Links. Du klickst dich durch. Du vergleichst selbst.
+          {data.searchEra.result}
         </p>
       </div>
 
       <div class="border-t border-zinc-700 pt-6">
-        <p class="text-sm text-green-400 mb-2 font-medium">2024-2026: Answer Engine Era</p>
+        <p class="text-sm text-green-400 mb-2 font-medium">{data.answerEra.timeframe}</p>
         <p class="text-lg text-green-300">
-          "Hey ChatGPT, empfiehl mir einen Coach für Teamführung mit agilen Methoden"
+          {data.answerEra.query}
         </p>
         <p class="text-sm text-zinc-300 mt-2">
-          → Direkte Empfehlung. Mit Details. Ohne dass du klicken musst.
+          {data.answerEra.result}
         </p>
       </div>
     </div>
 
     <div class="mt-8 bg-zinc-800 border border-zinc-700 rounded-lg p-6">
-      <p class="text-green-400 font-semibold mb-3">Die entscheidende Frage:</p>
-      <p class="text-zinc-100 text-lg">
-        Ist deine Website die Antwort, die KI gibt?<br/>
-        Oder die deiner Konkurrenz?
+      <p class="text-green-400 font-semibold mb-3">{data.criticalQuestion.label}</p>
+      <p class="text-zinc-100 text-lg" style="white-space: pre-line">
+        {data.criticalQuestion.question}
       </p>
     </div>
 
     <div class="mt-6 flex items-center gap-3 text-sm">
       <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
       <p class="text-zinc-400">
-        Wer jetzt maschinenlesbare Strukturen aufbaut, hat den First-Mover-Advantage
+        {data.firstMoverText}
       </p>
     </div>
   </div>

@@ -1,157 +1,121 @@
 ---
 // TechStack.astro - Technische Vertrauensbasis
+
+interface Props {
+  data: {
+    headline: string;
+    description: string;
+    technologies: Array<{
+      icon: string;
+      title: string;
+      description: string;
+      badge: string;
+      featured?: boolean;
+    }>;
+    privacyBadge: {
+      icon: string;
+      title: string;
+      subtitle: string;
+      features: Array<{
+        title: string;
+        description: string;
+      }>;
+    };
+    whyNotWordPress: {
+      title: string;
+      description: string;
+      highlight: string;
+      footer: string;
+    };
+  };
+}
+
+const { data } = Astro.props;
 ---
 
 <section class="mb-24">
-  <h2 class="text-3xl font-bold mb-6">Technische Vertrauensbasis</h2>
+  <h2 class="text-3xl font-bold mb-6">{data.headline}</h2>
   <p class="text-zinc-600 mb-8">
-    Moderne Webarchitektur statt Pagebuilder. Europäische Server statt US-Cloud. 
-    Open Source statt Vendor-Lock-in. Hier ist der Stack:
+    {data.description}
   </p>
-  
-  <div class="grid md:grid-cols-3 gap-6 mb-8">
-    <div class="border border-zinc-200 rounded-lg p-6 hover:border-green-600 transition">
-      <div class="text-3xl mb-3">⚡</div>
-      <h3 class="font-semibold mb-2">Astro + JAMstack</h3>
-      <p class="text-sm text-zinc-600 mb-3">
-        Zero-JS Framework. Statischer Export. Sauberes, semantisches HTML5 
-        ohne DIV-Suppen.
-      </p>
-      <p class="text-xs text-green-600">Performance + Sicherheit</p>
-    </div>
-    
-    <div class="border border-zinc-200 rounded-lg p-6 hover:border-green-600 transition">
-      <div class="text-3xl mb-3">✏️</div>
-      <h3 class="font-semibold mb-2">TinaCMS</h3>
-      <p class="text-sm text-zinc-600 mb-3">
-        Git-basiertes Headless CMS. Inhalte bearbeiten wie in WordPress, 
-        aber ohne dessen Nachteile.
-      </p>
-      <p class="text-xs text-green-600">Markdown + Visual Editor</p>
-    </div>
 
-    <div class="border border-zinc-200 rounded-lg p-6 hover:border-green-600 transition">
-      <div class="text-3xl mb-3">🔧</div>
-      <h3 class="font-semibold mb-2">n8n Automation</h3>
-      <p class="text-sm text-zinc-600 mb-3">
-        Workflow-Automatisierung für Formulare, CRM-Integration, 
-        Newsletter-Sync.
-      </p>
-      <p class="text-xs text-green-600">Self-hosted</p>
-    </div>
+  <!-- Tech Grid - First 3 -->
+  <div class="grid md:grid-cols-3 gap-6 mb-8">
+    {data.technologies.slice(0, 3).map(tech => (
+      <div class={`border rounded-lg p-6 hover:border-green-600 transition ${tech.featured ? 'border-green-600 bg-green-50' : 'border-zinc-200'}`}>
+        <div class="text-3xl mb-3">{tech.icon}</div>
+        <h3 class={`font-semibold mb-2 ${tech.featured ? 'text-green-900' : ''}`}>{tech.title}</h3>
+        <p class={`text-sm mb-3 ${tech.featured ? 'text-green-800' : 'text-zinc-600'}`}>
+          {tech.description}
+        </p>
+        <p class={`text-xs font-medium ${tech.featured ? 'text-green-700' : 'text-green-600'}`}>{tech.badge}</p>
+      </div>
+    ))}
   </div>
 
+  <!-- Tech Grid - Next 3 -->
   <div class="grid md:grid-cols-3 gap-6 mb-8">
-    <div class="border border-zinc-200 rounded-lg p-6 hover:border-green-600 transition">
-      <div class="text-3xl mb-3">🗄️</div>
-      <h3 class="font-semibold mb-2">Vektordatenbanken</h3>
-      <p class="text-sm text-zinc-600 mb-3">
-        Qdrant für semantische Suche. Macht Inhalte für KI-Systeme 
-        optimal auffindbar.
-      </p>
-      <p class="text-xs text-green-600">Open Source</p>
-    </div>
-
-    <div class="border border-green-600 rounded-lg p-6 bg-green-50">
-      <div class="text-3xl mb-3">🖥️</div>
-      <h3 class="font-semibold mb-2 text-green-900">Hetzner Server</h3>
-      <p class="text-sm text-green-800 mb-3">
-        Eigenständige virtuelle Server. Keine Shared Hosting. 
-        Deutsches Rechenzentrum.
-      </p>
-      <p class="text-xs text-green-700 font-medium">Made in Germany</p>
-    </div>
-
-    <div class="border border-zinc-200 rounded-lg p-6 hover:border-green-600 transition">
-      <div class="text-3xl mb-3">🛡️</div>
-      <h3 class="font-semibold mb-2">Cloudflare Edge</h3>
-      <p class="text-sm text-zinc-600 mb-3">
-        Optional für statische Sites. Edge-Deployment für globale Performance.
-      </p>
-      <p class="text-xs text-green-600">Zero Config CDN</p>
-    </div>
+    {data.technologies.slice(3, 6).map(tech => (
+      <div class={`border rounded-lg p-6 hover:border-green-600 transition ${tech.featured ? 'border-green-600 bg-green-50' : 'border-zinc-200'}`}>
+        <div class="text-3xl mb-3">{tech.icon}</div>
+        <h3 class={`font-semibold mb-2 ${tech.featured ? 'text-green-900' : ''}`}>{tech.title}</h3>
+        <p class={`text-sm mb-3 ${tech.featured ? 'text-green-800' : 'text-zinc-600'}`}>
+          {tech.description}
+        </p>
+        <p class={`text-xs font-medium ${tech.featured ? 'text-green-700' : 'text-green-600'}`}>{tech.badge}</p>
+      </div>
+    ))}
   </div>
 
+  <!-- Tech Grid - Last 2 -->
   <div class="grid md:grid-cols-2 gap-6 mb-8">
-    <div class="border border-zinc-200 rounded-lg p-6 hover:border-green-600 transition">
-      <div class="text-3xl mb-3">📦</div>
-      <h3 class="font-semibold mb-2">GitHub</h3>
-      <p class="text-sm text-zinc-600 mb-3">
-        Versionskontrolle. Deployment-Pipeline. Vollständige History 
-        deiner Website.
-      </p>
-      <p class="text-xs text-green-600">Du behältst die Kontrolle</p>
-    </div>
-
-    <div class="border border-zinc-200 rounded-lg p-6 hover:border-green-600 transition">
-      <div class="text-3xl mb-3">🗂️</div>
-      <h3 class="font-semibold mb-2">Docker Stack</h3>
-      <p class="text-sm text-zinc-600 mb-3">
-        Alle Services containerisiert. Reproduzierbar. Skalierbar. 
-        Einfach zu warten.
-      </p>
-      <p class="text-xs text-green-600">Infrastructure as Code</p>
-    </div>
+    {data.technologies.slice(6).map(tech => (
+      <div class={`border rounded-lg p-6 hover:border-green-600 transition ${tech.featured ? 'border-green-600 bg-green-50' : 'border-zinc-200'}`}>
+        <div class="text-3xl mb-3">{tech.icon}</div>
+        <h3 class={`font-semibold mb-2 ${tech.featured ? 'text-green-900' : ''}`}>{tech.title}</h3>
+        <p class={`text-sm mb-3 ${tech.featured ? 'text-green-800' : 'text-zinc-600'}`}>
+          {tech.description}
+        </p>
+        <p class={`text-xs font-medium ${tech.featured ? 'text-green-700' : 'text-green-600'}`}>{tech.badge}</p>
+      </div>
+    ))}
   </div>
 
   <!-- Privacy First Badge -->
   <div class="bg-gradient-to-br from-green-50 to-green-100 border-2 border-green-500 rounded-lg p-8">
     <div class="flex items-center gap-4 mb-4">
-      <div class="text-5xl">🔐</div>
+      <div class="text-5xl">{data.privacyBadge.icon}</div>
       <div>
-        <h3 class="font-bold text-green-900 text-xl mb-1">Privacy First, Always</h3>
+        <h3 class="font-bold text-green-900 text-xl mb-1">{data.privacyBadge.title}</h3>
         <p class="text-green-800 font-medium">
-          Keine US-Clouds. Keine Shared Server. Keine Vendor-Lock-ins.
+          {data.privacyBadge.subtitle}
         </p>
       </div>
     </div>
     <div class="grid md:grid-cols-3 gap-4">
-      <div class="bg-white rounded-lg p-4">
-        <div class="flex items-start gap-2 mb-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm font-medium text-green-900">Hetzner Deutschland</span>
+      {data.privacyBadge.features.map(feature => (
+        <div class="bg-white rounded-lg p-4">
+          <div class="flex items-start gap-2 mb-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span class="text-sm font-medium text-green-900">{feature.title}</span>
+          </div>
+          <p class="text-xs text-zinc-600">
+            {feature.description}
+          </p>
         </div>
-        <p class="text-xs text-zinc-600">
-          Eigenständige virtuelle Server in deutschen Rechenzentren
-        </p>
-      </div>
-      <div class="bg-white rounded-lg p-4">
-        <div class="flex items-start gap-2 mb-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm font-medium text-green-900">DSGVO by Design</span>
-        </div>
-        <p class="text-xs text-zinc-600">
-          Datenschutz-konform ohne Kompromisse
-        </p>
-      </div>
-      <div class="bg-white rounded-lg p-4">
-        <div class="flex items-start gap-2 mb-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm font-medium text-green-900">Root-Zugriff</span>
-        </div>
-        <p class="text-xs text-zinc-600">
-          Volle Kontrolle über deine Infrastruktur
-        </p>
-      </div>
+      ))}
     </div>
   </div>
 
   <!-- Info-Box -->
   <div class="mt-8 bg-zinc-900 text-white rounded-lg p-6">
-    <h4 class="font-semibold mb-3">Warum kein WordPress?</h4>
+    <h4 class="font-semibold mb-3">{data.whyNotWordPress.title}</h4>
     <p class="text-zinc-300 text-sm mb-4">
-      WordPress ist ein CMS aus 2003. Gebaut für Blogs, nicht für KI-Sichtbarkeit. 
-      Die Plugin-Architektur führt zu Sicherheitslücken, Pagebuilder erzeugen 
-      unlesbares HTML, und Updates brechen regelmäßig Funktionen.
+      {data.whyNotWordPress.description}
     </p>
     <p class="text-green-400 text-sm font-medium mb-3">
-      JAMstack ist eigentlich das, was wir Mitte der 90er gemacht haben: 
-      Statisches HTML. Schnell. Sicher. Wartbar.
+      {data.whyNotWordPress.highlight}
     </p>
-    <p class="text-zinc-400 text-xs">
-      Zwischen statischen Sites der 90er und WordPress lagen 20 Jahre Komplexität. 
-      JAMstack bringt uns zurück zu den Wurzeln – aber mit modernen Tools. 
-      <strong class="text-white">Der Code ist zurück.</strong>
-    </p>
+    <p class="text-zinc-400 text-xs" set:html={data.whyNotWordPress.footer} />
   </div>
 </section>

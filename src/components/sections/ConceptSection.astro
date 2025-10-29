@@ -1,103 +1,81 @@
 ---
 // ConceptSection.astro - Was CodeBack anders macht
+
+interface Props {
+  data: {
+    headline: string;
+    description: string;
+    pillars: Array<{
+      number: number;
+      title: string;
+      description: string;
+      technicalLabel: string;
+      technicalDetails: string;
+    }>;
+    techComparison: {
+      title: string;
+      subtitle: string;
+      pagebuilderLabel: string;
+      pagebuilderText: string;
+      codebackLabel: string;
+      codebackText: string;
+    };
+    practiceExample: {
+      title: string;
+      description: string;
+      highlight: string;
+    };
+  };
+}
+
+const { data } = Astro.props;
 ---
 
 <section id="konzept" class="mb-24">
-  <h2 class="text-3xl font-bold mb-8">Maschinenlesbare Inhalte. Technische Souveränität.</h2>
-  
+  <h2 class="text-3xl font-bold mb-8">{data.headline}</h2>
+
   <p class="text-lg text-zinc-600 mb-12">
-    Moderne Webarchitektur statt Pagebuilder. JAMstack statt WordPress. 
-    Sauberer Code statt DIV-Suppe. Das ist CodeBack.
+    {data.description}
   </p>
 
   <!-- 3 Säulen -->
   <div class="grid md:grid-cols-3 gap-8">
-    
-    <!-- Säule 1: KI-Sichtbarkeit -->
-    <div class="bg-zinc-50 border border-zinc-200 rounded-lg p-6">
-      <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white text-2xl mb-4">
-        1
-      </div>
-      <h3 class="text-xl font-semibold mb-3">KI-Sichtbarkeit</h3>
-      <p class="text-zinc-600 text-sm mb-4">
-        Deine Inhalte werden von KI-Assistenten verstanden und in Antworten eingebunden. 
-        Während deine Konkurrenz unsichtbar bleibt, wirst du empfohlen.
-      </p>
-      <div class="bg-white border border-zinc-200 rounded p-3">
-        <p class="text-xs text-zinc-500 mb-2">Technisch:</p>
-        <p class="text-sm text-zinc-700">
-          Semantisches HTML5<br/>
-          Schema.org Markup<br/>
-          Strukturierte Daten
+    {data.pillars.map(pillar => (
+      <div class="bg-zinc-50 border border-zinc-200 rounded-lg p-6">
+        <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white text-2xl mb-4">
+          {pillar.number}
+        </div>
+        <h3 class="text-xl font-semibold mb-3">{pillar.title}</h3>
+        <p class="text-zinc-600 text-sm mb-4">
+          {pillar.description}
         </p>
+        <div class="bg-white border border-zinc-200 rounded p-3">
+          <p class="text-xs text-zinc-500 mb-2">{pillar.technicalLabel}</p>
+          <p class="text-sm text-zinc-700" style="white-space: pre-line">
+            {pillar.technicalDetails}
+          </p>
+        </div>
       </div>
-    </div>
-
-    <!-- Säule 2: Automatisierung -->
-    <div class="bg-zinc-50 border border-zinc-200 rounded-lg p-6">
-      <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white text-2xl mb-4">
-        2
-      </div>
-      <h3 class="text-xl font-semibold mb-3">Automatisierte Abläufe</h3>
-      <p class="text-zinc-600 text-sm mb-4">
-        Wiederkehrende Prozesse laufen zuverlässig ohne manuelle Eingriffe. 
-        Du konzentrierst dich auf dein Business, nicht auf Technik.
-      </p>
-      <div class="bg-white border border-zinc-200 rounded p-3">
-        <p class="text-xs text-zinc-500 mb-2">Beispiele:</p>
-        <p class="text-sm text-zinc-700">
-          Formulare → CRM<br/>
-          Blog → Newsletter<br/>
-          Anfragen → Kalender
-        </p>
-      </div>
-    </div>
-
-    <!-- Säule 3: Technische Kontrolle -->
-    <div class="bg-zinc-50 border border-zinc-200 rounded-lg p-6">
-      <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white text-2xl mb-4">
-        3
-      </div>
-      <h3 class="text-xl font-semibold mb-3">Volle Kontrolle</h3>
-      <p class="text-zinc-600 text-sm mb-4">
-        Deine Infrastruktur und Daten bleiben unter deiner Kontrolle. 
-        Europäische Server, kein Vendor-Lock-in, keine Abhängigkeit von Plattformen.
-      </p>
-      <div class="bg-white border border-zinc-200 rounded p-3">
-        <p class="text-xs text-zinc-500 mb-2">Details:</p>
-        <p class="text-sm text-zinc-700">
-          GitHub als Source<br/>
-          Cloudflare Edge<br/>
-          Eigenes Hosting möglich
-        </p>
-      </div>
-    </div>
-
+    ))}
   </div>
 
   <!-- Tech vs. Pagebuilder -->
   <div class="mt-12 bg-gradient-to-br from-zinc-900 to-zinc-800 text-white rounded-lg p-8">
-    <h4 class="text-xl font-semibold mb-2">Der Code ist zurück</h4>
+    <h4 class="text-xl font-semibold mb-2">{data.techComparison.title}</h4>
     <p class="text-zinc-400 text-sm mb-6">
-      JAMstack ist eigentlich das, was wir Mitte der 90er gemacht haben – 
-      statisches HTML. Zwischen den 90ern und WordPress lagen 20 Jahre unnötige Komplexität. 
-      Jetzt kommen wir zurück zu den Wurzeln, aber mit modernen Tools.
+      {data.techComparison.subtitle}
     </p>
     <div class="grid md:grid-cols-2 gap-6">
       <div>
-        <p class="font-medium text-red-400 mb-2">Pagebuilder-Ansatz:</p>
+        <p class="font-medium text-red-400 mb-2">{data.techComparison.pagebuilderLabel}</p>
         <p class="text-zinc-300 text-sm">
-          WordPress mit 50 Plugins. Elementor mit Shortcodes. 
-          DIV-Suppen ohne semantische Struktur. Langsam. Unsicher. 
-          Für KI unleserlich.
+          {data.techComparison.pagebuilderText}
         </p>
       </div>
       <div>
-        <p class="font-medium text-green-400 mb-2">CodeBack-Ansatz:</p>
+        <p class="font-medium text-green-400 mb-2">{data.techComparison.codebackLabel}</p>
         <p class="text-zinc-300 text-sm">
-          Astro mit statischem Export. Zero JavaScript im Client. 
-          Sauberes HTML mit Schema.org. Schnell. Sicher. 
-          Perfekt lesbar für KI-Systeme.
+          {data.techComparison.codebackText}
         </p>
       </div>
     </div>
@@ -105,15 +83,12 @@
 
   <!-- Praxisbeispiel -->
   <div class="mt-12 bg-green-50 border border-green-200 rounded-lg p-8">
-    <h4 class="text-xl font-semibold mb-4">Beispiel aus der Praxis</h4>
+    <h4 class="text-xl font-semibold mb-4">{data.practiceExample.title}</h4>
     <p class="text-zinc-700 mb-4">
-      Ein Coach für Führungskräfte: Seine Methodik ist jetzt so strukturiert, 
-      dass KI-Tools sie als Quelle nutzen. Anfragen kommen automatisiert über 
-      intelligente Formulare. Sein CRM synchronisiert sich mit seinem Kalender – 
-      ohne dass er etwas tun muss.
+      {data.practiceExample.description}
     </p>
     <p class="text-green-800 font-medium">
-      Er arbeitet. Die Technik läuft.
+      {data.practiceExample.highlight}
     </p>
   </div>
 </section>
