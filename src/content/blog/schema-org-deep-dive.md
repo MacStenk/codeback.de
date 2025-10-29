@@ -6,9 +6,9 @@ pubDate: Oct 26 2024
 
 # Schema.org für Coaches: Der komplette Deep Dive
 
-## 🚧 Artikel in Entwicklung
+## 🚧 Artikel in Entwicklung 
 
-Dieser ausführliche Artikel ist aktuell in Arbeit und erscheint in Kürze. 
+Dieser ausführliche Artikel ist aktuell in Arbeit und erscheint in Kürze.
 
 ## Was dich erwartet:
 
