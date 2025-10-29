@@ -1,2 +1,0 @@
-/admin/*
-  Content-Security-Policy: script-src 'self' https://assets.tina.io 'unsafe-inline' 'unsafe-eval'; connect-src 'self' https://assets.tina.io https://content.tinajs.io
