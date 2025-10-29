@@ -8,7 +8,7 @@ pubDate: Oct 26 2024
 
 ## 🚧 Artikel in Entwicklung
 
-Dieser ausführliche Artikel ist aktuell in Arbeit und erscheint in Kürze.
+Dieser ausführliche Artikel ist aktuell in Arbeit und erscheint in Kürze. 
 
 ## Was dich erwartet:
 
@@ -43,7 +43,7 @@ Dieser ausführliche Artikel ist aktuell in Arbeit und erscheint in Kürze.
 
 * Wie misst man LLM-Visibility?
 * Tools für Schema.org Monitoring
-* Iterative Verbesserung 
+* Iterative Verbesserung
 
 ## Bleib dran!
 
