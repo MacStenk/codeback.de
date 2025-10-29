@@ -1,0 +1,325 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/layout/Header.astro';
+import Breadcrumbs from '../components/layout/Breadcrumbs.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  frontmatter: any;
+  content?: any;
+}
+
+const { frontmatter } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Generate Schema.org data
+const generateSchemaData = () => {
+  const schemas = [];
+
+  // Person Schema (Steven Noack) - ALWAYS include
+  schemas.push({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://stevennoack.de/#person",
+    "name": "Steven Noack",
+    "url": "https://stevennoack.de",
+    "image": "https://stevennoack.de/steven-noack.jpg",
+    "jobTitle": ["JAMstack Developer", "Entrepreneur", "Writer", "Electronic Music Enthusiast"],
+    "description": "Multi-dimensional entrepreneur with 29 years of internet business experience. Works like a neural network - synaptically connected projects across tech, music, and philosophy. Founder of CodeBack, Privacy AI OS, and more.",
+    "sameAs": [
+      "https://github.com/MacStenk",
+      "https://substack.com/@stevennoack",
+      "https://sogtransformation.substack.com",
+      "https://quantenbeatz.com",
+      "https://codeback.de",
+      "https://privacy-ai-os.de",
+      "https://visionfusen.com"
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "CodeBack",
+      "url": "https://codeback.de"
+    },
+    "knowsAbout": [
+      "JAMstack",
+      "Astro",
+      "TinaCMS",
+      "Answer Engine Optimization",
+      "LLM SEO",
+      "AI Optimization",
+      "Electronic Music",
+      "Human Design",
+      "Cryptocurrency",
+      "Artificial Intelligence",
+      "Self-hosted AI"
+    ]
+  });
+
+  // Organization Schema (CodeBack) - ALWAYS include
+  schemas.push({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://codeback.de/#organization",
+    "name": "CodeBack",
+    "url": "https://codeback.de",
+    "logo": "https://codeback.de/logo.png",
+    "slogan": "Websites die Antworten werden",
+    "description": "JAMstack development agency specializing in Answer Engine Optimization (AEO). Making websites that AI systems like ChatGPT, Claude, and Perplexity can find and cite. Founded by Steven Noack.",
+    "founder": {
+      "@type": "Person",
+      "@id": "https://stevennoack.de/#person"
+    },
+    "parentOrganization": {
+      "@type": "Person",
+      "@id": "https://stevennoack.de/#person"
+    },
+    "areaServed": "DE",
+    "email": "kontakt@codeback.de",
+    "knowsAbout": [
+      "JAMstack Development",
+      "Answer Engine Optimization",
+      "LLM SEO",
+      "Astro Framework",
+      "TinaCMS",
+      "Headless CMS"
+    ]
+  });
+
+  // Page Schema (WebPage/AboutPage/ContactPage/Service)
+  const pageSchema: any = {
+    "@context": "https://schema.org",
+    "@type": frontmatter.schemaType || "WebPage",
+    "url": canonicalURL.toString(),
+    "name": frontmatter.title,
+    "description": frontmatter.description,
+    "isPartOf": {
+      "@type": "WebSite",
+      "url": "https://codeback.de",
+      "name": "CodeBack"
+    },
+    "author": {
+      "@type": "Person",
+      "@id": "https://stevennoack.de/#person"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "@id": "https://codeback.de/#organization"
+    },
+  };
+
+  if (frontmatter.datePublished) {
+    pageSchema.datePublished = frontmatter.datePublished;
+  }
+
+  if (frontmatter.dateModified) {
+    pageSchema.dateModified = frontmatter.dateModified;
+  }
+
+  schemas.push(pageSchema);
+
+  // FAQ Schema (if FAQs exist)
+  if (frontmatter.faqs && frontmatter.faqs.length > 0) {
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": frontmatter.faqs.map((faq: any) => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    });
+  }
+
+  // Breadcrumb Schema
+  const breadcrumbItems = [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://codeback.de" }
+  ];
+
+  if (frontmatter.slug && frontmatter.slug !== 'home') {
+    breadcrumbItems.push({
+      "@type": "ListItem",
+      "position": 2,
+      "name": frontmatter.title,
+      "item": canonicalURL.toString()
+    });
+  }
+
+  schemas.push({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbItems
+  });
+
+  return schemas;
+};
+
+const schemas = generateSchemaData();
+
+// Breadcrumbs for UI
+const breadcrumbs = [
+  { label: "Home", href: "/" },
+  { label: frontmatter.title },
+];
+---
+
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <BaseHead
+      title={frontmatter.metaTitle || `${frontmatter.title} | CodeBack`}
+      description={frontmatter.description}
+    />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={frontmatter.canonicalUrl || canonicalURL}>
+
+    <!-- Keywords -->
+    {frontmatter.metaKeywords && (
+      <meta name="keywords" content={frontmatter.metaKeywords.join(', ')}>
+    )}
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={frontmatter.openGraph?.type || "website"}>
+    <meta property="og:url" content={canonicalURL}>
+    <meta property="og:title" content={frontmatter.openGraph?.title || frontmatter.title}>
+    <meta property="og:description" content={frontmatter.openGraph?.description || frontmatter.description}>
+    {frontmatter.openGraph?.image && (
+      <meta property="og:image" content={frontmatter.openGraph.image}>
+    )}
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content={frontmatter.twitter?.card || "summary_large_image"}>
+    <meta property="twitter:url" content={canonicalURL}>
+    <meta property="twitter:title" content={frontmatter.twitter?.title || frontmatter.title}>
+    <meta property="twitter:description" content={frontmatter.twitter?.description || frontmatter.description}>
+    {frontmatter.twitter?.image && (
+      <meta property="twitter:image" content={frontmatter.twitter.image}>
+    )}
+
+    <!-- Schema.org JSON-LD -->
+    {schemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+  </head>
+
+  <body class="bg-white text-zinc-900">
+    <!-- Header Component -->
+    <Header />
+
+    <main class="max-w-7xl mx-auto px-6 py-12">
+      <!-- Breadcrumbs -->
+      <Breadcrumbs items={breadcrumbs} />
+
+      <!-- Page Content -->
+      <article class="max-w-4xl">
+        <!-- Page Header -->
+        <header class="mb-12">
+          <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            {frontmatter.title}
+          </h1>
+
+          {frontmatter.description && (
+            <p class="text-xl text-zinc-600 mb-8">{frontmatter.description}</p>
+          )}
+
+          <!-- Author Box (if author data exists) -->
+          {frontmatter.author && (
+            <div class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 flex items-start gap-4">
+              <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                SN
+              </div>
+              <div>
+                <div class="font-semibold text-zinc-900">{frontmatter.author.name}</div>
+                <div class="text-sm text-zinc-600 mb-2">
+                  {frontmatter.author.role || "Developer"} · Privacy AI OS · 29+ Jahre Internet Business
+                </div>
+                {frontmatter.author.bio && (
+                  <p class="text-sm text-zinc-700 mb-2">{frontmatter.author.bio}</p>
+                )}
+                <a
+                  href={frontmatter.author.url}
+                  target="_blank"
+                  rel="author"
+                  class="text-sm text-green-600 hover:text-green-700 font-medium"
+                >
+                  {frontmatter.author.url.replace('https://', '')} →
+                </a>
+              </div>
+            </div>
+          )}
+        </header>
+
+        <!-- Article Content -->
+        <div class="article-content prose prose-zinc prose-lg max-w-none">
+          <slot />
+        </div>
+
+        <!-- Back Navigation -->
+        <footer class="mt-16 pt-8 border-t border-zinc-200">
+          <a
+            href="/"
+            class="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 font-medium"
+          >
+            ← Zurück zur Startseite
+          </a>
+        </footer>
+      </article>
+    </main>
+
+    <!-- Ecosystem Footer -->
+    {frontmatter.relatedProjects && frontmatter.relatedProjects.length > 0 && (
+      <footer class="ecosystem-footer border-t-2 border-zinc-200 bg-zinc-50 py-16">
+        <div class="max-w-7xl mx-auto px-6">
+          <h2 class="text-3xl font-bold text-center mb-12">Teil des Steven Noack Ecosystems</h2>
+          <div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            {frontmatter.relatedProjects.map((project: any) => (
+              <a
+                href={project.url}
+                class="project-card bg-white border border-zinc-200 rounded-lg p-6 hover:shadow-lg transition-all hover:-translate-y-1"
+                data-category={project.category}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <h3 class="text-xl font-semibold mb-2">{project.name}</h3>
+                <p class="text-sm text-zinc-600 mb-4">{project.description}</p>
+                <span class={`category inline-block px-3 py-1 rounded text-xs font-semibold uppercase ${
+                  project.category === 'Hub' ? 'bg-yellow-100 text-yellow-800' :
+                  project.category === 'Professional' ? 'bg-blue-100 text-blue-800' :
+                  project.category === 'Product' ? 'bg-green-100 text-green-800' :
+                  project.category === 'Creative' ? 'bg-pink-100 text-pink-800' :
+                  project.category === 'Thought Leadership' ? 'bg-purple-100 text-purple-800' :
+                  'bg-gray-100 text-gray-800'
+                }`}>
+                  {project.category}
+                </span>
+              </a>
+            ))}
+          </div>
+          <p class="ecosystem-note text-center text-zinc-600 italic mt-8">
+            Wie ein neurales Netzwerk: Alle Projekte sind synaptisch verbunden. 🧠
+          </p>
+        </div>
+      </footer>
+    )}
+
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .article-content {
+    /* Additional prose styling if needed */
+  }
+
+  .ecosystem-footer {
+    margin-top: 4rem;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+  }
+</style>
