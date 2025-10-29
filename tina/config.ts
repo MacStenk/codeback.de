@@ -32,7 +32,439 @@ export default defineConfig({
   // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
   schema: {
     collections: [
-      
+
+      // ═══════════════════════════════════════════════════════════════
+      // HOMEPAGE COLLECTION (Blocks-based)
+      // ═══════════════════════════════════════════════════════════════
+      {
+        name: "homepage",
+        label: "🏠 Homepage",
+        path: "src/content/homepage",
+        format: "json",
+        ui: {
+          allowedActions: {
+            create: false,  // Nur eine Homepage
+            delete: false,
+          },
+          router: () => {
+            return '/';  // Visual Editing auf Homepage
+          },
+        },
+        fields: [
+          // ═══ SEO BASICS ═══
+          {
+            type: "string",
+            name: "title",
+            label: "Page Title",
+            required: true,
+            description: "Der Haupt-Titel für die Homepage (SEO)",
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Meta Description",
+            required: true,
+            description: "Meta-Beschreibung für SEO (max 160 Zeichen)",
+            ui: {
+              component: "textarea",
+            },
+          },
+
+          // ═══ BLOCKS SYSTEM ═══
+          {
+            type: "object",
+            name: "blocks",
+            label: "📦 Page Sections",
+            description: "Die Sections der Homepage. Drag & Drop um Reihenfolge zu ändern!",
+            list: true,
+            templates: [
+
+              // ═══════════════════════════════════════════════════════════════════════════════
+              // HERO BLOCK - Homepage Hero Section
+              // ═══════════════════════════════════════════════════════════════════════════════
+              // Used for: Main homepage hero with headline + CTA buttons
+              // Template-ready: Yes - Reusable for customer sites
+              // LLM-Optimized: Headline structure optimized for AI parsing
+              // ═══════════════════════════════════════════════════════════════════════════════
+              {
+                name: "hero",
+                label: "🎯 Hero Section",
+                ui: {
+                  defaultItem: {
+                    eyebrow: "Der Code ist zurück",
+                    titlePart1: "ChatGPT empfiehlt",
+                    titleHighlight: "deine Konkurrenz",
+                    titlePart2: "– nicht dich",
+                    subtitle: "Deine Expertise ist in Pagebuildern versteckt, statt maschinenlesbar strukturiert. Wir bauen die technische Grundlage, damit KI dein Wissen findet, versteht und als Antwort nutzt. Digitale Grundstruktur für nachhaltige Sichtbarkeit.",
+                    ctaPrimary: "Website jetzt testen →",
+                    ctaPrimaryLink: "/llm-checker",
+                    ctaSecondary: "Wie funktioniert das?",
+                    ctaSecondaryLink: "#problem",
+                    showReadabilityCheck: true,
+                    readabilityText: "Kostenloser LLM-Readability Check in 30 Sekunden",
+                  },
+                },
+                fields: [
+                  {
+                    type: "string",
+                    name: "eyebrow",
+                    label: "Eyebrow Text",
+                    description: "Kleiner Text über der Headline (z.B. 'Der Code ist zurück')",
+                  },
+                  {
+                    type: "string",
+                    name: "titlePart1",
+                    label: "Headline Teil 1",
+                    description: "Erster Teil der Headline",
+                  },
+                  {
+                    type: "string",
+                    name: "titleHighlight",
+                    label: "Headline Highlight (grün)",
+                    description: "Der Teil der grün hervorgehoben wird",
+                  },
+                  {
+                    type: "string",
+                    name: "titlePart2",
+                    label: "Headline Teil 2",
+                    description: "Zweiter Teil der Headline (nach dem Highlight)",
+                  },
+                  {
+                    type: "string",
+                    name: "subtitle",
+                    label: "Untertitel",
+                    description: "Der beschreibende Text unter der Headline",
+                    ui: { component: "textarea" },
+                  },
+                  {
+                    type: "string",
+                    name: "ctaPrimary",
+                    label: "Primary CTA Button Text",
+                  },
+                  {
+                    type: "string",
+                    name: "ctaPrimaryLink",
+                    label: "Primary CTA Link",
+                    description: "z.B. /llm-checker oder https://...",
+                  },
+                  {
+                    type: "string",
+                    name: "ctaSecondary",
+                    label: "Secondary CTA Button Text",
+                  },
+                  {
+                    type: "string",
+                    name: "ctaSecondaryLink",
+                    label: "Secondary CTA Link",
+                    description: "z.B. #problem für Anchor-Link",
+                  },
+                  {
+                    type: "boolean",
+                    name: "showReadabilityCheck",
+                    label: "LLM Readability Check anzeigen?",
+                    description: "Zeigt den Trust Badge unter den Buttons",
+                  },
+                  {
+                    type: "string",
+                    name: "readabilityText",
+                    label: "Readability Check Text",
+                    description: "Text für den Trust Badge (z.B. 'Kostenloser LLM-Readability Check in 30 Sekunden')",
+                  },
+                ],
+              },
+
+              // ═══════════════════════════════════════════════════════════════════════════════
+              // TARGET AUDIENCE BLOCK - Für wen ist das Angebot?
+              // ═══════════════════════════════════════════════════════════════════════════════
+              {
+                name: "targetAudience",
+                label: "👥 Zielgruppen",
+                ui: {
+                  defaultItem: {
+                    headline: "Für wen ist CodeBack?",
+                    subheadline: "Für Experten, die verstanden haben, dass KI-Sichtbarkeit entscheidend ist – und dass Pagebuilder sie nicht liefern können.",
+                  },
+                },
+                fields: [
+                  {
+                    type: "string",
+                    name: "headline",
+                    label: "Headline",
+                  },
+                  {
+                    type: "string",
+                    name: "subheadline",
+                    label: "Subheadline",
+                    ui: { component: "textarea" },
+                  },
+                  {
+                    type: "object",
+                    name: "audiences",
+                    label: "Zielgruppen",
+                    list: true,
+                    fields: [
+                      { type: "string", name: "icon", label: "Emoji Icon" },
+                      { type: "string", name: "title", label: "Titel" },
+                      {
+                        type: "string",
+                        name: "description",
+                        label: "Beschreibung",
+                        ui: { component: "textarea" }
+                      },
+                      { type: "string", name: "bulletPoint", label: "Bullet Point (grün)", description: "z.B. '→ Strukturierte Inhalte = KI empfiehlt dich'" },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "stats",
+                    label: "Statistiken",
+                    list: true,
+                    description: "Die 3 Stats-Boxen unter den Zielgruppen",
+                    fields: [
+                      { type: "string", name: "value", label: "Wert", description: "z.B. '73%' oder '2025'" },
+                      { type: "string", name: "description", label: "Beschreibung" },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "earlyMover",
+                    label: "Early Mover Box",
+                    fields: [
+                      { type: "string", name: "title", label: "Titel", default: "Early Mover Advantage" },
+                      {
+                        type: "string",
+                        name: "text",
+                        label: "Text",
+                        ui: { component: "textarea" },
+                      },
+                    ],
+                  },
+                ],
+              },
+
+              // ═══════════════════════════════════════════════════════════════════════════════
+              // LIVE DEMO BLOCK - Zeigt wie KI die Seite liest
+              // ═══════════════════════════════════════════════════════════════════════════════
+              {
+                name: "liveDemo",
+                label: "🔬 Live Demo",
+                fields: [
+                  { type: "string", name: "headline", label: "Headline" },
+                  {
+                    type: "string",
+                    name: "description",
+                    label: "Beschreibung",
+                    ui: { component: "textarea" }
+                  },
+                  { type: "string", name: "ctaText", label: "CTA Button Text" },
+                  { type: "string", name: "ctaLink", label: "CTA Link" },
+                ],
+              },
+
+              // ═══════════════════════════════════════════════════════════════════════════════
+              // PROBLEM BLOCK - Das Problem beschreiben
+              // ═══════════════════════════════════════════════════════════════════════════════
+              {
+                name: "problem",
+                label: "⚠️ Problem Section",
+                fields: [
+                  { type: "string", name: "headline", label: "Headline" },
+                  {
+                    type: "string",
+                    name: "description",
+                    label: "Beschreibung",
+                    ui: { component: "textarea" }
+                  },
+                ],
+              },
+
+              // ═══════════════════════════════════════════════════════════════════════════════
+              // CONCEPT BLOCK - Die Lösung / Das Konzept
+              // ═══════════════════════════════════════════════════════════════════════════════
+              {
+                name: "concept",
+                label: "💡 Konzept Section",
+                fields: [
+                  { type: "string", name: "headline", label: "Headline" },
+                  {
+                    type: "string",
+                    name: "description",
+                    label: "Beschreibung",
+                    ui: { component: "textarea" }
+                  },
+                ],
+              },
+
+              // ═══════════════════════════════════════════════════════════════════════════════
+              // PRICING BLOCK - Pricing Packages
+              // ═══════════════════════════════════════════════════════════════════════════════
+              {
+                name: "pricing",
+                label: "💰 Pricing Section",
+                fields: [
+                  { type: "string", name: "headline", label: "Headline" },
+                  { type: "string", name: "subheadline", label: "Subheadline" },
+                  {
+                    type: "object",
+                    name: "statusBadge",
+                    label: "Status Badge",
+                    fields: [
+                      { type: "string", name: "text", label: "Text", description: "z.B. 'Launch Januar 2026'" },
+                      { type: "string", name: "slots", label: "Slots Info", description: "z.B. '3 von 4 Slots belegt'" },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "packages",
+                    label: "Pricing Packages",
+                    list: true,
+                    fields: [
+                      { type: "string", name: "icon", label: "Icon (Emoji)" },
+                      { type: "string", name: "name", label: "Name", description: "z.B. 'Bronze', 'Silver', 'Gold'" },
+                      { type: "string", name: "price", label: "Preis", description: "z.B. '5.000€'" },
+                      { type: "string", name: "deliveryTime", label: "Lieferzeit", description: "z.B. '7 Tage Lieferzeit'" },
+                      {
+                        type: "string",
+                        name: "features",
+                        label: "Features",
+                        list: true,
+                        description: "Liste der Features für dieses Package",
+                      },
+                      { type: "string", name: "ctaText", label: "CTA Button Text" },
+                      { type: "string", name: "ctaLink", label: "CTA Link" },
+                      { type: "boolean", name: "featured", label: "Featured Package?", description: "Wird grün hervorgehoben" },
+                    ],
+                  },
+                ],
+              },
+
+              // ═══════════════════════════════════════════════════════════════════════════════
+              // FUTURE BLOCK - Zukunft der Suche
+              // ═══════════════════════════════════════════════════════════════════════════════
+              {
+                name: "future",
+                label: "🔮 Future Vision",
+                fields: [
+                  { type: "string", name: "headline", label: "Headline" },
+                  {
+                    type: "string",
+                    name: "content",
+                    label: "Content",
+                    ui: { component: "textarea" }
+                  },
+                ],
+              },
+
+              // ═══════════════════════════════════════════════════════════════════════════════
+              // TECH STACK BLOCK - Technologien
+              // ═══════════════════════════════════════════════════════════════════════════════
+              {
+                name: "techStack",
+                label: "⚙️ Tech Stack",
+                fields: [
+                  { type: "string", name: "headline", label: "Headline" },
+                  {
+                    type: "string",
+                    name: "description",
+                    label: "Beschreibung",
+                    ui: { component: "textarea" }
+                  },
+                  {
+                    type: "object",
+                    name: "technologies",
+                    label: "Technologien",
+                    list: true,
+                    fields: [
+                      { type: "string", name: "icon", label: "Icon (Emoji)" },
+                      { type: "string", name: "name", label: "Name" },
+                      { type: "string", name: "description", label: "Beschreibung", ui: { component: "textarea" } },
+                      { type: "string", name: "badge", label: "Badge Text", description: "z.B. 'Open Source' oder 'Made in Germany'" },
+                      { type: "boolean", name: "featured", label: "Featured?", description: "Wird grün hervorgehoben" },
+                    ],
+                  },
+                ],
+              },
+
+              // ═══════════════════════════════════════════════════════════════════════════════
+              // FAQ BLOCK - Häufig gestellte Fragen
+              // ═══════════════════════════════════════════════════════════════════════════════
+              {
+                name: "faq",
+                label: "❓ FAQ Section",
+                fields: [
+                  { type: "string", name: "headline", label: "Headline" },
+                  {
+                    type: "object",
+                    name: "faqs",
+                    label: "FAQs",
+                    list: true,
+                    fields: [
+                      { type: "string", name: "question", label: "Frage" },
+                      {
+                        type: "string",
+                        name: "answer",
+                        label: "Antwort",
+                        ui: { component: "textarea" }
+                      },
+                    ],
+                  },
+                  {
+                    type: "object",
+                    name: "ctaBox",
+                    label: "CTA Box (nach FAQs)",
+                    fields: [
+                      { type: "string", name: "headline", label: "Headline" },
+                      { type: "string", name: "description", label: "Beschreibung" },
+                      { type: "string", name: "buttonText", label: "Button Text" },
+                      { type: "string", name: "buttonLink", label: "Button Link" },
+                      { type: "string", name: "secondaryText", label: "Secondary Text (unter Button)" },
+                    ],
+                  },
+                ],
+              },
+
+              // ═══════════════════════════════════════════════════════════════════════════════
+              // CTA BLOCK - Final Call-to-Action
+              // ═══════════════════════════════════════════════════════════════════════════════
+              {
+                name: "cta",
+                label: "🎯 Call-to-Action",
+                fields: [
+                  { type: "string", name: "headline", label: "Headline" },
+                  {
+                    type: "string",
+                    name: "description",
+                    label: "Beschreibung",
+                    ui: { component: "textarea" }
+                  },
+                  { type: "string", name: "buttonPrimaryText", label: "Primary Button Text" },
+                  { type: "string", name: "buttonPrimaryLink", label: "Primary Button Link" },
+                  { type: "string", name: "buttonSecondaryText", label: "Secondary Button Text" },
+                  { type: "string", name: "buttonSecondaryLink", label: "Secondary Button Link" },
+                  {
+                    type: "object",
+                    name: "blogLinks",
+                    label: "Blog Links Section",
+                    fields: [
+                      { type: "string", name: "headline", label: "Headline" },
+                      {
+                        type: "string",
+                        name: "links",
+                        label: "Blog Link Texte",
+                        list: true,
+                        description: "Liste der Blog-Link-Texte",
+                      },
+                    ],
+                  },
+                  { type: "string", name: "footerText", label: "Footer Text", description: "z.B. 'Entwickelt von Steven Noack'" },
+                ],
+              },
+
+            ],
+          },
+        ],
+      },
+
       // ═══════════════════════════════════════════════════════════════
       // BLOG POSTS COLLECTION (mit LLM Optimization)
       // ═══════════════════════════════════════════════════════════════

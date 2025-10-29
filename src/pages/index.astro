@@ -1,5 +1,13 @@
 ---
+// ═══════════════════════════════════════════════════════
+// HOMEPAGE - TinaCMS Blocks System
+// ═══════════════════════════════════════════════════════
+// Template-ready blocks-based homepage
+// All content managed via TinaCMS
+// ═══════════════════════════════════════════════════════
+
 import "../styles/global.css";
+import { getEntry } from 'astro:content';
 import SEO from "../components/SEO.astro";
 import Header from "../components/layout/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -14,9 +22,25 @@ import TechStack from "../components/sections/TechStack.astro";
 import CTASection from "../components/sections/CTASection.astro";
 import FAQSection from "../components/sections/FAQSection.astro";
 
-const pageTitle = "Codeback. Websites die Antworten werden";
-const pageDescription =
-  "LLM SEO und Answer Engine Optimization für die Zukunft der digitalen Sichtbarkeit";
+// Load homepage data from TinaCMS
+const homepage = await getEntry('homepage', 'index');
+const blocks = homepage?.data?.blocks || [];
+const pageTitle = homepage?.data?.title || "Codeback. Websites die Antworten werden";
+const pageDescription = homepage?.data?.description || "LLM SEO und Answer Engine Optimization für die Zukunft der digitalen Sichtbarkeit";
+
+// Component mapping for blocks
+const blockComponents: Record<string, any> = {
+  hero: Hero,
+  targetAudience: TargetAudience,
+  liveDemo: LiveDemo,
+  problem: ProblemSection,
+  concept: ConceptSection,
+  pricing: PricingSection,
+  future: FutureSection,
+  techStack: TechStack,
+  faq: FAQSection,
+  cta: CTASection,
+};
 ---
 
 <!doctype html>
@@ -58,35 +82,21 @@ const pageDescription =
 
     <main id="main-content" class="max-w-4xl mx-auto px-6 py-20">
       <article>
-        <!-- Hero -->
-        <Hero />
+        {blocks.map((block: any) => {
+          const Component = blockComponents[block._template];
+          if (!Component) {
+            console.warn(`No component found for block template: ${block._template}`);
+            return null;
+          }
 
-        <!-- Wer braucht das? -->
-        <TargetAudience />
+          // Props-based components (Hero, TargetAudience)
+          if (block._template === 'hero' || block._template === 'targetAudience') {
+            return <Component data={block} />;
+          }
 
-        <!-- Live-Demo -->
-        <LiveDemo />
-
-        <!-- Das Problem -->
-        <ProblemSection />
-
-        <!-- Das Konzept -->
-        <ConceptSection />
-
-        <!-- Die Lösung: Pricing -->
-        <PricingSection />
-
-        <!-- Die Zukunft -->
-        <FutureSection />
-
-        <!-- Tech Stack -->
-        <TechStack />
-
-        <!-- FAQ -->
-        <FAQSection />
-
-        <!-- CTA -->
-        <CTASection />
+          // Static components (for now - will be converted in Phase 2)
+          return <Component />;
+        })}
       </article>
     </main>
 

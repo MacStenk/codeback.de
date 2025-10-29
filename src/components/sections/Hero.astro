@@ -1,38 +1,62 @@
 ---
-// Hero.astro - Homepage Hero Section
+// ═══════════════════════════════════════════════════════
+// HERO COMPONENT - Homepage Hero Section
+// ═══════════════════════════════════════════════════════
+// Props-based component for TinaCMS blocks system
+// Design preserved 100% - only data source changed
+// Template-ready: Yes - Reusable for customer sites
+// ═══════════════════════════════════════════════════════
+
 import Button from '../Button.astro';
+
+interface Props {
+  data: {
+    eyebrow: string;
+    titlePart1: string;
+    titleHighlight: string;
+    titlePart2: string;
+    subtitle: string;
+    ctaPrimary: string;
+    ctaPrimaryLink: string;
+    ctaSecondary: string;
+    ctaSecondaryLink: string;
+    showReadabilityCheck: boolean;
+    readabilityText: string;
+  }
+}
+
+const { data } = Astro.props;
 ---
 
 <header class="mb-24">
   <div class="inline-block mb-6">
     <span class="text-sm font-medium text-green-600 bg-green-50 px-3 py-1 rounded-full">
-      Der Code ist zurück
+      {data.eyebrow}
     </span>
   </div>
-  
+
   <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-    ChatGPT empfiehlt<br/>
-    <span class="text-green-600">deine Konkurrenz</span> – nicht dich
+    {data.titlePart1}<br/>
+    <span class="text-green-600">{data.titleHighlight}</span> {data.titlePart2}
   </h1>
-  
+
   <p class="text-xl text-zinc-600 mb-8 leading-relaxed max-w-2xl">
-    Deine Expertise ist in Pagebuildern versteckt, statt maschinenlesbar strukturiert. 
-    Wir bauen die technische Grundlage, damit KI dein Wissen findet, versteht und als Antwort nutzt. 
-    Digitale Grundstruktur für nachhaltige Sichtbarkeit.
+    {data.subtitle}
   </p>
-  
+
   <div class="flex gap-4 items-center flex-wrap">
-    <Button href="/llm-checker" variant="primary">
-      Website jetzt testen →
+    <Button href={data.ctaPrimaryLink} variant="primary">
+      {data.ctaPrimary}
     </Button>
-    <Button href="#problem" variant="ghost">
-      Wie funktioniert das?
+    <Button href={data.ctaSecondaryLink} variant="ghost">
+      {data.ctaSecondary}
     </Button>
   </div>
 
-  <!-- Trust Badge unter Buttons -->
-  <div class="mt-6 flex items-center gap-2 text-sm text-zinc-500">
-    <span>⚡</span>
-    <span>Kostenloser LLM-Readability Check in 30 Sekunden</span>
-  </div>
+  {data.showReadabilityCheck && (
+    <div class="mt-6 flex items-center gap-2 text-sm text-zinc-500">
+      <span>⚡</span>
+      <span>{data.readabilityText}</span>
+    </div>
+  )}
 </header>

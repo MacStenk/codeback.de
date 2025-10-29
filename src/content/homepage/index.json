@@ -1,0 +1,296 @@
+{
+  "title": "Codeback. Websites die Antworten werden",
+  "description": "LLM SEO und Answer Engine Optimization für die Zukunft der digitalen Sichtbarkeit",
+  "blocks": [
+    {
+      "_template": "hero",
+      "eyebrow": "Der Code ist zurück",
+      "titlePart1": "ChatGPT empfiehlt",
+      "titleHighlight": "deine Konkurrenz",
+      "titlePart2": "– nicht dich",
+      "subtitle": "Deine Expertise ist in Pagebuildern versteckt, statt maschinenlesbar strukturiert. Wir bauen die technische Grundlage, damit KI dein Wissen findet, versteht und als Antwort nutzt. Digitale Grundstruktur für nachhaltige Sichtbarkeit.",
+      "ctaPrimary": "Website jetzt testen →",
+      "ctaPrimaryLink": "/llm-checker",
+      "ctaSecondary": "Wie funktioniert das?",
+      "ctaSecondaryLink": "#problem",
+      "showReadabilityCheck": true,
+      "readabilityText": "Kostenloser LLM-Readability Check in 30 Sekunden"
+    },
+    {
+      "_template": "targetAudience",
+      "headline": "Für wen ist CodeBack?",
+      "subheadline": "Für Experten, die verstanden haben, dass KI-Sichtbarkeit entscheidend ist – und dass Pagebuilder sie nicht liefern können.",
+      "audiences": [
+        {
+          "icon": "💼",
+          "title": "Business Coaches",
+          "description": "Deine Expertise ist wertvoll. Aber wenn jemand ChatGPT fragt \"Wer kann mir bei Teamführung helfen?\", wird deine WordPress-Seite ignoriert – weil sie nicht maschinenlesbar ist.",
+          "bulletPoint": "→ Strukturierte Inhalte = KI empfiehlt dich"
+        },
+        {
+          "icon": "📊",
+          "title": "Consultants & Berater",
+          "description": "Deine Methoden sind einzigartig. Aber KI-Systeme können sie nicht finden, weil sie in Pagebuilder-Shortcodes und visuellen Elementen versteckt sind statt semantisch strukturiert.",
+          "bulletPoint": "→ Maschinenlesbare Daten = Sichtbarkeit"
+        },
+        {
+          "icon": "🧠",
+          "title": "Therapeuten & Trainer",
+          "description": "Menschen suchen nicht mehr bei Google. Sie fragen ihre KI: \"Wer kann mir bei [Problem] helfen?\" Die Antwort hängt davon ab, ob deine Website strukturiert genug ist, um verstanden zu werden.",
+          "bulletPoint": "→ Answer Engine Optimization"
+        },
+        {
+          "icon": "🎯",
+          "title": "Speaker & Thought Leader",
+          "description": "Du bist Experte in deinem Bereich. Aber wenn LLMs deine Inhalte nicht verstehen und einordnen können, zitieren sie deine Konkurrenz. Nicht dich. Semantische Autorität entscheidet.",
+          "bulletPoint": "→ Strukturierte Expertise = Zitierwürdigkeit"
+        }
+      ],
+      "stats": [
+        {
+          "value": "73%",
+          "description": "der Nutzer vertrauen KI-Empfehlungen mehr als Werbung"
+        },
+        {
+          "value": "2025",
+          "description": "Das Jahr, in dem Answer Engines dominieren werden"
+        },
+        {
+          "value": "<5%",
+          "description": "der Coaches haben heute KI-optimierte Websites"
+        }
+      ],
+      "earlyMover": {
+        "title": "Early Mover Advantage",
+        "text": "Wer jetzt maschinenlesbare Inhalte aufbaut, wird in KI-Antworten zitiert. Wer wartet, wird ignoriert. Das Zeitfenster ist jetzt."
+      }
+    },
+    {
+      "_template": "liveDemo",
+      "headline": "Live-Demo: So liest KI diese Seite",
+      "description": "Diese Website ist selbst maschinenlesbar strukturiert. Wenn jemand ChatGPT fragt: \"Wer baut KI-optimierte Websites?\", versteht die KI sofort, was CodeBack macht:",
+      "ctaText": "Kostenloser LLM-Check →",
+      "ctaLink": "/llm-checker"
+    },
+    {
+      "_template": "problem",
+      "headline": "KI-Sichtbarkeit ist die neue Währung",
+      "description": "Jemand fragt ChatGPT: \"Wer kann mir bei Teamführung helfen?\" Was antwortet die KI? Hängt davon ab, was sie auf deiner Website versteht."
+    },
+    {
+      "_template": "concept",
+      "headline": "Maschinenlesbare Inhalte. Technische Souveränität.",
+      "description": "Moderne Webarchitektur statt Pagebuilder. JAMstack statt WordPress. Sauberer Code statt DIV-Suppe. Das ist CodeBack."
+    },
+    {
+      "_template": "pricing",
+      "headline": "Wähle dein Package",
+      "subheadline": "Moderne Webarchitektur. Maschinenlesbare Inhalte. Technische Souveränität.",
+      "statusBadge": {
+        "text": "Launch Januar 2026",
+        "slots": "3 von 4 Slots belegt"
+      },
+      "packages": [
+        {
+          "icon": "🥉",
+          "name": "Bronze",
+          "price": "5.000€",
+          "deliveryTime": "7 Tage Lieferzeit",
+          "features": [
+            "Homepage + 3 Unterseiten",
+            "Astro + JAMstack Architektur",
+            "Schema.org Basis-Integration",
+            "Blog-Setup mit Markdown",
+            "GitHub + Cloudflare Deployment",
+            "1 Revision-Runde"
+          ],
+          "ctaText": "Anfragen",
+          "ctaLink": "#kontakt",
+          "featured": false
+        },
+        {
+          "icon": "🥈",
+          "name": "Silver",
+          "price": "9.000€",
+          "deliveryTime": "14 Tage Lieferzeit",
+          "features": [
+            "Homepage + 10 Unterseiten",
+            "Custom Component Library",
+            "Schema.org Full Integration",
+            "FAQ-Schema für Answer Engines",
+            "n8n Basis-Automation Setup",
+            "2 Revision-Runden"
+          ],
+          "ctaText": "Jetzt starten",
+          "ctaLink": "#kontakt",
+          "featured": true
+        },
+        {
+          "icon": "🥇",
+          "name": "Gold",
+          "price": "15.000€",
+          "deliveryTime": "30 Tage Lieferzeit",
+          "features": [
+            "Unlimited Pages",
+            "Full Custom Design System",
+            "Advanced Schema.org + JSON-LD",
+            "n8n Full Workflow-Automation",
+            "CRM + Kalender Integration",
+            "3 Revision-Runden + Priority Support"
+          ],
+          "ctaText": "Enterprise anfragen",
+          "ctaLink": "#kontakt",
+          "featured": false
+        }
+      ]
+    },
+    {
+      "_template": "future",
+      "headline": "Der Shift von Search zu Answer",
+      "content": "2010-2023: Search Engine Era - \"Hey Google, zeig mir Business Coaches in Berlin\" → 10 blaue Links. Du klickst dich durch. Du vergleichst selbst.\n\n2024-2026: Answer Engine Era - \"Hey ChatGPT, empfiehl mir einen Coach für Teamführung mit agilen Methoden\" → Direkte Empfehlung. Mit Details. Ohne dass du klicken musst.\n\nDie entscheidende Frage: Ist deine Website die Antwort, die KI gibt? Oder die deiner Konkurrenz?\n\nWer jetzt maschinenlesbare Strukturen aufbaut, hat den First-Mover-Advantage"
+    },
+    {
+      "_template": "techStack",
+      "headline": "Technische Vertrauensbasis",
+      "description": "Moderne Webarchitektur statt Pagebuilder. Europäische Server statt US-Cloud. Open Source statt Vendor-Lock-in. Hier ist der Stack:",
+      "technologies": [
+        {
+          "icon": "⚡",
+          "name": "Astro + JAMstack",
+          "description": "Zero-JS Framework. Statischer Export. Sauberes, semantisches HTML5 ohne DIV-Suppen.",
+          "badge": "Performance + Sicherheit",
+          "featured": false
+        },
+        {
+          "icon": "✏️",
+          "name": "TinaCMS",
+          "description": "Git-basiertes Headless CMS. Inhalte bearbeiten wie in WordPress, aber ohne dessen Nachteile.",
+          "badge": "Markdown + Visual Editor",
+          "featured": false
+        },
+        {
+          "icon": "🔧",
+          "name": "n8n Automation",
+          "description": "Workflow-Automatisierung für Formulare, CRM-Integration, Newsletter-Sync.",
+          "badge": "Self-hosted",
+          "featured": false
+        },
+        {
+          "icon": "🗄️",
+          "name": "Vektordatenbanken",
+          "description": "Qdrant für semantische Suche. Macht Inhalte für KI-Systeme optimal auffindbar.",
+          "badge": "Open Source",
+          "featured": false
+        },
+        {
+          "icon": "🖥️",
+          "name": "Hetzner Server",
+          "description": "Eigenständige virtuelle Server. Keine Shared Hosting. Deutsches Rechenzentrum.",
+          "badge": "Made in Germany",
+          "featured": true
+        },
+        {
+          "icon": "🛡️",
+          "name": "Cloudflare Edge",
+          "description": "Optional für statische Sites. Edge-Deployment für globale Performance.",
+          "badge": "Zero Config CDN",
+          "featured": false
+        },
+        {
+          "icon": "📦",
+          "name": "GitHub",
+          "description": "Versionskontrolle. Deployment-Pipeline. Vollständige History deiner Website.",
+          "badge": "Du behältst die Kontrolle",
+          "featured": false
+        },
+        {
+          "icon": "🗂️",
+          "name": "Docker Stack",
+          "description": "Alle Services containerisiert. Reproduzierbar. Skalierbar. Einfach zu warten.",
+          "badge": "Infrastructure as Code",
+          "featured": false
+        }
+      ]
+    },
+    {
+      "_template": "faq",
+      "headline": "Häufig gestellte Fragen",
+      "faqs": [
+        {
+          "question": "Warum ist meine Website unsichtbar für KI?",
+          "answer": "Viele Inhalte liegen in Pagebuildern, Bildern oder JavaScript versteckt. KI-Systeme können diese nicht eindeutig auslesen oder einordnen. Konkret: Deine Expertise steht in Bildern, deine Services in DIV-Suppen, deine Spezialisierung in Shortcodes. Für ChatGPT sieht das aus wie: \"Irgendeine Website... aber wofür genau?\""
+        },
+        {
+          "question": "Ist das dasselbe wie SEO?",
+          "answer": "Ähnlich, aber für KI statt Google. SEO optimiert für Rankings. Wir optimieren dafür, dass ChatGPT dich in Antworten einbindet. Das nennt man Answer Engine Optimization (AEO). Während andere noch auf \"10 blaue Links\" setzen, bist du die direkte Antwort, die KI gibt wenn jemand nach deinen Services fragt."
+        },
+        {
+          "question": "Was bedeutet maschinenlesbare Expertise?",
+          "answer": "Information ist so strukturiert, dass KI-Systeme eindeutig erkennen können: Wer du bist (Name, Rolle, Autorität), Was du anbietest (Services, Methoden, Ansätze), Für wen du relevant bist (Zielgruppe, Location, Spezialisierung). Beispiel: Statt \"Ich helfe Teams\" schreiben wir strukturiert: Service: Business Coaching | Spezialisierung: Agile Teamführung | Location: Berlin | Format: 1:1 + Workshops. ChatGPT kann dich jetzt präzise empfehlen."
+        },
+        {
+          "question": "Warum nicht einfach ein WordPress SEO-Plugin?",
+          "answer": "SEO-Plugins können Schema.org hinzufügen, aber nicht die fundamentalen HTML-Strukturprobleme lösen, die Pagebuilder erzeugen. DIV-Suppen, Shortcodes und JavaScript-Rendering bleiben. Das ist wie: \"Ich schmücke meine kaputte Wand mit einem schönen Poster.\" CodeBack baut von Grund auf sauberes, semantisches HTML. Nicht kosmetisch, sondern strukturell. Der Code ist zurück."
+        },
+        {
+          "question": "Kann ich mein WordPress behalten?",
+          "answer": "Technisch ja, aber nicht empfehlenswert. WordPress mit Pagebuildern erzeugt strukturelle Probleme, die sich nicht einfach \"wegoptimieren\" lassen. Das ist wie: \"Kann ich meinen Fiat 500 zum Formel-1-Auto umbauen?\" – Ja, aber günstiger ist ein neues Auto. Für echte KI-Sichtbarkeit brauchst du sauberes HTML von Grund auf. Das ist schneller, sicherer und zukunftssicherer als Flickwerk auf altem System."
+        },
+        {
+          "question": "Wie lange dauert die Umsetzung?",
+          "answer": "Bronze: 7 Tage (Homepage + 3 Seiten), Silver: 14 Tage (Homepage + 10 Seiten), Gold: 30 Tage (Unlimited + Automation). Inklusive: Konzept, Entwicklung, Revisions, Launch, Übergabe"
+        },
+        {
+          "question": "Kann ich selbst Inhalte aktualisieren?",
+          "answer": "Ja, über TinaCMS (Git-basierter Editor) oder direkt in Markdown. So einfach wie in einem Texteditor. Updates werden automatisch deployed. Keine Angst vor kaputten Plugins nach Updates, White Screen of Death, inkompatiblen Theme-Versionen oder langsamen Admin-Backends. Edit → Save → Deployed. Fertig."
+        },
+        {
+          "question": "Wie lange bis ich Ergebnisse sehe?",
+          "answer": "KI-Indexierung läuft kontinuierlich, ähnlich wie Google-Crawling. 2-4 Wochen: Erste Sichtbarkeit in LLM-Antworten. 2-3 Monate: Volle Wirkung, wenn KIs deine Inhalte mehrfach gecrawlt haben. 6+ Monate: Semantische Autorität aufgebaut, regelmäßige Zitierungen. Je mehr strukturierte Inhalte du lieferst, desto schneller baut sich deine Sichtbarkeit auf."
+        },
+        {
+          "question": "Wo liegen meine Daten?",
+          "answer": "Option 1: Cloudflare Pages - Globales Edge-Netzwerk, DSGVO-konform, Perfekt für statische Sites. Option 2: Hetzner Deutschland - Eigenständige virtuelle Server, Deutsches Rechenzentrum, Root-Zugriff, keine Shared Hosting, Made in Germany. Du entscheidest, was zu deinen Anforderungen passt. Keine US-Clouds. Keine Vendor-Lock-ins."
+        },
+        {
+          "question": "Was passiert, wenn ihr nicht mehr verfügbar seid?",
+          "answer": "Du hast vollständigen Zugriff auf Code und Deployment. Alles liegt in deinem GitHub-Repository. Jeder Entwickler kann das übernehmen. Die gesamte Build-Pipeline ist dokumentiert. Du besitzt: Kompletten Source Code, Git History & Dokumentation, Deployment-Konfiguration, Alle Zugänge & Credentials. Kein Vendor-Lock-in wie bei proprietären Pagebuildern. Du bist nicht abhängig von uns."
+        },
+        {
+          "question": "Was unterscheidet euch von anderen Webagenturen?",
+          "answer": "Wir bauen keine WordPress-Sites mit Plugins. Andere Agenturen: WordPress + Elementor/Divi, 50+ Plugins, Shared Hosting, Monatliche Wartung nötig, Langsam, unsicher. CodeBack: Astro + JAMstack, Zero-JS, semantisches HTML, Hetzner eigenständige Server, Wartungsarm by design, Schnell, sicher, KI-optimiert. Der Code ist zurück. Wir nutzen moderne Webarchitektur, GitHub als Versionskontrolle, und du behältst volle Kontrolle über Code und Daten."
+        },
+        {
+          "question": "Bietet ihr auch Wartung an?",
+          "answer": "Optional, aber nicht nötig. JAMstack-Sites haben keine Plugins die brechen, keine Datenbank die gehackt werden kann, keine Updates die Funktionen zerstören. Wenn du trotzdem Support willst: Ab 500€/Monat für Content-Updates & neue Seiten, Feature-Entwicklung, Automation-Erweiterungen, Performance-Monitoring. Aber ehrlich: Die meisten unserer Kunden brauchen keine laufende Wartung."
+        }
+      ],
+      "ctaBox": {
+        "headline": "Noch Fragen?",
+        "description": "Lass uns in einem kurzen Call klären, ob CodeBack zu deinem Business passt.",
+        "buttonText": "Kostenlose Beratung buchen",
+        "buttonLink": "mailto:steven@codeback.de",
+        "secondaryText": "Oder teste erst deine Website: LLM-Readability Checker →"
+      }
+    },
+    {
+      "_template": "cta",
+      "headline": "Launch: Januar 2026",
+      "description": "CodeBack ist in aktiver Entwicklung. 4 Launch-Slots – 3 sind belegt. Interesse? Setz dich auf die Warteliste.",
+      "buttonPrimaryText": "Warteliste beitreten",
+      "buttonPrimaryLink": "mailto:steven@codeback.de",
+      "buttonSecondaryText": "Blog lesen →",
+      "buttonSecondaryLink": "/blog",
+      "blogLinks": {
+        "headline": "Was du im Blog findest:",
+        "links": [
+          "Answer Engine Optimization: Wie KI deine Website versteht",
+          "Schema.org Deep Dive: Maschinenlesbare Strukturen erklärt",
+          "JAMstack vs. WordPress: Der technische Vergleich",
+          "Entwicklungs-Updates: Der Weg zu CodeBack"
+        ]
+      },
+      "footerText": "Entwickelt von Steven Noack\n29 Jahre Internet-Erfahrung · Privacy First · Der Code ist zurück"
+    }
+  ]
+}

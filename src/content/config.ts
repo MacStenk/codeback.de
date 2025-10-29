@@ -103,6 +103,19 @@ const blogCollection = defineCollection({
 });
 
 // ═══════════════════════════════════════════════════════════════
+// HOMEPAGE COLLECTION SCHEMA (JSON-based, TinaCMS managed)
+// ═══════════════════════════════════════════════════════════════
+
+const homepageCollection = defineCollection({
+  type: 'data',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    blocks: z.array(z.any()), // TinaCMS managed, flexible schema
+  }),
+});
+
+// ═══════════════════════════════════════════════════════════════
 // PAGES COLLECTION SCHEMA
 // ═══════════════════════════════════════════════════════════════
 
@@ -205,4 +218,5 @@ const pagesCollection = defineCollection({
 export const collections = {
   'blog': blogCollection,
   'pages': pagesCollection,
+  'homepage': homepageCollection,
 };
