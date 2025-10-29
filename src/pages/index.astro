@@ -82,21 +82,32 @@ const blockComponents: Record<string, any> = {
 
     <main id="main-content" class="max-w-4xl mx-auto px-6 py-20">
       <article>
-        {blocks.map((block: any) => {
-          const Component = blockComponents[block._template];
-          if (!Component) {
-            console.warn(`No component found for block template: ${block._template}`);
-            return null;
-          }
-
-          // Props-based components (Hero, TargetAudience)
-          if (block._template === 'hero' || block._template === 'targetAudience') {
+        <!-- ═══════════════════════════════════════════════════════════════
+             PHASE 1: Only render props-based components (Hero & TargetAudience)
+             Other components will be converted in Phase 2
+             ═══════════════════════════════════════════════════════════════ -->
+        {blocks
+          .filter((block: any) => ['hero', 'targetAudience'].includes(block._template))
+          .map((block: any) => {
+            const Component = blockComponents[block._template];
+            if (!Component) {
+              console.warn(`No component found for block template: ${block._template}`);
+              return null;
+            }
             return <Component data={block} />;
-          }
+          })}
 
-          // Static components (for now - will be converted in Phase 2)
-          return <Component />;
-        })}
+        <!-- ═══════════════════════════════════════════════════════════════
+             TEMPORARY: Static components until Phase 2 conversion
+             ═══════════════════════════════════════════════════════════════ -->
+        <LiveDemo />
+        <ProblemSection />
+        <ConceptSection />
+        <PricingSection />
+        <FutureSection />
+        <TechStack />
+        <FAQSection />
+        <CTASection />
       </article>
     </main>
 
