@@ -553,7 +553,6 @@ export default defineConfig({
             type: "string",
             name: "schemaType",
             label: "📊 Schema.org Type",
-            required: true,
             default: "WebPage",
             options: ["WebPage", "AboutPage", "ContactPage", "Service", "FAQPage", "Article"],
           },
@@ -561,6 +560,7 @@ export default defineConfig({
             type: "datetime",
             name: "datePublished",
             label: "📅 Veröffentlicht am",
+            required: false,
             ui: {
               dateFormat: "DD.MM.YYYY",
             },
@@ -569,6 +569,7 @@ export default defineConfig({
             type: "datetime",
             name: "dateModified",
             label: "🔄 Zuletzt geändert",
+            required: false,
           },
           
           // ═══ LLM OPTIMIZATION ═══
