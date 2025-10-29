@@ -10,7 +10,7 @@ export default defineConfig({
   branch,
 
   // Deine TinaCloud Client ID
-  clientId: "c2b183f6-e2c7-495c-aee1-7cdcf967ecfa",
+  clientId: process.env.TINA_CLIENT_ID,
   token: process.env.TINA_TOKEN,
 
   build: {
