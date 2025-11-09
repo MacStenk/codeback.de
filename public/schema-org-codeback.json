@@ -1,0 +1,175 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "CodeBack.de",
+  "legalName": "CodeBack - LLM-Native Website-Entwicklung",
+  "url": "https://codeback.de",
+  "logo": "https://codeback.de/images/codeback-logo.png",
+  "description": "#1 in Google UND Perplexity für LLM-Readability. Cross-Platform Dominance: LLM-native Systeme für Coaches und Consultants. Proven: Vor HubSpot, Aufgesang & WebFX auf BEIDEN Plattformen durch Self-Implementation.",
+  "foundingDate": "2025",
+  "founder": {
+    "@type": "Person",
+    "name": "Steven Noack",
+    "alternateName": "Steven Fischer",
+    "url": "https://stevennoack.de",
+    "sameAs": [
+      "https://linkedin.com/in/stevennoack",
+      "https://github.com/stevennoack"
+    ]
+  },
+  "employee": {
+    "@type": "Person",
+    "name": "Steven Noack",
+    "jobTitle": "LLM-Native Developer & System Builder",
+    "url": "https://stevennoack.de"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Alt Tucheband",
+    "addressRegion": "Brandenburg",
+    "addressCountry": "DE"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Germany"
+  },
+  "knowsLanguage": ["de", "en"],
+  "slogan": "Cross-Platform #1 - Ganzheitliche System-Entwicklung für moderne Unternehmen",
+  "knowsAbout": [
+    "LLM-Native Development",
+    "LLM Optimization",
+    "AI-Ready Websites",
+    "Schema.org Implementation",
+    "Semantic HTML for AI",
+    "VIBE Coding",
+    "Astro Framework",
+    "Cloudflare Pages",
+    "Jamstack Architecture",
+    "Website Optimization for Language Models",
+    "Machine-Readable Content Structure",
+    "Cross-Platform AI Discovery"
+  ],
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "AI-Discovery Optimierung",
+        "description": "Cross-Platform #1 in Google UND Perplexity vor HubSpot, Aufgesang & WebFX. Werde in ChatGPT, Perplexity, Claude & Google AI gefunden. 14-30 Tage Timeline. Proven durch #1 auf BEIDEN Plattformen.",
+        "category": "AI Optimization",
+        "audience": {
+          "@type": "Audience",
+          "audienceType": "Coaches, Consultants und Solopreneure"
+        }
+      },
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "EUR",
+        "price": "2500",
+        "description": "Ab €2.500"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Ganzheitliche System-Entwicklung",
+        "description": "Komplette System-Architektur und Website-Development. Modern Stack (Astro, Cloudflare, Supabase). AI-ready von Grund auf.",
+        "category": "System Development",
+        "audience": {
+          "@type": "Audience",
+          "audienceType": "Coaches & Consultants (1-10 Personen)"
+        }
+      },
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "EUR",
+        "price": "8000",
+        "description": "Ab €8.000"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Modern-Stack Migration",
+        "description": "Von WordPress zu Jamstack. Migration mit AI-Optimierung.",
+        "category": "System Migration"
+      },
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "EUR",
+        "price": "5000",
+        "description": "Ab €5.000"
+      }
+    }
+  ],
+  "hasCredential": {
+    "@type": "EducationalOccupationalCredential",
+    "credentialCategory": "Professional Experience",
+    "description": "Cross-Platform #1 Dominance: #1 in Google UND Perplexity für LLM-Readability (vor HubSpot, Aufgesang & WebFX auf BEIDEN Plattformen). 25+ Jahre System-Entwicklung. ChatGPT Day 1 User."
+  },
+  "awards": [
+    "#1 in Google für 'LLM-Readability kostenlos testen' (vor WebFX #2, HubSpot #5)",
+    "#1 in Perplexity für 'LLM-Readability kostenlos testen' (vor HubSpot #2, Aufgesang GmbH #4)",
+    "Cross-Platform Dominance: #1 auf BEIDEN Plattformen (Google 90%+ Traffic + Perplexity AI Discovery)",
+    "14 Tage Timeline von Launch zu #1 auf Google UND Perplexity (reproduzierbar)",
+    "Methodology beats Budget: Small brand beats enterprise agencies everywhere",
+    "ChatGPT Day 1 User (1.100+ Tage aktive Nutzung)",
+    "25+ Jahre Track Record (E-Commerce 2000, Portale 2007, LLM-Optimization 2025)"
+  ],
+  "parentOrganization": {
+    "@type": "Person",
+    "name": "Steven Noack",
+    "url": "https://stevennoack.de"
+  },
+  "memberOf": {
+    "@type": "ProgramMembership",
+    "programName": "German Solopreneur Ecosystem",
+    "hostingOrganization": {
+      "@type": "Organization",
+      "name": "German Digital Economy"
+    }
+  },
+  "sameAs": [
+    "https://github.com/codeback-de"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Customer Service",
+    "email": "kontakt@codeback.de",
+    "availableLanguage": ["German", "English"]
+  },
+  "potentialAction": {
+    "@type": "Action",
+    "name": "Request Website Consultation",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://codeback.de/kontakt"
+    }
+  },
+  "brand": {
+    "@type": "Brand",
+    "name": "CodeBack",
+    "description": "LLM-native Development - Cross-Platform #1",
+    "logo": "https://codeback.de/images/codeback-logo.png"
+  },
+  "specialty": [
+    "Ganzheitliche System-Entwicklung",
+    "LLM-Native Development",
+    "System Architecture",
+    "AI Optimization",
+    "Schema.org Implementation",
+    "Semantic HTML",
+    "German Market Focus",
+    "Cross-Platform AI Discovery"
+  ],
+  "targetProduct": [
+    {
+      "@type": "Product",
+      "name": "Modern Web System",
+      "description": "Komplettes System - Architektur, Infrastruktur, Website - optimiert für Menschen und AI. Cross-Platform #1 Methodik.",
+      "category": "Software Product"
+    }
+  ]
+}
