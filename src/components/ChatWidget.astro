@@ -465,12 +465,22 @@ START MESSAGE:
     // Chat Window
     const chat = document.createElement('div');
     chat.id = 'chat-window';
+    
+    // Responsive sizing
+    const isMobile = window.innerWidth <= 768;
+    const width = isMobile ? 'calc(100vw - 20px)' : '400px';
+    const height = isMobile ? '70vh' : '600px';
+    const bottom = isMobile ? '80px' : '90px';
+    const right = isMobile ? '10px' : '20px';
+    const left = isMobile ? '10px' : 'auto';
+    
     chat.style.cssText = `
       position: fixed;
-      bottom: 90px;
-      right: 20px;
-      width: 400px;
-      height: 600px;
+      bottom: ${bottom};
+      right: ${right};
+      left: ${left};
+      width: ${width};
+      height: ${height};
       background: white;
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.2);
