@@ -313,6 +313,33 @@ START MESSAGE:
       } else {
         leadData.isQualified = true;
         console.log('✅ ✅ ✅ QUALIFIED LEAD SAVED TO SUPABASE!', leadData);
+        
+        // Send Magic Link Email
+        console.log('📧 Sending magic link email...');
+        try {
+          const emailResponse = await fetch('/api/send-magic-link', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              name: leadData.name,
+              email: leadData.email,
+              budget: leadData.budget,
+              timeline: leadData.timeline,
+              business: leadData.business
+            })
+          });
+          
+          if (emailResponse.ok) {
+            console.log('✅ Magic link email sent successfully!');
+          } else {
+            const errorData = await emailResponse.json();
+            console.error('❌ Failed to send email:', errorData);
+          }
+        } catch (emailError) {
+          console.error('❌ Email sending error:', emailError);
+        }
       }
     } catch (error) {
       console.error('Save lead error:', error);
