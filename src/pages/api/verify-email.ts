@@ -50,12 +50,14 @@ export const GET: APIRoute = async ({ url, locals }) => {
       tokens: testQuery?.map(l => l.verification_token)
     });
 
-    // Find lead by verification token
-    const { data: lead, error: findError } = await supabase
+    // Find lead by verification token (use first match in case of duplicates)
+    const { data: leads, error: findError } = await supabase
       .from('qualified_leads')
       .select('*')
       .eq('verification_token', token)
-      .single();
+      .limit(1);
+    
+    const lead = leads?.[0];
 
     if (findError || !lead) {
       console.error('❌ Token lookup failed!');
