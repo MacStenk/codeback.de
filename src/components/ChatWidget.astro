@@ -187,7 +187,7 @@ START MESSAGE:
     
     // Extract Email
     if (!leadData.email) {
-      const emailMatch = conversation.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/i);
+      const emailMatch = conversation.match(/([a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/i);
       if (emailMatch) {
         const extractedEmail = emailMatch[1].toLowerCase();
         const validation = validateEmail(extractedEmail);
@@ -320,45 +320,48 @@ START MESSAGE:
       
       if (error) {
         console.error('❌ Supabase insert error:', error);
-      } else {
-        leadData.isQualified = true;
-        console.log('✅ ✅ ✅ QUALIFIED LEAD SAVED (UNVERIFIED)!', leadData);
+        // CRITICAL: Reset flag so we can retry saving!
+        leadData.isQualified = false;
+        return; // Stop here if save failed
+      }
+      
+      // Success!
+      console.log('✅ ✅ ✅ QUALIFIED LEAD SAVED (UNVERIFIED)!', leadData);
+      
+      // Send Verification Email (NOT Magic Link yet!)
+      console.log('📧 Sending verification email...');
+      console.log('🎫 Email will use token:', verificationToken);
+      try {
+        // Smart URL detection: Use production URL when deployed, localhost when local
+        const siteUrl = window.location.hostname === 'localhost' 
+          ? window.location.origin 
+          : 'https://codeback.de';
         
-        // Send Verification Email (NOT Magic Link yet!)
-        console.log('📧 Sending verification email...');
-        console.log('🞫 Email will use token:', verificationToken);
-        try {
-          // Smart URL detection: Use production URL when deployed, localhost when local
-          const siteUrl = window.location.hostname === 'localhost' 
-            ? window.location.origin 
-            : 'https://codeback.de';
-          
-          console.log('🌐 Using siteUrl:', siteUrl);
-          
-          const emailResponse = await fetch('/api/send-verification', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              name: leadData.name,
-              email: leadData.email,
-              verificationToken: verificationToken,
-              siteUrl: siteUrl
-            })
-          });
-          
-          if (emailResponse.ok) {
-            console.log('✅ Verification email sent successfully!');
-          } else {
-            const errorData = await emailResponse.json();
-            console.error('❌ Failed to send verification email:', errorData);
-            console.error('❌ Response status:', emailResponse.status);
-            console.error('❌ Response statusText:', emailResponse.statusText);
-          }
-        } catch (emailError) {
-          console.error('❌ Email sending error:', emailError);
+        console.log('🌐 Using siteUrl:', siteUrl);
+        
+        const emailResponse = await fetch('/api/send-verification', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: leadData.name,
+            email: leadData.email,
+            verificationToken: verificationToken,
+            siteUrl: siteUrl
+          })
+        });
+        
+        if (emailResponse.ok) {
+          console.log('✅ Verification email sent successfully!');
+        } else {
+          const errorData = await emailResponse.json();
+          console.error('❌ Failed to send verification email:', errorData);
+          console.error('❌ Response status:', emailResponse.status);
+          console.error('❌ Response statusText:', emailResponse.statusText);
         }
+      } catch (emailError) {
+        console.error('❌ Email sending error:', emailError);
       }
     } catch (error) {
       console.error('Save lead error:', error);
@@ -371,7 +374,7 @@ START MESSAGE:
     messages.push({ role: 'user', content: userMessage });
     
     // Check if message contains email and has typo
-    const emailMatch = userMessage.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/i);
+    const emailMatch = userMessage.match(/([a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/i);
     let typoSystemMessage = null;
     
     if (emailMatch) {
