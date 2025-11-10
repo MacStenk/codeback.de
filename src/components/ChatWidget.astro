@@ -1,6 +1,6 @@
 ---
 // ChatWidget.astro - Briefing Chat für CodeBack.de
-// Vector Search mit Supabase + OpenAI
+// Vector Search mit Supabase + OpenAI + Email Validation
 ---
 
 <div id="chat-widget-container"></div>
@@ -32,17 +32,21 @@ GESPRÄCHSSTIL:
 - Eine Frage nach der anderen
 - Direkt & freundlich
 
-ABLAUF (MAX 5 FRAGEN!):
+ABLAUF (MAX 6 FRAGEN!):
 1. Name
 2. Was brauchst du? (Website, Funnel, KI-Tool?)
 3. Budget-Range
 4. EMAIL (sehr wichtig!)
-5. Wann soll's losgehen?
+5. EMAIL BESTÄTIGUNG: "📧 Ist [email] korrekt? (ja/nein)"
+6. Wann soll's losgehen?
 
 WICHTIG:
-- Nach Frage 4 IMMER nach Email fragen!
-- Bei Budget >€2.500 → Qualified Lead
-- Nach Email → Verabschiedung & "Ich melde mich in 24h"
+- Nach Email-Eingabe IMMER fragen: "📧 Ist [email] korrekt?"
+- Bei "ja" → Weiter zur nächsten Frage
+- Bei "nein" → "Okay, bitte gib deine Email nochmal ein"
+- Nach Email-Bestätigung → Frage nach Timeline
+- Bei Budget >€2.500 + bestätigter Email → Qualified Lead
+- Nach Timeline → Verabschiedung & "Ich melde mich in 24h per Email"
 
 START MESSAGE:
 "Hi! 👋 Ich bin der CodeBack Bot. Wie heißt du?"`;
@@ -54,11 +58,63 @@ START MESSAGE:
   let leadData: {
     name?: string;
     email?: string;
+    emailConfirmed?: boolean;
     business?: string;
     budget?: string;
     timeline?: string;
     isQualified?: boolean;
   } = {};
+  
+  // === EMAIL VALIDATION ===
+  const COMMON_DOMAINS = [
+    'gmail.com', 'googlemail.com',
+    'yahoo.com', 'yahoo.de',
+    'hotmail.com', 'hotmail.de',
+    'outlook.com', 'outlook.de',
+    'gmx.de', 'gmx.net',
+    'web.de', 't-online.de',
+    'freenet.de',
+    'icloud.com', 'me.com',
+    'aol.com', 'live.com'
+  ];
+  
+  const TYPO_MAP: Record<string, string> = {
+    'gmial.com': 'gmail.com',
+    'gmai.com': 'gmail.com',
+    'gmil.com': 'gmail.com',
+    'gmaill.com': 'gmail.com',
+    'yahooo.com': 'yahoo.com',
+    'yaho.com': 'yahoo.com',
+    'hotmial.com': 'hotmail.com',
+    'hotmail.con': 'hotmail.com',
+    'outlok.com': 'outlook.com',
+    'outloo.com': 'outlook.com',
+    'gmx.dd': 'gmx.de',
+    'web.dd': 'web.de',
+    'freent.de': 'freenet.de'
+  };
+  
+  function validateEmail(email: string): { valid: boolean; suggestion?: string } {
+    // Regex check
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      return { valid: false };
+    }
+    
+    // Extract domain
+    const domain = email.split('@')[1]?.toLowerCase();
+    if (!domain) return { valid: false };
+    
+    // Check for typos
+    if (TYPO_MAP[domain]) {
+      return {
+        valid: true,
+        suggestion: email.split('@')[0] + '@' + TYPO_MAP[domain]
+      };
+    }
+    
+    return { valid: true };
+  }
   
   // === VECTOR SEARCH ===
   async function searchKnowledge(query: string): Promise<string> {
@@ -116,8 +172,37 @@ START MESSAGE:
     if (!leadData.email) {
       const emailMatch = conversation.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/i);
       if (emailMatch) {
-        leadData.email = emailMatch[1];
-        console.log('✉️ Email extracted:', leadData.email);
+        const extractedEmail = emailMatch[1].toLowerCase();
+        const validation = validateEmail(extractedEmail);
+        
+        if (validation.valid) {
+          leadData.email = validation.suggestion || extractedEmail;
+          leadData.emailConfirmed = false;  // Needs confirmation
+          console.log('✉️ Email extracted:', leadData.email);
+          
+          if (validation.suggestion) {
+            console.log('💡 Typo detected! Suggested:', validation.suggestion);
+          }
+        } else {
+          console.log('❌ Invalid email format:', extractedEmail);
+        }
+      }
+    }
+    
+    // Check for email confirmation
+    if (leadData.email && !leadData.emailConfirmed) {
+      const lastUserMessage = messages[messages.length - 2]?.content.toLowerCase() || '';
+      if (lastUserMessage.includes('ja') || lastUserMessage.includes('yes') || 
+          lastUserMessage.includes('korrekt') || lastUserMessage.includes('stimmt') ||
+          lastUserMessage.includes('richtig') || lastUserMessage.includes('✅')) {
+        leadData.emailConfirmed = true;
+        console.log('✅ Email confirmed by user');
+      } else if (lastUserMessage.includes('nein') || lastUserMessage.includes('no') ||
+                 lastUserMessage.includes('falsch') || lastUserMessage.includes('❌')) {
+        // User rejected - clear email so they can enter again
+        leadData.email = undefined;
+        leadData.emailConfirmed = false;
+        console.log('❌ Email rejected by user, cleared for re-entry');
       }
     }
     
@@ -171,9 +256,12 @@ START MESSAGE:
   }
   
   function isLeadQualified(): boolean {
-    // Check if budget > €2500, has name AND email
-    if (!leadData.budget || !leadData.name || !leadData.email) {
-      console.log('⚠️ Not qualified yet:', leadData);
+    // Check if budget > €2500, has name AND email is CONFIRMED
+    if (!leadData.budget || !leadData.name || !leadData.email || !leadData.emailConfirmed) {
+      console.log('⚠️ Not qualified yet:', {
+        ...leadData,
+        emailConfirmed: leadData.emailConfirmed || false
+      });
       return false;
     }
     
@@ -219,6 +307,23 @@ START MESSAGE:
     // Add to history
     messages.push({ role: 'user', content: userMessage });
     
+    // Check if message contains email and has typo
+    const emailMatch = userMessage.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/i);
+    let typoSystemMessage = null;
+    
+    if (emailMatch) {
+      const email = emailMatch[1].toLowerCase();
+      const validation = validateEmail(email);
+      
+      if (validation.suggestion) {
+        typoSystemMessage = {
+          role: 'system',
+          content: `WICHTIG: User hat gerade eine Email mit Typo eingegeben (${email}). Die korrekte Email ist wahrscheinlich: ${validation.suggestion}. Frage den User: "Meintest du ${validation.suggestion}? (ja/nein)"`
+        };
+        console.log('💡 Typo detected, informing bot:', validation.suggestion);
+      }
+    }
+    
     // Search knowledge base
     const context = await searchKnowledge(userMessage);
     
@@ -226,6 +331,7 @@ START MESSAGE:
     const chatMessages = [
       { role: 'system', content: SYSTEM_PROMPT },
       ...(context ? [{ role: 'system', content: `Kontext aus Knowledge Base:\n${context}` }] : []),
+      ...(typoSystemMessage ? [typoSystemMessage] : []),
       ...messages
     ];
     
