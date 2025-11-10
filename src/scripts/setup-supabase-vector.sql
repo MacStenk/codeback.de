@@ -56,3 +56,4 @@ FROM chat_conversations
 WHERE status = 'qualified'
 ORDER BY created_at DESC;
 
+

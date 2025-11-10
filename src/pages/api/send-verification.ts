@@ -7,8 +7,13 @@ export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    // Check if API key is available
-    const apiKey = import.meta.env.RESEND_API_KEY;
+    // Check if API key is available (try both with and without prefix)
+    const apiKey = import.meta.env.RESEND_API_KEY || import.meta.env.PUBLIC_RESEND_API_KEY;
+    
+    console.log('🔑 Checking for RESEND_API_KEY...');
+    console.log('🔑 Has RESEND_API_KEY:', !!import.meta.env.RESEND_API_KEY);
+    console.log('🔑 Has PUBLIC_RESEND_API_KEY:', !!import.meta.env.PUBLIC_RESEND_API_KEY);
+    
     if (!apiKey) {
       console.error('❌ RESEND_API_KEY not found in environment variables');
       return new Response(

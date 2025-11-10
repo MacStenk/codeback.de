@@ -193,3 +193,4 @@ FROM chat_conversations;
 4. Analytics Dashboard (z. B. Supabase + Metabase)
 5. Optional: Human Handover (Slack/Email)
 
+

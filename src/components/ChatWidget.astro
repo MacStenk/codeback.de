@@ -342,6 +342,8 @@ START MESSAGE:
           } else {
             const errorData = await emailResponse.json();
             console.error('❌ Failed to send verification email:', errorData);
+            console.error('❌ Response status:', emailResponse.status);
+            console.error('❌ Response statusText:', emailResponse.statusText);
           }
         } catch (emailError) {
           console.error('❌ Email sending error:', emailError);
@@ -573,3 +575,4 @@ START MESSAGE:
     background: #555;
   }
 </style>
+
