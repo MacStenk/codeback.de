@@ -46,7 +46,7 @@ WICHTIG:
 - Bei "nein" → "Okay, bitte gib deine Email nochmal ein"
 - Nach Email-Bestätigung → Frage nach Timeline
 - Bei Budget >€2.500 + bestätigter Email → Qualified Lead
-- Nach Timeline → Verabschiedung & "Ich melde mich in 24h per Email"
+- Nach Timeline → Verabschiedung mit: "Perfekt! 🎉 Ich hab dir gerade eine Email geschickt. Bitte klick auf den Bestätigungslink in der Email. Danach bekommst du alle Details und nächsten Schritte. Check auch deinen Spam-Ordner! 📧"
 
 START MESSAGE:
 "Hi! 👋 Ich bin der CodeBack Bot. Wie heißt du?"`;
@@ -292,6 +292,9 @@ START MESSAGE:
     if (!isLeadQualified() || leadData.isQualified) return;
     
     try {
+      // Generate verification token
+      const verificationToken = crypto.randomUUID();
+      
       const leadRecord = {
         name: leadData.name,
         email: leadData.email,
@@ -299,10 +302,12 @@ START MESSAGE:
         budget: leadData.budget,
         timeline: leadData.timeline || 'Nicht angegeben',
         conversation: messages.map(m => `${m.role}: ${m.content}`).join('\n'),
+        email_verified: false,
+        verification_token: verificationToken,
         created_at: new Date().toISOString()
       };
       
-      console.log('🚀 Saving lead to Supabase:', leadRecord);
+      console.log('🚀 Saving unverified lead to Supabase:', leadRecord);
       
       const { error } = await supabase
         .from('qualified_leads')
@@ -312,12 +317,13 @@ START MESSAGE:
         console.error('❌ Supabase insert error:', error);
       } else {
         leadData.isQualified = true;
-        console.log('✅ ✅ ✅ QUALIFIED LEAD SAVED TO SUPABASE!', leadData);
+        console.log('✅ ✅ ✅ QUALIFIED LEAD SAVED (UNVERIFIED)!', leadData);
         
-        // Send Magic Link Email
-        console.log('📧 Sending magic link email...');
+        // Send Verification Email (NOT Magic Link yet!)
+        console.log('📧 Sending verification email...');
         try {
-          const emailResponse = await fetch('/api/send-magic-link', {
+          const siteUrl = window.location.origin;
+          const emailResponse = await fetch('/api/send-verification', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -325,17 +331,16 @@ START MESSAGE:
             body: JSON.stringify({
               name: leadData.name,
               email: leadData.email,
-              budget: leadData.budget,
-              timeline: leadData.timeline,
-              business: leadData.business
+              verificationToken: verificationToken,
+              siteUrl: siteUrl
             })
           });
           
           if (emailResponse.ok) {
-            console.log('✅ Magic link email sent successfully!');
+            console.log('✅ Verification email sent successfully!');
           } else {
             const errorData = await emailResponse.json();
-            console.error('❌ Failed to send email:', errorData);
+            console.error('❌ Failed to send verification email:', errorData);
           }
         } catch (emailError) {
           console.error('❌ Email sending error:', emailError);
