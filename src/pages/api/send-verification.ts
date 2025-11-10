@@ -150,8 +150,17 @@ export const POST: APIRoute = async ({ request, locals }) => {
             CodeBack.de - LLM-native Websites<br>
             <a href="mailto:hi@codeback.de" style="color: #16a34a;">hi@codeback.de</a></p>
             
-            <p style="font-size: 12px; margin-top: 20px;">
-              Du erhältst diese Email, weil du über unseren Briefing-Chat Kontakt aufgenommen hast.
+            <p style="font-size: 12px; margin-top: 20px; color: #9ca3af;">
+              Du erhältst diese Email, weil du über unseren Briefing-Chat Kontakt aufgenommen hast.<br>
+              <em>Powered by BriefingFlow - KI-gestütztes Lead Generation System</em>
+            </p>
+            
+            <p style="font-size: 11px; margin-top: 20px; color: #9ca3af; line-height: 1.5;">
+              <strong>Impressum:</strong><br>
+              Steven Noack | CodeBack.de<br>
+              Straße der Freundschaft 5A, 15328 Alt Tucheband<br>
+              <a href="https://codeback.de/impressum" style="color: #16a34a;">Vollständiges Impressum</a> | 
+              <a href="https://codeback.de/datenschutz" style="color: #16a34a;">Datenschutz</a>
             </p>
           </div>
         </body>

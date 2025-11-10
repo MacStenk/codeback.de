@@ -154,14 +154,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
               <li>Vorschlägen für den nächsten Schritt</li>
               <li>Optional: Termin für ein 15-minütiges Strategiegespräch</li>
             </ul>
-            
-            <p style="margin-top: 30px;">
-              <strong>Oder buche direkt einen Termin:</strong>
-            </p>
-            <a href="https://calendly.com/codeback" class="cta-button">
-              📅 Termin buchen
-            </a>
-            
+                  
             <p style="margin-top: 30px; font-size: 14px; color: #6b7280;">
               <em>Tipp: Schau dir in der Zwischenzeit gerne unsere <a href="https://codeback.de/blog" style="color: #16a34a;">Case Studies</a> an - dort siehst du, wie wir andere Coaches & Berater sichtbar gemacht haben.</em>
             </p>
@@ -172,8 +165,17 @@ export const POST: APIRoute = async ({ request, locals }) => {
             CodeBack.de - LLM-native Websites<br>
             <a href="mailto:hi@codeback.de" style="color: #16a34a;">hi@codeback.de</a></p>
             
-            <p style="font-size: 12px; margin-top: 20px;">
-              Du erhältst diese Email, weil du über unseren Briefing-Chat Kontakt aufgenommen hast.
+            <p style="font-size: 12px; margin-top: 20px; color: #9ca3af;">
+              Du erhältst diese Email, weil du über unseren Briefing-Chat Kontakt aufgenommen hast.<br>
+              <em>Powered by BriefingFlow - KI-gestütztes Lead Generation System</em>
+            </p>
+            
+            <p style="font-size: 11px; margin-top: 20px; color: #9ca3af; line-height: 1.5;">
+              <strong>Impressum:</strong><br>
+              Steven Noack | CodeBack.de<br>
+              Straße der Freundschaft 5A, 15328 Alt Tucheband<br>
+              <a href="https://codeback.de/impressum" style="color: #16a34a;">Vollständiges Impressum</a> | 
+              <a href="https://codeback.de/datenschutz" style="color: #16a34a;">Datenschutz</a>
             </p>
           </div>
         </body>
