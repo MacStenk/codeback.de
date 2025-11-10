@@ -291,9 +291,14 @@ START MESSAGE:
   async function saveQualifiedLead(): Promise<void> {
     if (!isLeadQualified() || leadData.isQualified) return;
     
+    // Set flag IMMEDIATELY to prevent duplicate calls
+    leadData.isQualified = true;
+    console.log('🔒 Lead marked as qualified, preventing duplicate saves');
+    
     try {
-      // Generate verification token
+      // Generate verification token ONCE
       const verificationToken = crypto.randomUUID();
+      console.log('🎫 Generated verification token:', verificationToken);
       
       const leadRecord = {
         name: leadData.name,
@@ -307,7 +312,7 @@ START MESSAGE:
         created_at: new Date().toISOString()
       };
       
-      console.log('🚀 Saving unverified lead to Supabase:', leadRecord);
+      console.log('🚀 Saving unverified lead to Supabase with token:', verificationToken);
       
       const { error } = await supabase
         .from('qualified_leads')
@@ -321,6 +326,7 @@ START MESSAGE:
         
         // Send Verification Email (NOT Magic Link yet!)
         console.log('📧 Sending verification email...');
+        console.log('🞫 Email will use token:', verificationToken);
         try {
           // Smart URL detection: Use production URL when deployed, localhost when local
           const siteUrl = window.location.hostname === 'localhost' 
