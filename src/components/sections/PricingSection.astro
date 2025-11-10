@@ -1,228 +1,368 @@
 ---
-// PricingSection.astro - Packages & Pricing
+// PricingSection.astro - Service-Based Pricing with Transparent Rates
 import Button from '../Button.astro';
 ---
 
-<section id="loesung" class="mb-24">
+<section id="loesung" class="mb-32">
   <div class="text-center mb-12">
-    <h2 class="text-3xl font-bold mb-4">Wähle dein Package</h2>
-    <p class="text-xl text-zinc-600 mb-8">
-      Moderne Webarchitektur. Maschinenlesbare Inhalte. Technische Souveränität.
+    <h2 class="text-4xl md:text-5xl font-bold mb-4">
+      Transparente Preise. Klare Timelines.
+    </h2>
+    <p class="text-xl text-zinc-600 max-w-2xl mx-auto">
+      Die gleiche Methodik die CodeBack.de auf #1 in Google & Perplexity gebracht hat.
     </p>
-
-    <!-- Status Badge -->
-    <div class="inline-flex items-center gap-3 bg-green-50 border border-green-200 rounded-full px-6 py-3">
-      <div class="flex items-center gap-2">
-        <div class="flex gap-1">
-          <div class="w-3 h-3 bg-green-600 rounded-full"></div>
-          <div class="w-3 h-3 bg-green-600 rounded-full"></div>
-          <div class="w-3 h-3 bg-green-600 rounded-full"></div>
-          <div class="w-3 h-3 bg-zinc-300 rounded-full"></div>
-        </div>
-        <span class="text-sm font-medium text-zinc-700">
-          Launch Januar 2026
-        </span>
-      </div>
-      <span class="text-sm font-semibold text-green-700">
-        3 von 4 Slots belegt
-      </span>
-    </div>
   </div>
 
-  <!-- Pricing Cards -->
-  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
+  <!-- Service Cards -->
+  <div class="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
     
-    <!-- Bronze Package -->
-    <div class="border-2 border-zinc-200 rounded-lg p-6 sm:p-8 bg-white hover:border-zinc-300 transition">
-      <div class="text-4xl mb-4">🥉</div>
-      <h3 class="text-2xl font-bold mb-2">Bronze</h3>
-      <div class="mb-6">
-        <div class="text-4xl font-bold text-zinc-900">5.000€</div>
-        <div class="text-sm text-zinc-500">7 Tage Lieferzeit</div>
+    <!-- AI-Discovery Optimierung -->
+    <div class="bg-white border-2 border-zinc-200 rounded-2xl p-8 hover:border-green-600 transition-all">
+      <div class="flex items-start justify-between mb-4">
+        <span class="text-4xl">🎯</span>
+        <span class="text-sm font-semibold text-green-600 bg-green-50 px-3 py-1 rounded-full">
+          14-30 Tage
+        </span>
       </div>
 
-      <ul class="space-y-3 mb-8">
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Homepage + 3 Unterseiten</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Astro + JAMstack Architektur</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Schema.org Basis-Integration</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Blog-Setup mit Markdown</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">GitHub + Cloudflare Deployment</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">1 Revision-Runde</span>
-        </li>
-      </ul>
+      <h3 class="text-2xl font-bold mb-2">AI-Discovery Optimierung</h3>
+      
+      <div class="mb-6">
+        <div class="text-3xl font-bold text-zinc-900">Ab €2.500</div>
+        <div class="text-sm text-zinc-600 mt-1">Einmalig</div>
+      </div>
+
+      <p class="text-zinc-700 mb-6">
+        Deine bestehende Website wird für LLMs optimiert. Schema.org, Semantic HTML, Answer Engine Ready.
+      </p>
+
+      <div class="mb-8">
+        <div class="text-xs font-semibold text-zinc-500 uppercase tracking-wide mb-3">
+          Was du bekommst:
+        </div>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span class="text-sm text-zinc-700">LLM-Readability Audit</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span class="text-sm text-zinc-700">Schema.org Integration</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span class="text-sm text-zinc-700">llms.txt & Structured Data</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span class="text-sm text-zinc-700">Answer Engine Optimization</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span class="text-sm text-zinc-700">Vor/Nach Vergleich & Report</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-green-50 rounded-lg p-4 mb-6 border border-green-200">
+        <div class="text-xs font-semibold text-green-700 mb-1">
+          🏆 Proven Results
+        </div>
+        <div class="text-sm text-green-800">
+          #1 in Google & Perplexity in 14 Tagen
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <div class="text-xs font-semibold text-zinc-500 uppercase tracking-wide mb-2">
+          Perfekt für:
+        </div>
+        <div class="text-sm text-zinc-600">
+          Bestehende Websites die AI-sichtbar werden müssen
+        </div>
+      </div>
 
       <Button href="#kontakt" variant="dark" class="w-full justify-center">
-        Anfragen
+        Projekt anfragen
       </Button>
     </div>
 
-    <!-- Silver Package (Featured) -->
-    <div class="border-2 border-green-500 rounded-lg p-6 sm:p-8 bg-green-50 relative lg:transform lg:scale-105 shadow-lg sm:col-span-2 lg:col-span-1">
+    <!-- Ganzheitliche System-Entwicklung (Featured) -->
+    <div class="bg-gradient-to-br from-green-50 to-blue-50 border-2 border-green-500 rounded-2xl p-8 relative lg:transform lg:scale-105 shadow-xl">
       <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-green-600 text-white text-xs font-bold px-4 py-1 rounded-full">
         EMPFOHLEN
       </div>
-      
-      <div class="text-4xl mb-4">🥈</div>
-      <h3 class="text-2xl font-bold mb-2">Silver</h3>
-      <div class="mb-6">
-        <div class="text-4xl font-bold text-zinc-900">9.000€</div>
-        <div class="text-sm text-zinc-500">14 Tage Lieferzeit</div>
+
+      <div class="flex items-start justify-between mb-4">
+        <span class="text-4xl">🚀</span>
+        <span class="text-sm font-semibold text-green-600 bg-white px-3 py-1 rounded-full">
+          4-8 Wochen
+        </span>
       </div>
 
-      <ul class="space-y-3 mb-8">
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Homepage + 10 Unterseiten</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Custom Component Library</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Schema.org Full Integration</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">FAQ-Schema für Answer Engines</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">n8n Basis-Automation Setup</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">2 Revision-Runden</span>
-        </li>
-      </ul>
+      <h3 class="text-2xl font-bold mb-2">Ganzheitliche System-Entwicklung</h3>
+      
+      <div class="mb-6">
+        <div class="text-3xl font-bold text-zinc-900">Ab €8.000</div>
+        <div class="text-sm text-zinc-600 mt-1">Einmalig</div>
+      </div>
+
+      <p class="text-zinc-700 mb-6">
+        Komplettes System von Grund auf. Modern Stack, AI-ready, Workflow-Integration. Nicht nur Website.
+      </p>
+
+      <div class="mb-8">
+        <div class="text-xs font-semibold text-zinc-500 uppercase tracking-wide mb-3">
+          Was du bekommst:
+        </div>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span class="text-sm text-zinc-700">System-Architektur & Planung</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span class="text-sm text-zinc-700">Modern Stack (Astro + Cloudflare)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span class="text-sm text-zinc-700">AI-Optimierung (#1-Methodik)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span class="text-sm text-zinc-700">Workflow-Automation (n8n)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span class="text-sm text-zinc-700">Deployment & Hosting Setup</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span class="text-sm text-zinc-700">Dokumentation & Übergabe</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 mb-6 border-2 border-green-600">
+        <div class="text-xs font-semibold text-green-700 mb-1">
+          🏆 Cross-Platform Dominance
+        </div>
+        <div class="text-sm text-green-800">
+          Vor Enterprise-Agencies (HubSpot, Aufgesang)
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <div class="text-xs font-semibold text-zinc-500 uppercase tracking-wide mb-2">
+          Perfekt für:
+        </div>
+        <div class="text-sm text-zinc-600">
+          Coaches & Consultants die ein komplettes System brauchen
+        </div>
+      </div>
 
       <Button href="#kontakt" variant="primary" class="w-full justify-center">
         Jetzt starten
       </Button>
     </div>
 
-    <!-- Gold Package -->
-    <div class="border-2 border-zinc-200 rounded-lg p-6 sm:p-8 bg-white hover:border-zinc-300 transition sm:col-span-2 lg:col-span-1">
-      <div class="text-4xl mb-4">🥇</div>
-      <h3 class="text-2xl font-bold mb-2">Gold</h3>
-      <div class="mb-6">
-        <div class="text-4xl font-bold text-zinc-900">15.000€</div>
-        <div class="text-sm text-zinc-500">30 Tage Lieferzeit</div>
+    <!-- Modern-Stack Migration -->
+    <div class="bg-white border-2 border-zinc-200 rounded-2xl p-8 hover:border-green-600 transition-all">
+      <div class="flex items-start justify-between mb-4">
+        <span class="text-4xl">⚡</span>
+        <span class="text-sm font-semibold text-green-600 bg-green-50 px-3 py-1 rounded-full">
+          3-6 Wochen
+        </span>
       </div>
 
-      <ul class="space-y-3 mb-8">
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Unlimited Pages</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Full Custom Design System</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">Advanced Schema.org + JSON-LD</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">n8n Full Workflow-Automation</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">CRM + Kalender Integration</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-green-600 mt-1">✓</span>
-          <span class="text-sm text-zinc-700">3 Revision-Runden + Priority Support</span>
-        </li>
-      </ul>
+      <h3 class="text-2xl font-bold mb-2">Modern-Stack Migration</h3>
+      
+      <div class="mb-6">
+        <div class="text-3xl font-bold text-zinc-900">Ab €5.000</div>
+        <div class="text-sm text-zinc-600 mt-1">Einmalig</div>
+      </div>
+
+      <p class="text-zinc-700 mb-6">
+        Von WordPress zu modernem System. Jamstack-Architektur mit AI-Optimierung während der Migration.
+      </p>
+
+      <div class="mb-8">
+        <div class="text-xs font-semibold text-zinc-500 uppercase tracking-wide mb-3">
+          Was du bekommst:
+        </div>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span class="text-sm text-zinc-700">Alt-System Analyse</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span class="text-sm text-zinc-700">Migrations-Strategie</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span class="text-sm text-zinc-700">Jamstack Architektur</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span class="text-sm text-zinc-700">Content-Migration</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span class="text-sm text-zinc-700">AI-Optimierung (#1-Methodik)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-600 mt-1">✓</span>
+            <span class="text-sm text-zinc-700">Testing & Launch</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-green-50 rounded-lg p-4 mb-6 border border-green-200">
+        <div class="text-xs font-semibold text-green-700 mb-1">
+          🏆 WordPress-Falle
+        </div>
+        <div class="text-sm text-green-800">
+          Raus aus langsam & unsicher. Rein in modern & AI-ready.
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <div class="text-xs font-semibold text-zinc-500 uppercase tracking-wide mb-2">
+          Perfekt für:
+        </div>
+        <div class="text-sm text-zinc-600">
+          Teams die von WordPress zu modernem Stack wechseln wollen
+        </div>
+      </div>
 
       <Button href="#kontakt" variant="dark" class="w-full justify-center">
-        Enterprise anfragen
+        Migration anfragen
       </Button>
     </div>
 
   </div>
 
+  <!-- Value Props -->
+  <div class="max-w-4xl mx-auto mb-12">
+    <div class="bg-zinc-50 rounded-2xl p-8 border border-zinc-200">
+      <h3 class="text-xl font-bold mb-6 text-center">Was alle Services gemeinsam haben</h3>
+      
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="text-center">
+          <div class="text-3xl mb-2">🏆</div>
+          <div class="font-semibold text-zinc-900 mb-1">Proven Methodik</div>
+          <div class="text-sm text-zinc-600">
+            Die #1-Strategie die funktioniert hat
+          </div>
+        </div>
+
+        <div class="text-center">
+          <div class="text-3xl mb-2">⚡</div>
+          <div class="font-semibold text-zinc-900 mb-1">Modern Stack</div>
+          <div class="text-sm text-zinc-600">
+            Schnell, sicher, zukunftssicher
+          </div>
+        </div>
+
+        <div class="text-center">
+          <div class="text-3xl mb-2">🤖</div>
+          <div class="font-semibold text-zinc-900 mb-1">AI-Ready</div>
+          <div class="text-sm text-zinc-600">
+            Optimiert für ChatGPT, Claude, Gemini
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- FAQ -->
-  <div class="mt-16 max-w-3xl mx-auto">
-    <h3 class="text-xl font-bold mb-6 text-center">Häufige Fragen</h3>
+  <div class="max-w-3xl mx-auto">
+    <h3 class="text-2xl font-bold mb-6 text-center">Häufige Fragen</h3>
     
     <div class="space-y-4">
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer">
-        <summary class="font-semibold">
+      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer hover:border-green-600 transition-all">
+        <summary class="font-semibold text-zinc-900">
           Wie läuft der Prozess ab?
         </summary>
-        <p class="text-zinc-600 mt-3 text-sm">
-          1. Qualifying-Call (passen wir zusammen?)<br/>
-          2. Content-Briefing mit strukturiertem Template<br/>
-          3. Entwicklung mit regelmäßigen Updates<br/>
-          4. Review & Revision<br/>
-          5. Launch & Übergabe mit Dokumentation
+        <p class="text-zinc-600 mt-3 text-sm leading-relaxed">
+          <strong>1.</strong> Qualifying-Call (15-30 Min) – Passen wir zusammen?<br/>
+          <strong>2.</strong> Content-Briefing mit strukturiertem Template<br/>
+          <strong>3.</strong> Entwicklung mit regelmäßigen Updates (alle 3-5 Tage)<br/>
+          <strong>4.</strong> Review & Revision (je nach Package 1-3 Runden)<br/>
+          <strong>5.</strong> Launch & Übergabe mit vollständiger Dokumentation
         </p>
       </details>
 
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer">
-        <summary class="font-semibold">
-          Was passiert nach dem Launch?
+      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer hover:border-green-600 transition-all">
+        <summary class="font-semibold text-zinc-900">
+          Was ist in "AI-Optimierung" enthalten?
         </summary>
-        <p class="text-zinc-600 mt-3 text-sm">
-          Du erhältst vollständigen Zugriff auf Code, GitHub-Repository und Deployment. 
-          Wartung und Updates kannst du selbst machen (über Markdown) oder als 
-          Wartungs-Paket ab 500€/Monat buchen.
+        <p class="text-zinc-600 mt-3 text-sm leading-relaxed">
+          Die gleiche Methodik die CodeBack.de auf #1 gebracht hat:<br/>
+          • Schema.org Structured Data<br/>
+          • llms.txt Documentation<br/>
+          • Semantic HTML5 (keine Div-Soup!)<br/>
+          • Answer Engine Optimization<br/>
+          • FAQ-Schema für Rich Snippets<br/>
+          • Cross-Platform Testing (Google, Perplexity, ChatGPT)
         </p>
       </details>
 
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer">
-        <summary class="font-semibold">
-          Brauche ich technisches Know-how?
+      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer hover:border-green-600 transition-all">
+        <summary class="font-semibold text-zinc-900">
+          Warum kein WordPress mit AI-Plugin?
         </summary>
-        <p class="text-zinc-600 mt-3 text-sm">
-          Nein. Du lieferst Inhalte, ich baue die technische Struktur. 
-          Spätere Updates sind über einfaches Markdown möglich – wie in einem 
-          Texteditor. Keine Coding-Kenntnisse erforderlich.
+        <p class="text-zinc-600 mt-3 text-sm leading-relaxed">
+          WordPress-Plugins können Schema.org hinzufügen, aber nicht die fundamentalen 
+          Strukturprobleme lösen die Pagebuilder erzeugen (Div-Soup, JavaScript-rendered Content). 
+          CodeBack baut von Grund auf sauberes, semantisches HTML das LLMs perfekt verstehen.
         </p>
       </details>
 
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer">
-        <summary class="font-semibold">
-          Warum kein WordPress mit KI-Plugin?
+      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer hover:border-green-600 transition-all">
+        <summary class="font-semibold text-zinc-900">
+          Kann ich die Preise garantieren?
         </summary>
-        <p class="text-zinc-600 mt-3 text-sm">
-          WordPress-Plugins können Schema.org hinzufügen, aber nicht die 
-          fundamentalen HTML-Strukturprobleme lösen, die Pagebuilder erzeugen. 
-          CodeBack baut von Grund auf sauberes, semantisches HTML.
+        <p class="text-zinc-600 mt-3 text-sm leading-relaxed">
+          Die angegebenen Preise sind Startpreise für Standard-Projekte. Nach einem 
+          kostenlosen Qualifying-Call bekommst du ein individuelles Festpreis-Angebot 
+          basierend auf deinen spezifischen Anforderungen. Keine versteckten Kosten.
         </p>
       </details>
 
-      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer">
-        <summary class="font-semibold">
+      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer hover:border-green-600 transition-all">
+        <summary class="font-semibold text-zinc-900">
           Wo werden die Daten gehostet?
         </summary>
-        <p class="text-zinc-600 mt-3 text-sm">
-          <strong>Option 1:</strong> Cloudflare Pages für statische Sites (globales Edge-Netzwerk, DSGVO-konform).<br/>
-          <strong>Option 2:</strong> Hetzner eigenständige virtuelle Server in Deutschland für volle Kontrolle – 
-          keine Shared Hosting, Root-Zugriff, Made in Germany.<br/>
-          Du entscheidest, was besser zu deinen Anforderungen passt.
+        <p class="text-zinc-600 mt-3 text-sm leading-relaxed">
+          <strong>Standard:</strong> Cloudflare Pages (globales Edge-Network, DSGVO-konform, €0-20/Monat)<br/>
+          <strong>Optional:</strong> Hetzner Deutschland (Root-Server, volle Kontrolle, Made in Germany)<br/>
+          Du entscheidest was besser zu deinen Anforderungen passt.
+        </p>
+      </details>
+
+      <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer hover:border-green-600 transition-all">
+        <summary class="font-semibold text-zinc-900">
+          Brauche ich danach Wartung?
+        </summary>
+        <p class="text-zinc-600 mt-3 text-sm leading-relaxed">
+          Du bekommst vollständigen Zugriff (GitHub, Deployment, Dokumentation). 
+          Content-Updates kannst du selbst machen über Markdown (wie Texteditor). 
+          Technische Wartung optional ab €500/Monat – aber nicht zwingend nötig.
         </p>
       </details>
     </div>
+  </div>
+
+  <!-- CTA Footer -->
+  <div class="mt-16 text-center">
+    <p class="text-zinc-600 mb-6">
+      <strong>Nicht sicher welcher Service passt?</strong> Lass uns im kostenlosen 
+      Qualifying-Call herausfinden welche Lösung am besten zu deiner Situation passt.
+    </p>
+    <Button href="#kontakt" variant="primary">
+      Kostenloses Erstgespräch buchen
+    </Button>
   </div>
 </section>

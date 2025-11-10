@@ -1,0 +1,311 @@
+---
+// ProofImages.astro - Screenshot Gallery with Native HTML Dialog Lightbox
+// Updated: November 2025
+interface Props {
+  googleImage?: string;
+  perplexityImage?: string;
+}
+
+const {
+  googleImage = "/images/proof/google-ranking.png",
+  perplexityImage = "/images/proof/perplexity-ranking.png"
+} = Astro.props;
+---
+
+<div class="mt-12 space-y-6">
+  <div class="text-center mb-6">
+    <h3 class="text-2xl font-bold mb-2">📸 Die Beweise in Bildern</h3>
+    <p class="text-zinc-600">Live-Screenshots der Rankings • Click to Zoom</p>
+    <p class="text-xs text-zinc-500 mt-2">Stand: 09. November 2025</p>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-6">
+    <!-- Google Screenshot -->
+    <button 
+      type="button"
+      onclick="document.getElementById('google-modal').showModal()"
+      class="text-left group"
+      aria-label="Google Ranking Screenshot vergrößern"
+    >
+      <div class="bg-zinc-50 rounded-xl p-4 border border-zinc-200 hover:border-green-600 transition-all cursor-pointer">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xl">🔍</span>
+          <span class="font-semibold">Google Ranking</span>
+          <span class="ml-auto text-xs text-zinc-500">Live Screenshot</span>
+        </div>
+        <div class="relative overflow-hidden rounded-lg border-2 border-zinc-200 group-hover:border-green-600 transition-all">
+          <img 
+            src={googleImage}
+            alt="Google Ranking Screenshot: CodeBack.de #1 für LLM-Readability kostenlos testen - Stand 09.11.2025"
+            class="w-full h-auto transition-transform group-hover:scale-105"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all flex items-center justify-center">
+            <span class="opacity-0 group-hover:opacity-100 bg-white/90 px-4 py-2 rounded-lg text-sm font-medium transition-opacity">
+              🔍 Click to Zoom
+            </span>
+          </div>
+        </div>
+        <p class="text-xs text-zinc-500 mt-2 text-center">
+          CodeBack.de #1 • WebFX #2 • HubSpot #5
+        </p>
+      </div>
+    </button>
+
+    <!-- Perplexity Screenshot -->
+    <button 
+      type="button"
+      onclick="document.getElementById('perplexity-modal').showModal()"
+      class="text-left group"
+      aria-label="Perplexity Ranking Screenshot vergrößern"
+    >
+      <div class="bg-zinc-50 rounded-xl p-4 border border-zinc-200 hover:border-green-600 transition-all cursor-pointer">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xl">🤖</span>
+          <span class="font-semibold">Perplexity Ranking</span>
+          <span class="ml-auto text-xs text-zinc-500">Live Screenshot</span>
+        </div>
+        <div class="relative overflow-hidden rounded-lg border-2 border-zinc-200 group-hover:border-green-600 transition-all">
+          <img 
+            src={perplexityImage}
+            alt="Perplexity Ranking Screenshot: CodeBack.de #1 für LLM-Readability kostenlos testen - Stand 09.11.2025"
+            class="w-full h-auto transition-transform group-hover:scale-105"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all flex items-center justify-center">
+            <span class="opacity-0 group-hover:opacity-100 bg-white/90 px-4 py-2 rounded-lg text-sm font-medium transition-opacity">
+              🔍 Click to Zoom
+            </span>
+          </div>
+        </div>
+        <p class="text-xs text-zinc-500 mt-2 text-center">
+          CodeBack.de 2x #1 • HubSpot #2 • Aufgesang #4
+        </p>
+      </div>
+    </button>
+  </div>
+
+  <!-- Verification Note -->
+  <div class="text-center mt-6">
+    <p class="text-sm text-zinc-500">
+      ⚡ Live-Screenshots vom <strong>09. November 2025</strong> • 
+      <a href="https://google.com/search?q=LLM-Readability+kostenlos+testen" target="_blank" rel="noopener" class="text-green-600 hover:underline">
+        Jetzt selbst testen →
+      </a>
+    </p>
+  </div>
+</div>
+
+<!-- Google Modal -->
+<dialog id="google-modal" class="proof-modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">🔍 Google Ranking - CodeBack.de #1</h4>
+      <button 
+        type="button"
+        onclick="document.getElementById('google-modal').close()"
+        class="modal-close"
+        aria-label="Dialog schließen"
+      >
+        ✕
+      </button>
+    </div>
+    <div class="modal-body">
+      <img 
+        src={googleImage}
+        alt="Google Ranking Screenshot: CodeBack.de #1 für LLM-Readability kostenlos testen - Stand 09.11.2025"
+        class="modal-image"
+      />
+      <p class="modal-caption">
+        <strong>Query:</strong> "LLM-Readability kostenlos testen" • 
+        <strong>Stand:</strong> 09. November 2025
+      </p>
+    </div>
+  </div>
+</dialog>
+
+<!-- Perplexity Modal -->
+<dialog id="perplexity-modal" class="proof-modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">🤖 Perplexity Ranking - CodeBack.de #1</h4>
+      <button 
+        type="button"
+        onclick="document.getElementById('perplexity-modal').close()"
+        class="modal-close"
+        aria-label="Dialog schließen"
+      >
+        ✕
+      </button>
+    </div>
+    <div class="modal-body">
+      <img 
+        src={perplexityImage}
+        alt="Perplexity Ranking Screenshot: CodeBack.de #1 für LLM-Readability kostenlos testen - Stand 09.11.2025"
+        class="modal-image"
+      />
+      <p class="modal-caption">
+        <strong>Query:</strong> "LLM-Readability kostenlos testen" • 
+        <strong>Stand:</strong> 09. November 2025
+      </p>
+    </div>
+  </div>
+</dialog>
+
+<style>
+  /* Native HTML Dialog Lightbox Styling */
+  .proof-modal {
+    max-width: 95vw;
+    max-height: 95vh;
+    padding: 0;
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    background: transparent;
+  }
+
+  .proof-modal::backdrop {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+  }
+
+  .modal-content {
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #e5e5e5;
+    background: #fafafa;
+  }
+
+  .modal-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #18181b;
+    margin: 0;
+  }
+
+  .modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    color: #71717a;
+    transition: color 0.2s;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .modal-close:hover {
+    color: #18181b;
+  }
+
+  .modal-body {
+    padding: 1.5rem;
+    max-height: calc(95vh - 120px);
+    overflow: auto;
+  }
+
+  .modal-image {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    border: 1px solid #e5e5e5;
+  }
+
+  .modal-caption {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: #71717a;
+  }
+
+  /* Smooth Dialog Animations */
+  @media (prefers-reduced-motion: no-preference) {
+    .proof-modal {
+      animation: modal-slide-in 0.3s ease-out;
+    }
+
+    .proof-modal::backdrop {
+      animation: backdrop-fade-in 0.3s ease-out;
+    }
+  }
+
+  @keyframes modal-slide-in {
+    from {
+      opacity: 0;
+      transform: translateY(-20px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes backdrop-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Mobile Optimization */
+  @media (max-width: 768px) {
+    .proof-modal {
+      max-width: 100vw;
+      max-height: 100vh;
+      border-radius: 0;
+    }
+
+    .modal-content {
+      border-radius: 0;
+    }
+
+    .modal-header {
+      padding: 1rem;
+    }
+
+    .modal-title {
+      font-size: 1rem;
+    }
+
+    .modal-body {
+      padding: 1rem;
+      max-height: calc(100vh - 100px);
+    }
+  }
+
+  /* Hover Effect for Thumbnails */
+  @media (prefers-reduced-motion: no-preference) {
+    button:hover .group img {
+      animation: subtle-pulse 2s ease-in-out infinite;
+    }
+  }
+  
+  @keyframes subtle-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+  }
+</style>
+
+<script>
+  // Close modals on backdrop click
+  document.querySelectorAll('.proof-modal').forEach(modal => {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.close();
+      }
+    });
+  });
+
+  // Close modals on ESC key (handled natively by dialog element)
+  // No additional JS needed!
+</script>

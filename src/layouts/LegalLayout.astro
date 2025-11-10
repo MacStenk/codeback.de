@@ -16,12 +16,22 @@ interface Props {
 const { frontmatter } = Astro.props;
 const { title, description, lastUpdated, noindex = true } = frontmatter;
 
-// Format date for display
-const formattedDate = lastUpdated.toLocaleDateString("de-DE", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-});
+// Format date for display (with safety check)
+let formattedDate = "Nicht angegeben";
+if (lastUpdated) {
+  try {
+    const date = lastUpdated instanceof Date ? lastUpdated : new Date(lastUpdated);
+    if (!isNaN(date.getTime())) {
+      formattedDate = date.toLocaleDateString("de-DE", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+    }
+  } catch (error) {
+    console.warn("Failed to format lastUpdated date:", error);
+  }
+}
 ---
 
 <!doctype html>

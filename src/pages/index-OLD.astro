@@ -3,8 +3,7 @@ import "../styles/global.css";
 import SEO from "../components/SEO.astro";
 import Header from "../components/layout/Header.astro";
 import Footer from "../components/Footer.astro";
-import Hero from "../components/sections/Hero.astro"; // UPDATED!
-import ProofSection from "../components/sections/ProofSection.astro"; // NEW!
+import Hero from "../components/sections/Hero.astro";
 import TargetAudience from "../components/sections/TargetAudience.astro";
 import LiveDemo from "../components/sections/LiveDemo.astro";
 import ProblemSection from "../components/sections/ProblemSection.astro";
@@ -15,9 +14,9 @@ import TechStack from "../components/sections/TechStack.astro";
 import CTASection from "../components/sections/CTASection.astro";
 import FAQSection from "../components/sections/FAQSection.astro";
 
-const pageTitle = "CodeBack - #1 in Google & Perplexity für LLM-Readability"; // UPDATED!
+const pageTitle = "Codeback. Websites die Antworten werden";
 const pageDescription =
-  "LLM-native Websites für Coaches & Consultants. Proven: #1 auf beiden Plattformen in 14 Tagen."; // UPDATED!
+  "LLM SEO und Answer Engine Optimization für die Zukunft der digitalen Sichtbarkeit";
 ---
 
 <!doctype html>
@@ -30,7 +29,7 @@ const pageDescription =
       type="website"
     />
 
-    <!-- Schema.org für LLMs - UPDATED with Cross-Platform Proof -->
+    <!-- Schema.org für LLMs -->
     <script
       type="application/ld+json"
       set:html={JSON.stringify({
@@ -48,13 +47,8 @@ const pageDescription =
           "@type": "Service",
           name: "LLM-native Web Development",
           description:
-            "Entwicklung von Websites die für Large Language Models optimiert sind. #1 in Google und Perplexity.",
+            "Entwicklung von Websites die für Large Language Models optimiert sind",
         },
-        awards: [
-          "#1 in Google für LLM-Readability kostenlos testen",
-          "#1 in Perplexity für LLM-Readability kostenlos testen",
-          "Cross-Platform Dominance in 14 Tagen"
-        ]
       })}
     />
   </head>
@@ -64,11 +58,8 @@ const pageDescription =
 
     <main id="main-content" class="max-w-4xl mx-auto px-6 py-20">
       <article>
-        <!-- Hero - UPDATED with Cross-Platform Badge -->
+        <!-- Hero -->
         <Hero />
-
-        <!-- NEW: Cross-Platform #1 Proof Section -->
-        <ProofSection />
 
         <!-- Wer braucht das? -->
         <TargetAudience />

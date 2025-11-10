@@ -1,38 +1,46 @@
 ---
-// Hero.astro - Homepage Hero Section
+// Hero.astro - Homepage Hero Section with Cross-Platform #1 Proof
 import Button from '../Button.astro';
 ---
 
 <header class="mb-24">
-  <div class="inline-block mb-6">
+  <!-- Cross-Platform #1 Badge - NEW! -->
+  <div class="inline-flex items-center gap-3 mb-6">
     <span class="text-sm font-medium text-green-600 bg-green-50 px-3 py-1 rounded-full">
-      Der Code ist zurück
+      🏆 #1 in Google & Perplexity
+    </span>
+    <span class="text-sm text-zinc-500">
+      vor HubSpot & Aufgesang
     </span>
   </div>
   
   <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-    ChatGPT empfiehlt<br/>
-    <span class="text-green-600">deine Konkurrenz</span> – nicht dich
+    Deine Kunden fragen<br/>
+    <span class="text-green-600">ChatGPT</span>, nicht Google
   </h1>
   
   <p class="text-xl text-zinc-600 mb-8 leading-relaxed max-w-2xl">
-    Deine Expertise ist in Pagebuildern versteckt, statt maschinenlesbar strukturiert. 
-    Wir bauen die technische Grundlage, damit KI dein Wissen findet, versteht und als Antwort nutzt. 
-    Digitale Grundstruktur für nachhaltige Sichtbarkeit.
+    Coaches & Consultants verlieren täglich Anfragen, weil ihre Website für LLMs unsichtbar ist. 
+    Wir bauen Websites, die ChatGPT, Claude und Gemini verstehen und empfehlen.
+  </p>
+
+  <!-- Proof Subheadline - NEW! -->
+  <p class="text-base text-zinc-700 mb-8 font-medium">
+    <span class="text-green-600">Proven:</span> CodeBack.de selbst #1 auf beiden Plattformen in 14 Tagen.
   </p>
   
   <div class="flex gap-4 items-center flex-wrap">
     <Button href="/llm-checker" variant="primary">
       Website jetzt testen →
     </Button>
-    <Button href="#problem" variant="ghost">
-      Wie funktioniert das?
+    <Button href="#proof" variant="ghost">
+      Beweis ansehen ↓
     </Button>
   </div>
 
   <!-- Trust Badge unter Buttons -->
   <div class="mt-6 flex items-center gap-2 text-sm text-zinc-500">
     <span>⚡</span>
-    <span>Kostenloser LLM-Readability Check in 30 Sekunden</span>
+    <span>Self-Implementation: Practice what we preach</span>
   </div>
 </header>

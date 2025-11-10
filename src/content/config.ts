@@ -199,10 +199,25 @@ const pagesCollection = defineCollection({
 });
 
 // ═══════════════════════════════════════════════════════════════
+// LEGAL COLLECTION SCHEMA
+// ═══════════════════════════════════════════════════════════════
+
+const legalCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    lastUpdated: z.coerce.date(),
+    noindex: z.boolean().optional().default(true),
+  }),
+});
+
+// ═══════════════════════════════════════════════════════════════
 // EXPORT COLLECTIONS
 // ═══════════════════════════════════════════════════════════════
 
 export const collections = {
   'blog': blogCollection,
   'pages': pagesCollection,
+  'legal': legalCollection,
 };

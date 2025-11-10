@@ -1,0 +1,351 @@
+---
+import "../styles/global.css";
+import SEO from "../components/SEO.astro";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const pageTitle = "Portfolio - Proven Results | CodeBack";
+const pageDescription =
+  "Case Studies von CodeBack: Wie wir Websites auf #1 in Google & Perplexity bringen. LLM-native Development mit messbaren Ergebnissen.";
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <SEO
+      title={pageTitle}
+      description={pageDescription}
+      canonical="https://codeback.de/portfolio"
+      type="website"
+    />
+
+    <!-- Schema.org für Portfolio -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: "CodeBack Portfolio",
+        url: "https://codeback.de/portfolio",
+        description: pageDescription,
+        mainEntity: {
+          "@type": "ItemList",
+          itemListElement: [
+            {
+              "@type": "CreativeWork",
+              name: "CodeBack.de - Cross-Platform #1 Dominance",
+              description: "#1 in Google und Perplexity in 14 Tagen",
+              url: "https://codeback.de",
+            },
+          ],
+        },
+      })}
+    />
+  </head>
+
+  <body class="bg-white text-zinc-900">
+    <Header />
+
+    <main id="main-content" class="max-w-4xl mx-auto px-6 py-20">
+      <article>
+        <!-- Portfolio Hero -->
+        <section class="mb-20 text-center">
+          <div class="inline-block mb-4">
+            <span
+              class="inline-flex items-center gap-2 px-4 py-2 bg-green-50 text-green-700 rounded-full text-sm font-semibold border border-green-200"
+            >
+              <span>📊</span>
+              Proven Results
+            </span>
+          </div>
+
+          <h1 class="text-5xl md:text-6xl font-bold mb-6">
+            Case Studies
+          </h1>
+
+          <p class="text-xl md:text-2xl text-zinc-600 max-w-2xl mx-auto mb-8">
+            Wie wir Websites auf #1 bringen. Mit Beweisen, nicht Versprechen.
+          </p>
+
+          <div class="flex flex-wrap gap-4 justify-center text-sm text-zinc-500">
+            <div class="flex items-center gap-2">
+              <span class="text-green-600">✓</span>
+              <span>Cross-Platform Rankings</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-green-600">✓</span>
+              <span>Messbare Ergebnisse</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-green-600">✓</span>
+              <span>14-Tage Timeline</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Case Study: CodeBack.de -->
+        <section class="mb-32">
+          <div
+            class="bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-8 md:p-12 border border-green-200"
+          >
+            <!-- Case Study Header -->
+            <div class="mb-8">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="text-4xl">🏆</span>
+                <div>
+                  <h2 class="text-3xl md:text-4xl font-bold">CodeBack.de</h2>
+                  <p class="text-zinc-600">
+                    LLM-native Website für AI-Discovery
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="inline-block px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-semibold"
+              >
+                Featured Case Study
+              </div>
+            </div>
+
+            <!-- The Challenge -->
+            <div class="mb-8">
+              <h3 class="text-2xl font-bold mb-4">🎯 Die Herausforderung</h3>
+              <div class="bg-white/80 rounded-xl p-6">
+                <p class="text-zinc-700 mb-4">
+                  Launch einer neuen Website für LLM-native Development.
+                  Konkurrenz: Enterprise-Agencies mit Jahren an SEO-Autorität.
+                </p>
+                <ul class="space-y-2 text-zinc-700">
+                  <li class="flex gap-2">
+                    <span class="text-red-500">⚠️</span>
+                    <span
+                      >Konkurrenzdruck: HubSpot, Aufgesang, WebFX (Multi-Millionen
+                      Budgets)</span
+                    >
+                  </li>
+                  <li class="flex gap-2">
+                    <span class="text-red-500">⚠️</span>
+                    <span>Neue Domain ohne SEO-Historie</span>
+                  </li>
+                  <li class="flex gap-2">
+                    <span class="text-red-500">⚠️</span>
+                    <span
+                      >Timeline: Maximum 14 Tage bis zu messbaren Ergebnissen</span
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- The Solution -->
+            <div class="mb-8">
+              <h3 class="text-2xl font-bold mb-4">💡 Die Lösung</h3>
+              <div class="bg-white/80 rounded-xl p-6">
+                <p class="text-zinc-700 mb-4">
+                  LLM-First Strategie statt traditionellem SEO. Fokus auf AI-Discovery
+                  Kanäle.
+                </p>
+                <div class="grid md:grid-cols-2 gap-4">
+                  <div class="bg-zinc-50 rounded-lg p-4">
+                    <h4 class="font-bold text-zinc-900 mb-2">
+                      🤖 LLM-Optimierung
+                    </h4>
+                    <ul class="text-sm text-zinc-600 space-y-1">
+                      <li>• llms.txt für AI-Discoverability</li>
+                      <li>• llms-v2.json mit strukturierten Daten</li>
+                      <li>• Schema.org Markup für Kontext</li>
+                      <li>• RAG-optimierte Content-Struktur</li>
+                    </ul>
+                  </div>
+
+                  <div class="bg-zinc-50 rounded-lg p-4">
+                    <h4 class="font-bold text-zinc-900 mb-2">
+                      🔍 Cross-Platform
+                    </h4>
+                    <ul class="text-sm text-zinc-600 space-y-1">
+                      <li>• Google-Optimierung (Traditional SEO)</li>
+                      <li>• Perplexity-Optimierung (AI-First)</li>
+                      <li>• ChatGPT-Optimierung (Conversational)</li>
+                      <li>• Claude-Optimierung (Deep Analysis)</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- The Results -->
+            <div class="mb-8">
+              <h3 class="text-2xl font-bold mb-4">📊 Die Ergebnisse</h3>
+              <div class="bg-white/80 rounded-xl p-6">
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                  <!-- Google Result -->
+                  <div class="bg-green-50 rounded-lg p-6 border-2 border-green-600">
+                    <div class="flex items-center gap-2 mb-3">
+                      <span class="text-3xl">🔍</span>
+                      <div>
+                        <h4 class="text-xl font-bold">Google #1</h4>
+                        <p class="text-sm text-zinc-600">
+                          90%+ aller Searches
+                        </p>
+                      </div>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                      <div class="flex items-center gap-2">
+                        <span class="text-xl">🥇</span>
+                        <span class="font-bold text-green-700"
+                          >CodeBack.de</span
+                        >
+                      </div>
+                      <div class="flex items-center gap-2">
+                        <span class="text-lg">🥈</span>
+                        <span class="text-zinc-700">WebFX</span>
+                      </div>
+                      <div class="flex items-center gap-2">
+                        <span class="text-sm">5️⃣</span>
+                        <span class="text-zinc-700">HubSpot</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Perplexity Result -->
+                  <div class="bg-green-50 rounded-lg p-6 border-2 border-green-600">
+                    <div class="flex items-center gap-2 mb-3">
+                      <span class="text-3xl">🤖</span>
+                      <div>
+                        <h4 class="text-xl font-bold">Perplexity #1</h4>
+                        <p class="text-sm text-zinc-600">
+                          AI-Search Validation
+                        </p>
+                      </div>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                      <div class="flex items-center gap-2">
+                        <span class="text-xl">🥇</span>
+                        <span class="font-bold text-green-700"
+                          >CodeBack.de (2x)</span
+                        >
+                      </div>
+                      <div class="flex items-center gap-2">
+                        <span class="text-lg">🥈</span>
+                        <span class="text-zinc-700">HubSpot</span>
+                      </div>
+                      <div class="flex items-center gap-2">
+                        <span class="text-sm">4️⃣</span>
+                        <span class="text-zinc-700">Aufgesang GmbH</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Key Metrics -->
+                <div class="grid grid-cols-3 gap-4 text-center">
+                  <div class="bg-zinc-50 rounded-lg p-4">
+                    <div class="text-3xl font-bold text-green-600 mb-1">
+                      14
+                    </div>
+                    <div class="text-sm text-zinc-600">Tage bis #1</div>
+                  </div>
+                  <div class="bg-zinc-50 rounded-lg p-4">
+                    <div class="text-3xl font-bold text-green-600 mb-1">
+                      2/2
+                    </div>
+                    <div class="text-sm text-zinc-600">Plattformen #1</div>
+                  </div>
+                  <div class="bg-zinc-50 rounded-lg p-4">
+                    <div class="text-3xl font-bold text-green-600 mb-1">
+                      100%
+                    </div>
+                    <div class="text-sm text-zinc-600">Cross-Platform Win</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Key Takeaways -->
+            <div class="bg-white/80 rounded-xl p-6">
+              <h3 class="text-xl font-bold mb-4">🎯 Key Takeaways</h3>
+              <div class="grid md:grid-cols-2 gap-4">
+                <div class="flex gap-3">
+                  <span class="text-green-600 text-xl">✓</span>
+                  <div>
+                    <strong class="block text-zinc-900"
+                      >LLM-First schlägt SEO-First</strong
+                    >
+                    <span class="text-sm text-zinc-600"
+                      >Ohne Jahre an Backlink-Building</span
+                    >
+                  </div>
+                </div>
+
+                <div class="flex gap-3">
+                  <span class="text-green-600 text-xl">✓</span>
+                  <div>
+                    <strong class="block text-zinc-900"
+                      >Cross-Platform ist Pflicht</strong
+                    >
+                    <span class="text-sm text-zinc-600"
+                      >Menschen UND AI suchen anders</span
+                    >
+                  </div>
+                </div>
+
+                <div class="flex gap-3">
+                  <span class="text-green-600 text-xl">✓</span>
+                  <div>
+                    <strong class="block text-zinc-900"
+                      >Enterprise schlägt Small</strong
+                    >
+                    <span class="text-sm text-zinc-600"
+                      >Mit der richtigen Strategie</span
+                    >
+                  </div>
+                </div>
+
+                <div class="flex gap-3">
+                  <span class="text-green-600 text-xl">✓</span>
+                  <div>
+                    <strong class="block text-zinc-900"
+                      >14 Tage sind realistisch</strong
+                    >
+                    <span class="text-sm text-zinc-600"
+                      >Keine Monate an Optimierung</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="mt-8 text-center">
+              <a
+                href="/"
+                class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors"
+              >
+                Ähnliche Ergebnisse für dein Projekt →
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Coming Soon -->
+        <section class="text-center">
+          <div class="bg-zinc-50 rounded-2xl p-12 border border-zinc-200">
+            <span class="text-4xl mb-4 block">🚀</span>
+            <h2 class="text-2xl font-bold mb-4">Weitere Case Studies folgen</h2>
+            <p class="text-zinc-600 mb-6">
+              Aktuell arbeiten wir an weiteren Projekten mit messbaren Ergebnissen.
+            </p>
+            <a
+              href="mailto:hi@codeback.de"
+              class="text-green-600 hover:underline font-semibold"
+            >
+              Dein Projekt könnte das nächste sein →
+            </a>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <Footer />
+  </body>
+</html>
