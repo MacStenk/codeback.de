@@ -16,7 +16,16 @@ export default defineConfig({
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),
+      filter: (page) => {
+        // Exclude index-OLD from sitemap
+        return !page.includes('/index-OLD');
+      },
       serialize(item) {
+        // Remove .md extension from blog post URLs
+        if (item.url.includes('/blog/') && item.url.endsWith('.md')) {
+          item.url = item.url.replace(/\.md$/, '');
+        }
+        
         // Homepage
         if (item.url === 'https://codeback.de/') {
           item.changefreq = 'daily';
