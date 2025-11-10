@@ -322,8 +322,13 @@ START MESSAGE:
         // Send Verification Email (NOT Magic Link yet!)
         console.log('📧 Sending verification email...');
         try {
-          // Use production URL, not localhost!
-          const siteUrl = 'https://codeback.de';
+          // Smart URL detection: Use production URL when deployed, localhost when local
+          const siteUrl = window.location.hostname === 'localhost' 
+            ? window.location.origin 
+            : 'https://codeback.de';
+          
+          console.log('🌐 Using siteUrl:', siteUrl);
+          
           const emailResponse = await fetch('/api/send-verification', {
             method: 'POST',
             headers: {
