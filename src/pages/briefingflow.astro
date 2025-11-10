@@ -1,0 +1,325 @@
+---
+// BriefingFlow - Produktseite
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <BaseHead
+      title="BriefingFlow - KI Lead Generation Chat | CodeBack"
+      description="Automatisiere deine Lead-Qualifizierung mit BriefingFlow - dem intelligenten Chat-System mit Double Opt-In und KI-gestützter Lead-Analyse."
+    />
+  </head>
+
+  <body class="bg-white text-zinc-900">
+    <Header />
+
+    <main class="max-w-7xl mx-auto px-6 py-16">
+      <!-- Hero -->
+      <div class="text-center mb-16">
+        <div class="inline-block bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+          💬 KI-gestütztes Lead Generation System
+        </div>
+        <h1 class="text-5xl font-bold mb-6">
+          BriefingFlow
+        </h1>
+        <p class="text-xl text-gray-600 mb-2">
+          powered by <span class="text-green-600 font-semibold">CodeBack</span>
+        </p>
+        <p class="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
+          Automatisiere deine Lead-Qualifizierung mit intelligentem Chat, 
+          Email-Validation und Double Opt-In - komplett white-label.
+        </p>
+        <button id="open-chat-btn" class="inline-block bg-green-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-700 transition cursor-pointer border-none">
+          Jetzt Briefing starten →
+        </button>
+      </div>
+
+      <!-- Features -->
+      <div class="grid md:grid-cols-3 gap-8 mb-16">
+        <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+          <div class="text-4xl mb-4">🤖</div>
+          <h3 class="text-xl font-bold mb-3">KI-gestützte Qualifizierung</h3>
+          <p class="text-gray-600">
+            Intelligenter Chat erkennt Budget, Timeline und Anforderungen automatisch. 
+            Nur qualifizierte Leads landen in deiner Pipeline.
+          </p>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+          <div class="text-4xl mb-4">✉️</div>
+          <h3 class="text-xl font-bold mb-3">Double Opt-In System</h3>
+          <p class="text-gray-600">
+            DSGVO-konform mit automatischer Email-Verifizierung. 
+            Keine Fake-Emails, nur echte Interessenten.
+          </p>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+          <div class="text-4xl mb-4">⚡</div>
+          <h3 class="text-xl font-bold mb-3">White-Label Solution</h3>
+          <p class="text-gray-600">
+            Komplett dein Branding, deine Farben, deine Domain. 
+            Kein "Powered by..." von Drittanbietern.
+          </p>
+        </div>
+      </div>
+
+      <!-- Tech Stack -->
+      <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-12 mb-16">
+        <h2 class="text-3xl font-bold mb-8 text-center">Was macht BriefingFlow besonders?</h2>
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div class="bg-white rounded-xl p-6 shadow-sm">
+            <div class="flex items-start gap-3 mb-3">
+              <span class="text-2xl">✉️</span>
+              <strong class="text-lg">Intelligente Email-Prüfung</strong>
+            </div>
+            <p class="text-gray-600 text-sm">
+              Erkennt Tippfehler automatisch und fragt nach. "Meintest du gmail.com statt gmial.com?" 
+              So verlierst du keine Leads durch Schreibfehler.
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-xl p-6 shadow-sm">
+            <div class="flex items-start gap-3 mb-3">
+              <span class="text-2xl">🧠</span>
+              <strong class="text-lg">Kennt deine Website</strong>
+            </div>
+            <p class="text-gray-600 text-sm">
+              Der Chat kann auf deine Website-Inhalte zugreifen und Fragen zu deinen Leistungen, 
+              Preisen oder Abläufen direkt beantworten. Wie ein Mitarbeiter, der alles weiß.
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-xl p-6 shadow-sm">
+            <div class="flex items-start gap-3 mb-3">
+              <span class="text-2xl">🔒</span>
+              <strong class="text-lg">Sichere Datenspeicherung</strong>
+            </div>
+            <p class="text-gray-600 text-sm">
+              Alle Leads werden zuverlässig in einer professionellen Datenbank gespeichert. 
+              Kein Datenverlust, alles DSGVO-konform und jederzeit abrufbar.
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-xl p-6 shadow-sm">
+            <div class="flex items-start gap-3 mb-3">
+              <span class="text-2xl">✅</span>
+              <strong class="text-lg">Emails landen im Posteingang</strong>
+            </div>
+            <p class="text-gray-600 text-sm">
+              Professioneller Email-Versand über Premium-Infrastruktur. 
+              Deine Bestätigungsmails landen im Posteingang, nicht im Spam.
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-xl p-6 shadow-sm">
+            <div class="flex items-start gap-3 mb-3">
+              <span class="text-2xl">📱</span>
+              <strong class="text-lg">Funktioniert auf jedem Gerät</strong>
+            </div>
+            <p class="text-gray-600 text-sm">
+              Egal ob Smartphone, Tablet oder Desktop - der Chat passt sich automatisch an 
+              und sieht überall professionell aus.
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-xl p-6 shadow-sm">
+            <div class="flex items-start gap-3 mb-3">
+              <span class="text-2xl">⚡</span>
+              <strong class="text-lg">Blitzschnell</strong>
+            </div>
+            <p class="text-gray-600 text-sm">
+              Läuft auf modernster Cloud-Infrastruktur. Keine Ladezeiten, 
+              sofortige Antworten - auch bei vielen gleichzeitigen Besuchern.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Running Costs -->
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold mb-4">Extrem günstig im Betrieb</h2>
+        <p class="text-gray-600 mb-8 max-w-2xl mx-auto">
+          Anders als bei Chat-Tools wie Intercom oder Drift zahlst du hier keine 50-500€/Monat. 
+          Die monatlichen <strong>Infrastruktur-Kosten</strong> für das System:
+        </p>
+        <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 max-w-md mx-auto">
+          <div class="text-5xl font-bold text-green-600 mb-2">~€0,30</div>
+          <div class="text-gray-600 mb-6">pro Monat Betriebskosten</div>
+          <ul class="text-left text-sm text-gray-600 space-y-2">
+            <li>✓ Supabase: €0 (Free Tier)</li>
+            <li>✓ Resend: €0 (3.000 Emails/Monat)</li>
+            <li>✓ OpenAI: ~€0,30 (KI-Chat)</li>
+            <li>✓ Cloudflare: €0 (Free Tier)</li>
+          </ul>
+          <div class="mt-6 pt-6 border-t border-gray-200">
+            <p class="text-sm text-gray-500 italic">
+              Zum Vergleich: Intercom startet bei $74/Monat (~€70)
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl font-bold mb-8 text-center">Häufig gestellte Fragen</h2>
+        
+        <div class="space-y-4">
+          <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer group">
+            <summary class="font-semibold text-lg flex items-center justify-between">
+              <span>🌐 Funktioniert das auch mit WordPress, Wix oder Shopify?</span>
+              <span class="text-green-600 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div class="mt-4 text-zinc-600 text-sm space-y-3">
+              <p>
+                Ja! BriefingFlow funktioniert auf <strong>jeder Website</strong>. Bei WordPress fügst du einfach 
+                ein kurzes Code-Snippet in dein Theme ein - genau wie Google Analytics. 
+                Bei Wix und Shopify geht's genauso. Keine Plugin-Installation nötig.
+              </p>
+            </div>
+          </details>
+
+          <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer group">
+            <summary class="font-semibold text-lg flex items-center justify-between">
+              <span>€ Was kostet die Implementierung?</span>
+              <span class="text-green-600 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div class="mt-4 text-zinc-600 text-sm space-y-3">
+              <p>
+                Die Implementierung ist individuell - je nachdem wie umfangreich deine Anforderungen sind 
+                (Branding, spezielle Fragen, Integration mit deinen Systemen). 
+                Im <strong>Briefing-Chat besprechen wir deinen konkreten Fall</strong> und ich gebe dir 
+                ein transparentes Angebot. Die €0,30/Monat sind nur die späteren Betriebskosten.
+              </p>
+            </div>
+          </details>
+
+          <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer group">
+            <summary class="font-semibold text-lg flex items-center justify-between">
+              <span>⏱️ Wie lange dauert die Einrichtung?</span>
+              <span class="text-green-600 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div class="mt-4 text-zinc-600 text-sm space-y-3">
+              <p>
+                Typischerweise <strong>3-5 Werktage</strong> von Briefing bis Go-Live. 
+                Das beinhaltet: Setup, Anpassung an dein Branding, Integration deiner Inhalte, 
+                Tests und Feintuning. Bei dringenden Projekten geht's auch schneller.
+              </p>
+            </div>
+          </details>
+
+          <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer group">
+            <summary class="font-semibold text-lg flex items-center justify-between">
+              <span>🎨 Kann ich das Design komplett anpassen?</span>
+              <span class="text-green-600 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div class="mt-4 text-zinc-600 text-sm space-y-3">
+              <p>
+                Absolut! Farben, Texte, Fragen, Logo - alles wird an dein Branding angepasst. 
+                Der Chat sieht aus wie ein Teil deiner Website, nicht wie ein fremdes Tool. 
+                <strong>100% White-Label</strong> - kein "Powered by" von Drittanbietern (außer du willst es).
+              </p>
+            </div>
+          </details>
+
+          <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer group">
+            <summary class="font-semibold text-lg flex items-center justify-between">
+              <span>🔒 Ist das DSGVO-konform?</span>
+              <span class="text-green-600 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div class="mt-4 text-zinc-600 text-sm space-y-3">
+              <p>
+                Ja! Mit <strong>Double Opt-In</strong> - User müssen ihre Email bestätigen, 
+                bevor wir sie speichern. Alle Daten liegen auf europäischen Servern (Supabase). 
+                Du kannst jederzeit Datenschutz-Infos im Chat einblenden oder in deiner Datenschutzerklärung verlinken.
+              </p>
+            </div>
+          </details>
+
+          <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer group">
+            <summary class="font-semibold text-lg flex items-center justify-between">
+              <span>📧 Was passiert mit den Leads?</span>
+              <span class="text-green-600 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div class="mt-4 text-zinc-600 text-sm space-y-3">
+              <p>
+                Alle qualifizierten Leads (mit bestätigter Email) landen automatisch in deiner Datenbank. 
+                Du bekommst auch eine <strong>Email-Benachrichtigung</strong> bei jedem neuen Lead. 
+                Optional kann ich das auch mit deinem CRM (HubSpot, Pipedrive, etc.) verbinden.
+              </p>
+            </div>
+          </details>
+
+          <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer group">
+            <summary class="font-semibold text-lg flex items-center justify-between">
+              <span>👨‍💻 Brauche ich technische Kenntnisse?</span>
+              <span class="text-green-600 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div class="mt-4 text-zinc-600 text-sm space-y-3">
+              <p>
+                Nein! Ich übernehme die komplette Einrichtung. Du musst nur ein kleines Code-Snippet 
+                (1 Zeile) auf deiner Website einfügen - oder ich mache das für dich. 
+                Danach läuft alles automatisch. <strong>Keine Wartung nötig.</strong>
+              </p>
+            </div>
+          </details>
+
+          <details class="bg-zinc-50 border border-zinc-200 rounded-lg p-6 cursor-pointer group">
+            <summary class="font-semibold text-lg flex items-center justify-between">
+              <span>🌍 Funktioniert das auch auf Englisch/anderen Sprachen?</span>
+              <span class="text-green-600 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div class="mt-4 text-zinc-600 text-sm space-y-3">
+              <p>
+                Ja! Der Chat kann in <strong>jeder Sprache</strong> konfiguriert werden. 
+                Die KI (GPT-4) spricht alle gängigen Sprachen fließend. 
+                Du kannst sogar mehrsprachige Websites bauen (z.B. DE + EN).
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="bg-green-600 text-white rounded-2xl p-12 text-center">
+        <h2 class="text-3xl font-bold mb-4">Interesse an BriefingFlow?</h2>
+        <p class="text-xl mb-8 opacity-90">
+          Ich implementiere es für deine Website - 
+          angepasst an dein Branding und deine Anforderungen.
+        </p>
+        <button id="open-chat-cta" class="inline-block bg-white text-green-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition cursor-pointer border-none">
+          Jetzt Briefing starten →
+        </button>
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>
+
+<script>
+  // Open chat widget when buttons are clicked
+  function openChat() {
+    // Navigate to homepage with hash
+    window.location.href = '/#open-chat';
+  }
+
+  document.getElementById('open-chat-btn')?.addEventListener('click', openChat);
+  document.getElementById('open-chat-cta')?.addEventListener('click', openChat);
+</script>
+
+<style>
+  /* FAQ Accordion - Same style as landing page */
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  
+  summary {
+    list-style: none;
+  }
+</style>
