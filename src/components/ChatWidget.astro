@@ -79,19 +79,36 @@ START MESSAGE:
   ];
   
   const TYPO_MAP: Record<string, string> = {
+    // Gmail typos
     'gmial.com': 'gmail.com',
     'gmai.com': 'gmail.com',
     'gmil.com': 'gmail.com',
     'gmaill.com': 'gmail.com',
+    'gmmail.com': 'gmail.com',
+    'gmal.com': 'gmail.com',
+    'gnail.com': 'gmail.com',
+    'gamil.com': 'gmail.com',
+    // Yahoo typos
     'yahooo.com': 'yahoo.com',
     'yaho.com': 'yahoo.com',
+    'yhoo.com': 'yahoo.com',
+    // Hotmail typos
     'hotmial.com': 'hotmail.com',
     'hotmail.con': 'hotmail.com',
+    'hotmal.com': 'hotmail.com',
+    // Outlook typos
     'outlok.com': 'outlook.com',
     'outloo.com': 'outlook.com',
+    'outlook.con': 'outlook.com',
+    // GMX typos
     'gmx.dd': 'gmx.de',
+    'gmx.dee': 'gmx.de',
+    // Web.de typos
     'web.dd': 'web.de',
-    'freent.de': 'freenet.de'
+    'web.dee': 'web.de',
+    // Freenet typos
+    'freent.de': 'freenet.de',
+    'frenet.de': 'freenet.de'
   };
   
   function validateEmail(email: string): { valid: boolean; suggestion?: string } {
