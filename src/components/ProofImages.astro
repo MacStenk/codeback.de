@@ -1,30 +1,28 @@
 ---
-// ProofImages.astro - Screenshot Gallery with Native HTML Dialog Lightbox
-// Updated: November 2025
+// ProofImages.astro - Screenshot Gallery (Google Only)
+// Updated: November 2025 - Perplexity screenshots removed
 interface Props {
   googleImage?: string;
-  perplexityImage?: string;
 }
 
 const {
-  googleImage = "/images/proof/google-ranking.png",
-  perplexityImage = "/images/proof/perplexity-ranking.png"
+  googleImage = "/images/proof/google-ranking.png"
 } = Astro.props;
 ---
 
 <div class="mt-12 space-y-6">
   <div class="text-center mb-6">
-    <h3 class="text-2xl font-bold mb-2">📸 Die Beweise in Bildern</h3>
-    <p class="text-zinc-600">Live-Screenshots der Rankings • Click to Zoom</p>
+    <h3 class="text-2xl font-bold mb-2">📸 Der Beweis im Bild</h3>
+    <p class="text-zinc-600">Live-Screenshot des Google Rankings • Click to Zoom</p>
     <p class="text-xs text-zinc-500 mt-2">Stand: 09. November 2025</p>
   </div>
 
-  <div class="grid md:grid-cols-2 gap-6">
-    <!-- Google Screenshot -->
+  <div class="max-w-xl mx-auto">
+    <!-- Google Screenshot - Centered, Single -->
     <button 
       type="button"
       onclick="document.getElementById('google-modal').showModal()"
-      class="text-left group"
+      class="text-left group w-full"
       aria-label="Google Ranking Screenshot vergrößern"
     >
       <div class="bg-zinc-50 rounded-xl p-4 border border-zinc-200 hover:border-green-600 transition-all cursor-pointer">
@@ -51,44 +49,12 @@ const {
         </p>
       </div>
     </button>
-
-    <!-- Perplexity Screenshot -->
-    <button 
-      type="button"
-      onclick="document.getElementById('perplexity-modal').showModal()"
-      class="text-left group"
-      aria-label="Perplexity Ranking Screenshot vergrößern"
-    >
-      <div class="bg-zinc-50 rounded-xl p-4 border border-zinc-200 hover:border-green-600 transition-all cursor-pointer">
-        <div class="flex items-center gap-2 mb-3">
-          <span class="text-xl">🤖</span>
-          <span class="font-semibold">Perplexity Ranking</span>
-          <span class="ml-auto text-xs text-zinc-500">Live Screenshot</span>
-        </div>
-        <div class="relative overflow-hidden rounded-lg border-2 border-zinc-200 group-hover:border-green-600 transition-all">
-          <img 
-            src={perplexityImage}
-            alt="Perplexity Ranking Screenshot: CodeBack.de #1 für LLM-Readability kostenlos testen - Stand 09.11.2025"
-            class="w-full h-auto transition-transform group-hover:scale-105"
-            loading="lazy"
-          />
-          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all flex items-center justify-center">
-            <span class="opacity-0 group-hover:opacity-100 bg-white/90 px-4 py-2 rounded-lg text-sm font-medium transition-opacity">
-              🔍 Click to Zoom
-            </span>
-          </div>
-        </div>
-        <p class="text-xs text-zinc-500 mt-2 text-center">
-          CodeBack.de 2x #1 • HubSpot #2 • Aufgesang #4
-        </p>
-      </div>
-    </button>
   </div>
 
   <!-- Verification Note -->
   <div class="text-center mt-6">
     <p class="text-sm text-zinc-500">
-      ⚡ Live-Screenshots vom <strong>09. November 2025</strong> • 
+      ⚡ Live-Screenshot vom <strong>09. November 2025</strong> • 
       <a href="https://google.com/search?q=LLM-Readability+kostenlos+testen" target="_blank" rel="noopener" class="text-green-600 hover:underline">
         Jetzt selbst testen →
       </a>
@@ -114,34 +80,6 @@ const {
       <img 
         src={googleImage}
         alt="Google Ranking Screenshot: CodeBack.de #1 für LLM-Readability kostenlos testen - Stand 09.11.2025"
-        class="modal-image"
-      />
-      <p class="modal-caption">
-        <strong>Query:</strong> "LLM-Readability kostenlos testen" • 
-        <strong>Stand:</strong> 09. November 2025
-      </p>
-    </div>
-  </div>
-</dialog>
-
-<!-- Perplexity Modal -->
-<dialog id="perplexity-modal" class="proof-modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h4 class="modal-title">🤖 Perplexity Ranking - CodeBack.de #1</h4>
-      <button 
-        type="button"
-        onclick="document.getElementById('perplexity-modal').close()"
-        class="modal-close"
-        aria-label="Dialog schließen"
-      >
-        ✕
-      </button>
-    </div>
-    <div class="modal-body">
-      <img 
-        src={perplexityImage}
-        alt="Perplexity Ranking Screenshot: CodeBack.de #1 für LLM-Readability kostenlos testen - Stand 09.11.2025"
         class="modal-image"
       />
       <p class="modal-caption">
@@ -283,9 +221,9 @@ const {
     }
   }
 
-  /* Hover Effect for Thumbnails */
+  /* Hover Effect for Thumbnail */
   @media (prefers-reduced-motion: no-preference) {
-    button:hover .group img {
+    button:hover img {
       animation: subtle-pulse 2s ease-in-out infinite;
     }
   }
@@ -297,15 +235,13 @@ const {
 </style>
 
 <script>
-  // Close modals on backdrop click
-  document.querySelectorAll('.proof-modal').forEach(modal => {
+  // Close modal on backdrop click
+  const modal = document.getElementById('google-modal');
+  if (modal) {
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
         modal.close();
       }
     });
-  });
-
-  // Close modals on ESC key (handled natively by dialog element)
-  // No additional JS needed!
+  }
 </script>
