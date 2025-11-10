@@ -5,10 +5,16 @@ import { Resend } from 'resend';
 // Mark as server-only (no prerendering)
 export const prerender = false;
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
   try {
-    // Check if API key is available
-    const apiKey = import.meta.env.RESEND_API_KEY;
+    // Cloudflare Pages: Try runtime.env first, then import.meta.env
+    const runtime = (locals as any).runtime;
+    const apiKey = runtime?.env?.RESEND_API_KEY || import.meta.env.RESEND_API_KEY;
+    
+    console.log('🔑 Magic Link - Checking for RESEND_API_KEY...');
+    console.log('🔑 Has runtime.env:', !!runtime?.env);
+    console.log('🔑 Has RESEND_API_KEY:', !!apiKey);
+    
     if (!apiKey) {
       console.error('❌ RESEND_API_KEY not found in environment variables');
       return new Response(

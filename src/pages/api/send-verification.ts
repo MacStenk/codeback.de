@@ -5,23 +5,27 @@ import { Resend } from 'resend';
 // Mark as server-only (no prerendering)
 export const prerender = false;
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
   try {
-    // Check if API key is available (try both with and without prefix)
-    const apiKey = import.meta.env.RESEND_API_KEY || import.meta.env.PUBLIC_RESEND_API_KEY;
+    // Cloudflare Pages: Try runtime.env first, then import.meta.env
+    const runtime = (locals as any).runtime;
+    const apiKey = runtime?.env?.RESEND_API_KEY || import.meta.env.RESEND_API_KEY;
     
     console.log('🔑 Checking for RESEND_API_KEY...');
-    console.log('🔑 Has RESEND_API_KEY:', !!import.meta.env.RESEND_API_KEY);
-    console.log('🔑 Has PUBLIC_RESEND_API_KEY:', !!import.meta.env.PUBLIC_RESEND_API_KEY);
+    console.log('🔑 Has runtime.env:', !!runtime?.env);
+    console.log('🔑 Has RESEND_API_KEY in runtime:', !!runtime?.env?.RESEND_API_KEY);
+    console.log('🔑 Has RESEND_API_KEY in import.meta:', !!import.meta.env.RESEND_API_KEY);
+    console.log('🔑 Final apiKey found:', !!apiKey);
     
     if (!apiKey) {
-      console.error('❌ RESEND_API_KEY not found in environment variables');
+      console.error('❌ RESEND_API_KEY not found anywhere');
       return new Response(
         JSON.stringify({ error: 'Email service not configured' }),
         { status: 500 }
       );
     }
     
+    console.log('✅ RESEND_API_KEY found! Initializing Resend...');
     const resend = new Resend(apiKey);
     const { name, email, verificationToken, siteUrl } = await request.json();
 
@@ -34,6 +38,8 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const verificationUrl = `${siteUrl}/verify?token=${verificationToken}`;
+    
+    console.log('📧 Sending email to:', email);
 
     // Send verification email via Resend
     const { data, error } = await resend.emails.send({
@@ -169,7 +175,7 @@ export const POST: APIRoute = async ({ request }) => {
   } catch (error) {
     console.error('❌ API error:', error);
     return new Response(
-      JSON.stringify({ error: 'Internal server error' }),
+      JSON.stringify({ error: 'Internal server error', message: String(error) }),
       { status: 500 }
     );
   }
