@@ -46,7 +46,7 @@ WICHTIG:
 - Bei "nein" → "Okay, bitte gib deine Email nochmal ein"
 - Nach Email-Bestätigung → Frage nach Timeline
 - Bei Budget >€2.500 + bestätigter Email → Qualified Lead
-- Nach Timeline → Verabschiedung mit: "Perfekt! 🎉 Ich hab dir gerade eine Email geschickt. Bitte klick auf den Bestätigungslink in der Email. Danach bekommst du alle Details und nächsten Schritte. Check auch deinen Spam-Ordner! 📧"
+- Nach Timeline → Verabschiedung mit: "Perfekt! 🎉 Ich hab dir gerade eine Email geschickt. Bitte klick auf den Bestätigungslink in der Email. Danach bekommst du alle Details und nächsten Schritte. Check auch deinen Spam-Ordner! 📧\n\nDu kannst dieses Fenster jetzt schließen.\n\nP.S.: Dieser Chat ist meine eigene KI-Entwicklung (BriefingFlow by CodeBack) - genau so baue ich auch für Kunden! 🚀"
 
 START MESSAGE:
 "Hi! 👋 Ich bin der CodeBack Bot. Wie heißt du?"`;
@@ -500,6 +500,13 @@ START MESSAGE:
           <input id="message-input" type="text" placeholder="Schreib eine Nachricht..." style="flex: 1; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px;" />
           <button id="send-button" style="padding: 12px 20px; background: #16a34a; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">Senden</button>
         </div>
+        <div style="text-align: center; margin-top: 12px; padding-top: 12px; border-top: 1px solid #f3f4f6;">
+          <a href="/briefingflow" style="font-size: 11px; color: #6b7280; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: color 0.2s;" onmouseover="this.style.color='#16a34a'" onmouseout="this.style.color='#6b7280'">
+            <span style="font-weight: 600;">BriefingFlow</span>
+            <span style="opacity: 0.7;">powered by</span>
+            <span style="font-weight: 600;">CodeBack</span>
+          </a>
+        </div>
       </div>
     `;
     
@@ -573,7 +580,27 @@ START MESSAGE:
   
   // Init on page load
   if (typeof window !== 'undefined') {
-    window.addEventListener('DOMContentLoaded', createUI);
+    window.addEventListener('DOMContentLoaded', () => {
+      createUI();
+      
+      // Check if we should auto-open chat
+      if (window.location.hash === '#open-chat') {
+        setTimeout(() => {
+          isOpen = true;
+          const chat = document.getElementById('chat-window');
+          if (chat) chat.style.display = 'flex';
+          
+          // Start conversation
+          if (messages.length === 0) {
+            const startMsg = SYSTEM_PROMPT.split('START MESSAGE:\n')[1].replace(/"/g, '');
+            addBotMessage(startMsg);
+          }
+          
+          // Remove hash from URL
+          history.replaceState(null, '', window.location.pathname);
+        }, 300);
+      }
+    });
   }
 </script>
 
