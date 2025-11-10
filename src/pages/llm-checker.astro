@@ -1,8 +1,32 @@
 ---
-// LLM-Readability Checker Page
-// Angepasst an CodeBack.de Design
-const pageTitle = "LLM-Readability Checker";
-const pageDescription = "Prüfe wie gut deine Website für ChatGPT und andere LLMs lesbar ist";
+// LLM-Readability Checker Page - FULL VERSION with Schema.org
+const pageTitle = "LLM-Readability kostenlos testen | CodeBack.de";
+const pageDescription = "Prüfe kostenlos wie gut deine Website für ChatGPT, Claude und Perplexity lesbar ist. LLM-Readability Checker mit sofortiger Analyse.";
+const canonicalUrl = "https://codeback.de/llm-checker/";
+
+// FAQ Data for Schema.org
+const faqs = [
+  {
+    question: "Was ist LLM-Readability?",
+    answer: "LLM-Readability beschreibt wie gut Large Language Models wie ChatGPT, Claude oder Perplexity deine Website-Inhalte verstehen können. Eine hohe LLM-Readability bedeutet: AI-Systeme können deine Expertise, Services und Inhalte korrekt erfassen und in ihren Antworten verwenden."
+  },
+  {
+    question: "Warum ist LLM-Readability wichtig?",
+    answer: "Immer mehr Menschen nutzen ChatGPT und andere AI-Systeme statt Google für ihre Suchen. Wenn deine Website nicht LLM-lesbar ist, wirst du in AI-Antworten nicht empfohlen - selbst wenn du der beste Experte bist. LLM-Readability ist das neue SEO."
+  },
+  {
+    question: "Was wird beim Check getestet?",
+    answer: "Der LLM-Readability Checker analysiert: Schema.org Markup für strukturierte Daten, semantisches HTML5, Meta-Beschreibungen und Title-Tags, Content-Struktur und Lesbarkeit, Überschriften-Hierarchie, und ob dein Content server-side oder nur via JavaScript gerendert wird."
+  },
+  {
+    question: "Ist der Test wirklich kostenlos?",
+    answer: "Ja, der LLM-Readability Check ist 100% kostenlos. Keine Anmeldung, keine Kreditkarte, keine versteckten Kosten. Du bekommst sofort eine detaillierte Analyse mit konkreten Verbesserungsvorschlägen."
+  },
+  {
+    question: "Wie lange dauert der Test?",
+    answer: "Der LLM-Readability Check dauert nur 30 Sekunden. Gib einfach deine URL ein und du erhältst sofort einen Score von 0-100 Punkten plus detaillierte Empfehlungen zur Optimierung."
+  }
+];
 ---
 
 <!DOCTYPE html>
@@ -11,14 +35,65 @@ const pageDescription = "Prüfe wie gut deine Website für ChatGPT und andere LL
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content={pageDescription}>
-  <title>{pageTitle} - CodeBack.de</title>
+  <link rel="canonical" href={canonicalUrl}>
   
-  <!-- Nutze dein existierendes Tailwind (kein CDN mehr!) -->
+  <title>{pageTitle}</title>
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content={pageTitle}>
+  <meta property="og:description" content={pageDescription}>
+  <meta property="og:url" content={canonicalUrl}>
+  <meta property="og:type" content="website">
+  
+  <!-- Schema.org - WebApplication -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "LLM-Readability Checker",
+      "description": "Kostenloser Online-Tool zur Prüfung der LLM-Readability deiner Website",
+      "url": "https://codeback.de/llm-checker/",
+      "applicationCategory": "WebApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Steven Noack",
+        "url": "https://stevennoack.de"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "CodeBack.de",
+        "url": "https://codeback.de"
+      }
+    }
+  </script>
+  
+  <!-- Schema.org - FAQPage -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {faqs.map(faq => `{
+          "@type": "Question",
+          "name": "${faq.question}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "${faq.answer}"
+          }
+        }`).join(',')}
+      ]
+    }
+  </script>
 </head>
 
 <body class="bg-white text-gray-900 font-sans antialiased">
   
-  <!-- Header - Minimalistisch wie auf Homepage -->
+  <!-- Header -->
   <header class="border-b border-gray-200 py-4">
     <div class="max-w-6xl mx-auto px-4 flex items-center justify-between">
       <a href="/" class="flex items-center gap-2 text-xl font-semibold hover:opacity-80 transition">
@@ -27,8 +102,8 @@ const pageDescription = "Prüfe wie gut deine Website für ChatGPT und andere LL
       </a>
       <nav class="hidden md:flex items-center gap-6 text-sm">
         <a href="/" class="text-gray-600 hover:text-green-600 transition">Home</a>
-        <a href="/#das-problem" class="text-gray-600 hover:text-green-600 transition">Das Problem</a>
-        <a href="/#das-konzept" class="text-gray-600 hover:text-green-600 transition">Das Konzept</a>
+        <a href="/#proof" class="text-gray-600 hover:text-green-600 transition">Proven Results</a>
+        <a href="/#konzept" class="text-gray-600 hover:text-green-600 transition">Das Konzept</a>
         <a href="/blog" class="text-gray-600 hover:text-green-600 transition">Blog</a>
       </nav>
     </div>
@@ -37,143 +112,248 @@ const pageDescription = "Prüfe wie gut deine Website für ChatGPT und andere LL
   <!-- Main Content -->
   <main class="max-w-6xl mx-auto px-4 py-16">
     
-    <!-- Hero Section -->
-    <div class="max-w-3xl mx-auto text-center mb-16">
-      <div class="inline-block bg-green-100 text-green-700 px-4 py-1 rounded-full text-sm font-medium mb-6">
-        Kostenloser Check
-      </div>
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900">
-        LLM-Readability Checker
-      </h1>
-      <p class="text-xl text-gray-600 mb-4">
-        Ist deine Website für ChatGPT lesbar?
-      </p>
-      <p class="text-gray-500">
-        LLM-Sichtbarkeit ist das neue SEO. Teste jetzt wie gut ChatGPT, Claude und Gemini deine Inhalte verstehen.
-      </p>
-    </div>
-
-    <!-- Input Form -->
-    <div class="max-w-2xl mx-auto mb-16">
-      <form id="checker-form" class="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
-        <label for="url-input" class="block text-sm font-medium text-gray-700 mb-3">
-          Website-URL
-        </label>
-        <div class="flex flex-col md:flex-row gap-3">
-          <input 
-            type="url" 
-            id="url-input" 
-            placeholder="https://deine-website.de"
-            required
-            class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition"
-          />
-          <button 
-            type="submit"
-            class="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition shadow-sm whitespace-nowrap"
-          >
-            Jetzt testen
-          </button>
+    <article>
+      <!-- Hero Section -->
+      <header class="max-w-3xl mx-auto text-center mb-16">
+        <div class="inline-block bg-green-100 text-green-700 px-4 py-1 rounded-full text-sm font-medium mb-6">
+          ✅ 100% Kostenlos · ⚡ 30 Sekunden · 🔒 Keine Anmeldung
         </div>
-        <p class="text-xs text-gray-500 mt-3">
-          ⚡ Dauert nur 30 Sekunden · Keine Anmeldung · Keine Kosten
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900">
+          LLM-Readability kostenlos testen
+        </h1>
+        <p class="text-xl text-gray-600 mb-4">
+          Wird deine Website von ChatGPT, Claude und Perplexity gefunden und verstanden?
         </p>
-      </form>
+        <p class="text-gray-500">
+          Teste jetzt in 30 Sekunden wie LLM-ready deine Website ist. Mit sofortiger Analyse und konkreten Verbesserungsvorschlägen.
+        </p>
+      </header>
 
-      <!-- Loading State -->
-      <div id="loading" class="hidden mt-8 text-center">
-        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
-          <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mb-4"></div>
-          <p class="text-lg font-medium text-gray-900 mb-2">Analysiere Website...</p>
-          <p class="text-sm text-gray-500">Prüfe HTML, Schema.org, Semantic Markup...</p>
-        </div>
-      </div>
-    </div>
+      <!-- Input Form -->
+      <section class="max-w-2xl mx-auto mb-16">
+        <form id="checker-form" class="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+          <label for="url-input" class="block text-sm font-medium text-gray-700 mb-3">
+            Website-URL eingeben
+          </label>
+          <div class="flex flex-col md:flex-row gap-3">
+            <input 
+              type="url" 
+              id="url-input" 
+              placeholder="https://deine-website.de"
+              required
+              class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition"
+            />
+            <button 
+              type="submit"
+              class="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition shadow-sm whitespace-nowrap"
+            >
+              Jetzt testen
+            </button>
+          </div>
+          <p class="text-xs text-gray-500 mt-3">
+            ⚡ Dauert nur 30 Sekunden · Keine Anmeldung · Keine Kosten
+          </p>
+        </form>
 
-    <!-- Results Section -->
-    <div id="results" class="hidden max-w-4xl mx-auto space-y-6">
-      
-      <!-- Score Card -->
-      <div class="bg-gradient-to-br from-green-50 to-white rounded-xl shadow-lg p-8 border border-green-100">
-        <h2 class="text-2xl font-bold text-gray-900 mb-6">📊 Dein Ergebnis</h2>
-        <div class="flex items-center gap-6 mb-6">
-          <div class="text-6xl font-bold text-green-600" id="score-display">--</div>
-          <div>
-            <div class="text-sm text-gray-600">von 100 Punkten</div>
-            <div id="score-label" class="text-xl font-semibold"></div>
+        <!-- Loading State -->
+        <div id="loading" class="hidden mt-8 text-center">
+          <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+            <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mb-4"></div>
+            <p class="text-lg font-medium text-gray-900 mb-2">Analysiere Website...</p>
+            <p class="text-sm text-gray-500">Prüfe HTML, Schema.org, Semantic Markup...</p>
           </div>
         </div>
-        <div class="h-3 bg-gray-200 rounded-full overflow-hidden">
-          <div id="score-fill" class="h-full bg-gradient-to-r from-green-500 to-green-600 transition-all duration-1000 rounded-full" style="width: 0%"></div>
+      </section>
+
+      <!-- Results Section -->
+      <section id="results" class="hidden max-w-4xl mx-auto space-y-6">
+        
+        <!-- Score Card -->
+        <div class="bg-gradient-to-br from-green-50 to-white rounded-xl shadow-lg p-8 border border-green-100">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">📊 Dein LLM-Readability Score</h2>
+          <div class="flex items-center gap-6 mb-6">
+            <div class="text-6xl font-bold text-green-600" id="score-display">--</div>
+            <div>
+              <div class="text-sm text-gray-600">von 100 Punkten</div>
+              <div id="score-label" class="text-xl font-semibold"></div>
+            </div>
+          </div>
+          <div class="h-3 bg-gray-200 rounded-full overflow-hidden">
+            <div id="score-fill" class="h-full bg-gradient-to-r from-green-500 to-green-600 transition-all duration-1000 rounded-full" style="width: 0%"></div>
+          </div>
         </div>
-      </div>
 
-      <!-- Issues Card -->
-      <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
-        <h3 class="text-xl font-bold text-gray-900 mb-4">⚠️ Gefundene Probleme</h3>
-        <div id="issues-list" class="space-y-3"></div>
-      </div>
+        <!-- Issues Card -->
+        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">⚠️ Gefundene Probleme</h3>
+          <div id="issues-list" class="space-y-3"></div>
+        </div>
 
-      <!-- Recommendations Card -->
-      <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
-        <h3 class="text-xl font-bold text-gray-900 mb-4">💡 Empfehlungen</h3>
-        <div id="recommendations-list" class="space-y-3"></div>
-      </div>
+        <!-- Recommendations Card -->
+        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">💡 Empfehlungen</h3>
+          <div id="recommendations-list" class="space-y-3"></div>
+        </div>
 
-      <!-- What This Means -->
-      <div class="bg-blue-50 rounded-xl p-8 border border-blue-100">
-        <h3 class="text-xl font-bold text-gray-900 mb-4">🎯 Was das bedeutet</h3>
-        <div id="meaning-text" class="space-y-3 text-gray-700"></div>
-      </div>
+        <!-- What This Means -->
+        <div class="bg-blue-50 rounded-xl p-8 border border-blue-100">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">🎯 Was das bedeutet</h3>
+          <div id="meaning-text" class="space-y-3 text-gray-700"></div>
+        </div>
 
-      <!-- CTA Card -->
-      <div class="bg-gradient-to-r from-green-600 to-green-700 rounded-xl shadow-xl p-8 text-white text-center">
-        <h3 class="text-2xl font-bold mb-4">
-          Brauchst du Hilfe beim Optimieren?
-        </h3>
-        <p class="text-green-50 mb-6 text-lg">
-          Ich helfe dir, deine Website LLM-ready zu machen.<br>
-          Damit ChatGPT dich empfiehlt, wenn jemand nach deinen Services fragt.
+        <!-- CTA Card -->
+        <div class="bg-gradient-to-r from-green-600 to-green-700 rounded-xl shadow-xl p-8 text-white text-center">
+          <h3 class="text-2xl font-bold mb-4">
+            Brauchst du Hilfe beim Optimieren?
+          </h3>
+          <p class="text-green-50 mb-6 text-lg">
+            Ich helfe dir, deine Website LLM-ready zu machen.<br>
+            Damit ChatGPT dich empfiehlt, wenn jemand nach deinen Services fragt.
+          </p>
+          <a 
+            href="mailto:kontakt@codeback.de"
+            class="inline-block bg-white text-green-600 px-8 py-4 rounded-lg font-semibold hover:bg-green-50 transition shadow-lg"
+          >
+            📞 Kostenlose Beratung buchen
+          </a>
+        </div>
+
+      </section>
+
+      <!-- Why LLM-Readability Matters -->
+      <section class="max-w-4xl mx-auto mt-20 mb-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">
+          Warum LLM-Readability wichtig ist
+        </h2>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-red-50 rounded-xl p-6 border border-red-200">
+            <h3 class="text-xl font-bold text-red-900 mb-3">❌ Ohne LLM-Readability</h3>
+            <ul class="space-y-2 text-sm text-gray-700">
+              <li>• ChatGPT kann deine Expertise nicht finden</li>
+              <li>• Perplexity versteht deine Services nicht</li>
+              <li>• Claude empfiehlt deine Konkurrenz statt dich</li>
+              <li>• Du verlierst täglich potenzielle Kunden</li>
+            </ul>
+          </div>
+
+          <div class="bg-green-50 rounded-xl p-6 border border-green-200">
+            <h3 class="text-xl font-bold text-green-900 mb-3">✅ Mit LLM-Readability</h3>
+            <ul class="space-y-2 text-sm text-gray-700">
+              <li>• AI-Systeme finden und verstehen dich</li>
+              <li>• Wirst in AI-Antworten empfohlen</li>
+              <li>• Deine Expertise wird korrekt dargestellt</li>
+              <li>• Mehr Sichtbarkeit = Mehr Anfragen</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-8 bg-blue-50 rounded-xl p-6 border-l-4 border-blue-600">
+          <p class="text-gray-700">
+            <strong class="text-blue-900">Fakt:</strong> Über 40% der Menschen nutzen bereits ChatGPT für Recherchen. 
+            Bis 2025 werden AI-gestützte Suchen Standard sein. Wer dann nicht LLM-ready ist, verliert massiv Traffic und Anfragen.
+          </p>
+        </div>
+      </section>
+
+      <!-- What Gets Tested -->
+      <section class="max-w-4xl mx-auto mb-16 bg-gray-50 rounded-xl p-8 border border-gray-200">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">
+          Was wird getestet?
+        </h2>
+        <div class="grid md:grid-cols-2 gap-4 text-sm text-gray-700">
+          <div class="flex items-start gap-2">
+            <span class="text-green-600 mt-0.5">✓</span>
+            <div>
+              <strong>Schema.org Markup</strong>
+              <p class="text-xs text-gray-600">Strukturierte Daten die LLMs verstehen</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-green-600 mt-0.5">✓</span>
+            <div>
+              <strong>Semantisches HTML5</strong>
+              <p class="text-xs text-gray-600">article, section, nav Tags</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-green-600 mt-0.5">✓</span>
+            <div>
+              <strong>Content-Struktur</strong>
+              <p class="text-xs text-gray-600">Überschriften-Hierarchie (H1-H6)</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-green-600 mt-0.5">✓</span>
+            <div>
+              <strong>Meta-Daten</strong>
+              <p class="text-xs text-gray-600">Title-Tags und Beschreibungen</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-green-600 mt-0.5">✓</span>
+            <div>
+              <strong>Rendering-Typ</strong>
+              <p class="text-xs text-gray-600">Server-Side vs. JavaScript</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-green-600 mt-0.5">✓</span>
+            <div>
+              <strong>Content-Lesbarkeit</strong>
+              <p class="text-xs text-gray-600">Struktur und Verständlichkeit</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="max-w-4xl mx-auto mb-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">
+          Häufig gestellte Fragen
+        </h2>
+        
+        <div class="space-y-4">
+          {faqs.map(faq => (
+            <details class="bg-white border border-gray-200 rounded-lg p-6 cursor-pointer group">
+              <summary class="font-semibold text-lg flex items-center justify-between">
+                <span>{faq.question}</span>
+                <span class="text-green-600 group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <div class="mt-4 text-gray-600 text-sm">
+                <p>{faq.answer}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <!-- Final CTA -->
+      <section class="max-w-4xl mx-auto text-center bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-12 border border-green-200">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Bereit für mehr AI-Sichtbarkeit?
+        </h2>
+        <p class="text-xl text-gray-700 mb-8">
+          Nach dem Test weißt du wo du stehst. Brauchst du Hilfe bei der Optimierung?<br>
+          Ich baue dir eine Website die ChatGPT versteht und empfiehlt.
         </p>
-        <a 
-          href="mailto:kontakt@codeback.de"
-          class="inline-block bg-white text-green-600 px-8 py-4 rounded-lg font-semibold hover:bg-green-50 transition shadow-lg"
-        >
-          📞 Kostenlose Beratung buchen
-        </a>
-      </div>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a 
+            href="mailto:kontakt@codeback.de"
+            class="inline-block bg-green-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-700 transition shadow-lg"
+          >
+            Kostenlose Beratung buchen
+          </a>
+          <a 
+            href="/"
+            class="inline-block bg-white text-green-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-50 transition border-2 border-green-600"
+          >
+            Mehr über CodeBack
+          </a>
+        </div>
+      </section>
 
-    </div>
-
-    <!-- Info Section -->
-    <div class="max-w-4xl mx-auto mt-16 bg-gray-50 rounded-xl p-8 border border-gray-200">
-      <h3 class="text-lg font-bold text-gray-900 mb-4">ℹ️ Was wird getestet?</h3>
-      <div class="grid md:grid-cols-2 gap-4 text-sm text-gray-700">
-        <div class="flex items-start gap-2">
-          <span class="text-green-600 mt-0.5">✓</span>
-          <span>Schema.org Markup für strukturierte Daten</span>
-        </div>
-        <div class="flex items-start gap-2">
-          <span class="text-green-600 mt-0.5">✓</span>
-          <span>Semantisches HTML5 (article, section, nav)</span>
-        </div>
-        <div class="flex items-start gap-2">
-          <span class="text-green-600 mt-0.5">✓</span>
-          <span>JavaScript-Rendering vs. Server-Side Content</span>
-        </div>
-        <div class="flex items-start gap-2">
-          <span class="text-green-600 mt-0.5">✓</span>
-          <span>Meta-Beschreibungen und Title-Tags</span>
-        </div>
-        <div class="flex items-start gap-2">
-          <span class="text-green-600 mt-0.5">✓</span>
-          <span>Content-Struktur und Lesbarkeit</span>
-        </div>
-        <div class="flex items-start gap-2">
-          <span class="text-green-600 mt-0.5">✓</span>
-          <span>Überschriften-Hierarchie (H1-H6)</span>
-        </div>
-      </div>
-    </div>
+    </article>
 
   </main>
 
@@ -182,6 +362,10 @@ const pageDescription = "Prüfe wie gut deine Website für ChatGPT und andere LL
     <div class="max-w-6xl mx-auto px-4">
       <p>Made with 💚 by <a href="https://codeback.de" class="text-green-600 hover:text-green-700 font-medium">CodeBack.de</a></p>
       <p class="mt-2">LLM-native JAMstack Development</p>
+      <p class="mt-4 text-xs">
+        <a href="/impressum" class="hover:text-green-600">Impressum</a> · 
+        <a href="/datenschutz" class="hover:text-green-600">Datenschutz</a>
+      </p>
     </div>
   </footer>
 
@@ -322,6 +506,17 @@ const pageDescription = "Prüfe wie gut deine Website für ChatGPT und andere LL
       }
     }
   </script>
+
+  <style>
+    /* FAQ Accordion */
+    summary::-webkit-details-marker {
+      display: none;
+    }
+    
+    summary {
+      list-style: none;
+    }
+  </style>
 
 </body>
 </html>
