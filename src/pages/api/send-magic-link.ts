@@ -2,10 +2,22 @@
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
 
-const resend = new Resend(import.meta.env.RESEND_API_KEY);
+// Mark as server-only (no prerendering)
+export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
   try {
+    // Check if API key is available
+    const apiKey = import.meta.env.RESEND_API_KEY;
+    if (!apiKey) {
+      console.error('❌ RESEND_API_KEY not found in environment variables');
+      return new Response(
+        JSON.stringify({ error: 'Email service not configured' }),
+        { status: 500 }
+      );
+    }
+    
+    const resend = new Resend(apiKey);
     const { name, email, budget, timeline, business } = await request.json();
 
     // Validate input
