@@ -6,7 +6,7 @@ import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
   site: 'https://codeback.de',
-  trailingSlash: 'ignore',
+  trailingSlash: 'never',
   adapter: cloudflare({
     mode: 'directory'
   }),  // ← SCHLIESSE cloudflare() mit }),
