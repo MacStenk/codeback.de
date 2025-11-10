@@ -113,13 +113,21 @@ import ChatWidget from "../ChatWidget.astro";
 </section>
 
 <script>
+  // Open ChatWidget when "Chat starten" button is clicked
   const chatButton = document.getElementById("open-briefing-chat");
-
+  
   chatButton?.addEventListener("click", () => {
-    if (window.Chatbot?.open) {
-      window.Chatbot.open();
+    // Click the ChatWidget button to open it
+    const widgetButton = document.getElementById("chat-button") as HTMLButtonElement;
+    if (widgetButton) {
+      widgetButton.click();
     } else {
-      console.warn("Flowise Chatbot noch nicht geladen.");
+      console.warn("ChatWidget button not found yet. Waiting...");
+      // Wait a moment and try again
+      setTimeout(() => {
+        const retryButton = document.getElementById("chat-button") as HTMLButtonElement;
+        if (retryButton) retryButton.click();
+      }, 100);
     }
   });
 </script>
