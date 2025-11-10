@@ -322,7 +322,8 @@ START MESSAGE:
         // Send Verification Email (NOT Magic Link yet!)
         console.log('📧 Sending verification email...');
         try {
-          const siteUrl = window.location.origin;
+          // Use production URL, not localhost!
+          const siteUrl = 'https://codeback.de';
           const emailResponse = await fetch('/api/send-verification', {
             method: 'POST',
             headers: {
